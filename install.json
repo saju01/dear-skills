@@ -37,7 +37,7 @@
         {
           "path": "skills/dear-inbox-zero/channels/teams.md",
           "target": "channels/teams.md",
-          "sha256": "73bd4d150f0b2a87dd4a81f20e50fd1e16da323f7dd30bd7d9db7beb1a29e6d5"
+          "sha256": "7b35419d0aaf805c86f9514ee1d853eaab0fe374af272b814c20869b7a99edd2"
         },
         {
           "path": "skills/dear-inbox-zero/config/host.json",
@@ -47,7 +47,7 @@
         {
           "path": "skills/dear-inbox-zero/engine/dear_engine.py",
           "target": "engine/dear_engine.py",
-          "sha256": "02c9e7e5f194721f81ecf07089cab39ad8bd6699fd3324b52975dce2648a71d6"
+          "sha256": "63b07d1a102900b96917cc7be60e9be88acb1c4c09fe24c7ac0861807ec12a0a"
         },
         {
           "path": "skills/dear-inbox-zero/engine/diz/__init__.py",
@@ -67,12 +67,12 @@
         {
           "path": "skills/dear-inbox-zero/engine/diz/learn.py",
           "target": "engine/diz/learn.py",
-          "sha256": "f9e322433d8cc95cc3c8c5e52e1475e9cb59b4e477c0bb89d54aef740d289bfb"
+          "sha256": "1f0ffb4b1d91c54cb434540ce317bbb6615220bb4c4bf5ca9b01c3ab5def9946"
         },
         {
           "path": "skills/dear-inbox-zero/engine/diz/ledger.py",
           "target": "engine/diz/ledger.py",
-          "sha256": "55718dfb975418a0b6aab491c0897461d210ea4fa42421bd7c122ed95390e6cd"
+          "sha256": "e718789258daa25506d73d6d3d616a5476a40a8603754af27a801299ae3600d1"
         },
         {
           "path": "skills/dear-inbox-zero/engine/diz/report.py",
@@ -88,6 +88,11 @@
           "path": "skills/dear-inbox-zero/engine/diz/store.py",
           "target": "engine/diz/store.py",
           "sha256": "2cf95c57aac89a046c637eb344460e94682d8c0fa0a7c61e119fd611990a3656"
+        },
+        {
+          "path": "skills/dear-inbox-zero/engine/diz/teams.py",
+          "target": "engine/diz/teams.py",
+          "sha256": "ddc17d7799beeefc4e3d0927b6d05f981c75c108ef9af244a64f25368a896d60"
         },
         {
           "path": "skills/dear-inbox-zero/engine/diz/util.py",
@@ -168,6 +173,11 @@
           "path": "skills/dear-inbox-zero/tests/test_sent.py",
           "target": "tests/test_sent.py",
           "sha256": "b6717c0dbf34f5f6d778a12fcc8c96ad676a5b9edd7b9b2e8edd76b89305ea02"
+        },
+        {
+          "path": "skills/dear-inbox-zero/tests/test_teams.py",
+          "target": "tests/test_teams.py",
+          "sha256": "69ba41e0f94762537964677e5cb049778cc0ab874dca41cecb4bf1d6ff5e364c"
         },
         {
           "path": "skills/dear-inbox-zero/tests/fixtures/alex_expected.json",

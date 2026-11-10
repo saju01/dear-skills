@@ -3,7 +3,7 @@
 import argparse, json, os, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from diz import __version__, store, classify as C, learn as L, ledger, report as R, doctor as D, sent as S  # noqa: E402
+from diz import __version__, store, classify as C, learn as L, ledger, report as R, doctor as D, sent as S, teams as T  # noqa: E402
 from diz.util import load, dump, parse_ts, iso, now_utc  # noqa: E402
 
 
@@ -110,6 +110,21 @@ def cmd_sent_signals(a):
     print(json.dumps({"signals": len(res["signals"]), "drafts_sent": len(res["drafts"]), "voice_updated": bool(voice)}))
 
 
+def cmd_teams_filter(a):
+    st = load(a.state)
+    result = T.needs_response(load(a.chats, []), st["head"]["profile"], a.user_id, _now(a))
+    dump(a.out, result)
+    print(json.dumps({"messages": len(result)}))
+
+
+def cmd_teams_signals(a):
+    st = load(a.state)
+    result = T.signals(load(a.posts, []), st, a.user_id, _now(a))
+    existing = load(a.out, []) if os.path.exists(a.out) else []
+    dump(a.out, existing + result)
+    print(json.dumps({"signals": len(result)}))
+
+
 def cmd_report(a):
     st = load(a.state)
     md = R.render(st, load(a.decisions, {"decisions": []}), _now(a), a.note)
@@ -189,6 +204,8 @@ def main(argv=None):
     add("learn", cmd_learn, ("--state", req), ("--decisions", {}), ("--answers", {}), ("--checkpoints", {}), ("--drafts", {}))
     add("sent-study", cmd_sent_study, ("--state", req), ("--sent", req), ("--bodies", {}))
     add("sent-signals", cmd_sent_signals, ("--state", req), ("--sent", req), ("--bodies", {}), ("--draft-bodies", {}), ("--out", req))
+    add("teams-filter", cmd_teams_filter, ("--state", req), ("--chats", req), ("--user-id", req), ("--out", req))
+    add("teams-signals", cmd_teams_signals, ("--state", req), ("--posts", req), ("--user-id", req), ("--out", req))
     add("report", cmd_report, ("--state", req), ("--decisions", req), ("--out", {}), ("--note", {"action": "append"}))
     add("review", cmd_review, ("--state", req))
     add("show", cmd_show, ("--decisions", req), ("--bucket", req))

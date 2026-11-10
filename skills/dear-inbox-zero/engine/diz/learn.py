@@ -50,7 +50,14 @@ def observe(state, signals, now=None):
     for sig in signals or []:
         dec = last.get(sig.get("id"))
         if dec is None:
-            continue  # only items the run decided count
+            if sig.get("channel") != "teams" or sig.get("signal") != "replied_not_proposed":
+                continue  # only decided items, plus own Teams replies to unsurfaced threads
+            d = direction_of(sig)
+            enriched.append({**sig, "at": sig.get("at") or iso(now), "series": sig.get("series"),
+                             "sender": sig.get("sender"), "decided": None, "direction": d,
+                             "by_series": False, "outcome": "override", "rule_id": None,
+                             "abucket": None, "wrong": False})
+            continue
         d = direction_of(sig)
         decided = decided_bucket(dec)
         outcome = None if d is None else ("agree" if d == decided else "override")
