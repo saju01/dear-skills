@@ -24,7 +24,7 @@ You don't install anything by hand. Your agent does the installation, then start
 
 ### Copilot Cowork
 
-1. **Download** [dear-inbox-zero-v0.1.0.zip](https://github.com/saju01/dear-skills/releases/download/v0.1.0/dear-inbox-zero-v0.1.0.zip) from the [v0.1.0 release](https://github.com/saju01/dear-skills/releases/tag/v0.1.0).
+1. **Download** [dear-inbox-zero-v0.1.0.zip](https://github.com/saju01/dear-skills/raw/v0.1.0/dist/dear-inbox-zero-v0.1.0.zip) (the [v0.1.0 release](https://github.com/saju01/dear-skills/releases/tag/v0.1.0)).
 2. **Upload** it to a new Cowork task.
 3. **Say:** `Install this skill and set it up.`
 
