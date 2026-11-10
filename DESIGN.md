@@ -212,6 +212,19 @@ Each adapter lists least-privilege scopes: `Mail.ReadWrite`, `Calendars.ReadWrit
 
 A host is listed as **supported** in the README only after `doctor` passes and a dry run on that host has been verified.
 
+## 11a. Agent-led install
+
+Users don't install by hand: they ask their agent ("install dear-inbox-zero from <repo>"). The repo carries three agent-readable entry points:
+
+| File | Role |
+|---|---|
+| `AGENTS.md` | rules for any agent working in or installing from the repo |
+| `INSTALL.md` | deterministic install procedure: read manifest → identify host → choose folder → copy + verify sha256 → pick adapter → `doctor` → hand over to setup |
+| `install.json` | machine-readable manifest: files with sha256, host skills folders and detection hints, adapter per host, required and forbidden capabilities, memory location |
+| `llms.txt` | short index so a model can find the above |
+
+Installing never touches mail, calendar, chats or memory. Setup (with consent) does. Upgrades back up the old folder; nothing is deleted. CI regenerates `install.json` hashes on every release and fails if they're out of date.
+
 ## 12. Testing and privacy
 
 - Unit tests run on synthetic fixtures only (fictional persona "Alex", `example.com` domains).

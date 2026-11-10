@@ -18,7 +18,15 @@ Works with Microsoft Outlook, Outlook Calendar and Microsoft Teams. One core run
 
 > Status: v0.1 in development. See [DESIGN.md](DESIGN.md).
 
-### Quick start
+### Install with your agent
+
+Ask your agent:
+
+> Install dear-inbox-zero from https://github.com/saju01/dear-skills
+
+Agents read [AGENTS.md](AGENTS.md) and follow [INSTALL.md](INSTALL.md), using the [install.json](install.json) manifest. The manifest lists every file with its sha256, the skills folder for each agent and the adapter to use. The agent copies and verifies the files, picks the adapter, runs a health check, then hands over to `dear-inbox-zero setup`, which asks your consent before reading anything.
+
+### Manual install
 
 ```text
 1. Copy skills/dear-inbox-zero into your agent's skills folder

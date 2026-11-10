@@ -1,0 +1,117 @@
+{
+  "$schema_version": "1.0",
+  "repo": "https://github.com/saju01/dear-skills",
+  "raw_base": "https://raw.githubusercontent.com/saju01/dear-skills/main/",
+  "license": "Apache-2.0",
+  "instructions_for_agents": "INSTALL.md",
+  "skills": [
+    {
+      "name": "dear-inbox-zero",
+      "version": "0.0.0-design",
+      "installable": false,
+      "status": "design stage; v0.1 in development. Report 'not yet installable' and do not install partial files.",
+      "path": "skills/dear-inbox-zero/",
+      "entry": "skills/dear-inbox-zero/SKILL.md",
+      "post_install_message": "Say `dear-inbox-zero setup` to start. I'll ask your consent before reading anything; your memory will live in your own OneDrive.",
+      "files": [],
+      "requires": {
+        "capabilities": [
+          "mail.read",
+          "mail.update (categories, read state, flag)",
+          "mail.draft",
+          "calendar.read",
+          "calendar.respond (accept only)",
+          "teams.read (chats, mentions)",
+          "onedrive.files.readwrite",
+          "ask_user"
+        ],
+        "python": ">=3.10 (optional; prose mode without it)",
+        "forbidden": [
+          "mail.send",
+          "mail.forward",
+          "mail.delete",
+          "calendar.decline",
+          "teams.post"
+        ]
+      },
+      "memory": {
+        "location": "OneDrive/dear-inbox-zero/<account_key>/",
+        "created_by": "dear-inbox-zero setup (after consent)",
+        "never_in_skill_folder": true
+      }
+    }
+  ],
+  "hosts": [
+    {
+      "id": "cowork",
+      "name": "Microsoft 365 Copilot Cowork",
+      "skills_dirs": [
+        "OneDrive:Documents/Cowork/skills/"
+      ],
+      "adapter": "hosts/cowork.md",
+      "detect": [
+        "a Documents/Cowork/skills folder in the user's OneDrive",
+        "Cowork host tools available"
+      ],
+      "status": "planned v0.1"
+    },
+    {
+      "id": "github-copilot",
+      "name": "GitHub Copilot (VS Code, CLI, coding agent)",
+      "skills_dirs": [
+        ".github/skills/",
+        "~/.copilot/skills/"
+      ],
+      "adapter": "hosts/graph-mcp.md",
+      "detect": [
+        "a .github/skills folder in the workspace",
+        "~/.copilot/skills exists"
+      ],
+      "status": "planned v0.1.x"
+    },
+    {
+      "id": "generic",
+      "name": "Any Agent Skills\u2013compatible agent",
+      "skills_dirs": [
+        "<ask the user once>"
+      ],
+      "adapter": "hosts/graph-mcp.md or hosts/_template.md",
+      "detect": [],
+      "status": "via template"
+    }
+  ],
+  "docs": [
+    {
+      "path": "README.md",
+      "sha256": "86dee5dd0104ce0fa3e11e8f2fb1b1a99157b1c4447a12e4c57d22988cf47257"
+    },
+    {
+      "path": "DESIGN.md",
+      "sha256": "396ddffe8629ce8e9c50af19cbd91a2c15e4b9b0503c3435827cc42d12758c9b"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "b8d26840cbec18db3959578136a718a8cc16c24dd3ae39abb2582d782e0431cb"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "sha256": "0fc7e98a618ce86cef141b69e6935f6b89899c081a5c8c6145d3aa1143d9134c"
+    },
+    {
+      "path": "SECURITY.md",
+      "sha256": "146875b6a1197a740d9461c13084860775c5d8f9a9260826d5768c188d403dd1"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "9ea643dbc00f59cc3b567bfa56421272ddf241e637bcd8549212c47edfae50a1"
+    },
+    {
+      "path": "INSTALL.md",
+      "sha256": "e8139d26594bbf2192cbec5dd8b919aa1ed3f6106b2198f635b03134ab9b68db"
+    },
+    {
+      "path": "llms.txt",
+      "sha256": "2545ed99489860d543eb8d98ed05bdc283409466dabd6e2f80bcc81c5ce90ed1"
+    }
+  ]
+}
