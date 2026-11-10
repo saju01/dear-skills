@@ -4,8 +4,9 @@ description: >
   Personal inbox-zero for Microsoft 365: mail, meeting invites and Teams messages that need the
   user. Tags mail Noise / FYI / Reply / Personal, drafts replies in the user's voice, recommends
   invite responses and helps answer Teams messages; learns only from the user's own actions and
-  keeps its memory in the user's OneDrive. Never sends, forwards, posts, deletes or declines.
-  Use on "dear-inbox-zero", "dear-inbox-zero setup|learn|show|doctor", or when the user asks to
+  keeps its memory in the user's OneDrive. Never sends mail, forwards, posts, deletes or declines.
+  One opt-in exception, off by default: accepting invites under rules the user confirmed, which
+  sends the organiser an acceptance. Use on "dear-inbox-zero", "dear-inbox-zero setup|learn|show|doctor", or when the user asks to
   install it. Not for one-off questions about a single message.
 license: Apache-2.0
 metadata:
@@ -60,6 +61,7 @@ Commands: `python engine/dear_engine.py <cmd> --help`. All files are JSON in, JS
 ## Hard rules (never relaxed by memory, rules or the user's past habits)
 
 - Never send, forward, post, delete, move, or decline. Many hosts' "forward" sends immediately: never call it.
+- The one action that reaches another person is an invite accept (the organiser gets the response): only with invite accepts on (`profile.invite_accept`, off by default) and a confirmed rule. Tags, flags, read state, drafts and memory stay with the user.
 - Drafts are formatted HTML/Markdown files, never plain text that loses its line breaks; re-read every draft after writing.
 - Never remove a category, flag or rule the user set.
 - Personal items: never open, summarise, flag or learn from the body.

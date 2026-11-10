@@ -20,3 +20,5 @@ PRESETS = {
                "cap":   {"noise": 2, "fyi": 2, "reply": 2, "calendar": 3}},
 }
 DEFAULT_PRESET = "medium"
+# Accepting an invite sends the organiser a response: the one action that reaches another person. It is a separate
+# opt-in (profile.invite_accept), off by default at every preset; without it the engine asks instead of accepting.

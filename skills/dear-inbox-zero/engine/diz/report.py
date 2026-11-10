@@ -45,7 +45,10 @@ def render(state, decisions, now=None, notes=None):
         lines += ["## Decide today", ""]
         for d in inv:
             if d["recommendation"] == "accept":
-                lines.append(f"- Accepted under your rule: **{d['subject']}** — {_when(d.get('start'))}")
+                lines.append(f"- Accepted under your rule (the organiser got your acceptance): **{d['subject']}** — {_when(d.get('start'))}")
+            elif d.get("reason") == "accept_off":
+                lines.append(f"- **{d['subject']}** from {d.get('sender_name') or d['sender']} — {_when(d.get('start'))} · "
+                             "accept? (your rule says yes; accepting for you is off)")
             elif d.get("clashes"):
                 c = "; ".join(f"{x['subject']} ({_when(x['start'])})" for x in d["clashes"])
                 lines.append(f"- **{d['subject']}** — {_when(d.get('start'))} · clashes with {c} · flagged, not answered")
