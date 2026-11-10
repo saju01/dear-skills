@@ -5,8 +5,8 @@ description: >
   user. Tags mail Noise / FYI / Reply / Personal, drafts replies in the user's voice, recommends
   invite responses and helps answer Teams messages; learns only from the user's own actions and
   keeps its memory in the user's OneDrive. Never sends, forwards, posts, deletes or declines.
-  Runs in lite mode (mail only, no Python) or pro mode (mail, invites and Teams, with a Python
-  engine), picked from what the host can do. Use on "dear-inbox-zero",
+  Lite mode (mail only, no Python) or pro mode (adds invites and Teams; Python engine), picked
+  from what the host can do. Use on "dear-inbox-zero",
   "dear-inbox-zero setup|learn|show|doctor", or when the user asks to install it. Not for
   one-off questions about a single message.
 license: Apache-2.0
@@ -23,7 +23,7 @@ Takes the mental load of everything that asks for the user's attention. This fil
 
 Read `config/host.json`. `"mode": "lite"` or `"pro"` wins. Otherwise (`"auto"` or absent): **pro** if you can run Python 3.10+ (the adapter maps `run_python`) and `engine/dear_engine.py` is present; else **lite**. Don't ask the user. If the memory folder holds `lite.json` but no `head/`, stay in lite until the user runs pro setup. Name the mode in the first line of every report.
 
-- **Lite**: mail only, no Python, Graph scopes `User.Read` + `Mail.ReadWrite` (plus `Files.ReadWrite` for OneDrive memory). Operations come from the adapter `config/host.json` names. Use `lite/run.md` and `lite/setup.md` for every command; the rest of this file is pro only, except the hard rules, which bind both.
+- **Lite**: mail only, no Python, Graph scopes `User.Read` + `Mail.ReadWrite` (plus `Files.ReadWrite` for OneDrive memory). Operations come from the adapter `config/host.json` names. Follow `lite/run.md` and `lite/setup.md`; the rest of this file is pro only, except the hard rules.
 - **Pro**: mail, invites and Teams, with the engine. The rest of this file.
 
 ## Commands
