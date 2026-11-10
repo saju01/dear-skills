@@ -102,7 +102,7 @@
         {
           "path": "skills/dear-inbox-zero/engine/diz/util.py",
           "target": "engine/diz/util.py",
-          "sha256": "b1dae680db2f771dfda71c9b64a2c3bc8648a737609569b1a00fad1cca1b9bd6"
+          "sha256": "895c9d0be2d035bdbdef3d236fd05e8cb02c89b8838cba30cdcdcf4dda34a15a"
         },
         {
           "path": "skills/dear-inbox-zero/hosts/_template.md",

@@ -16,6 +16,9 @@ def parse_ts(s):
     if isinstance(s, datetime):
         return s if s.tzinfo else s.replace(tzinfo=timezone.utc)
     s = s.strip().replace("Z", "+00:00")
+    # Python 3.10 accepts only 3 or 6 fractional digits; Microsoft Graph sends 7.
+    s = re.sub(r"(\.\d{6})\d+", r"\1", s)
+    s = re.sub(r"\.(\d{1,5})(?=[+-]|$)", lambda m: "." + m.group(1).ljust(6, "0"), s)
     dt = datetime.fromisoformat(s)
     return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
 
