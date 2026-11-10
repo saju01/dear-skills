@@ -8,7 +8,7 @@
 - [install.json](https://raw.githubusercontent.com/saju01/dear-skills/main/install.json): machine-readable manifest (files, sha256, hosts, adapters, requirements)
 
 ## Skills
-- dear-inbox-zero: mail, calendar and Teams triage that learns from what the user does; drafts only, never sends. Design: [DESIGN.md](https://raw.githubusercontent.com/saju01/dear-skills/main/DESIGN.md)
+- dear-inbox-zero: mail, calendar and Teams triage that learns from what the user does; drafts only, never sends. Lite mode: mail only, no Python. Design: [DESIGN.md](https://raw.githubusercontent.com/saju01/dear-skills/main/DESIGN.md)
 
 ## Licence
 - Apache-2.0

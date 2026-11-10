@@ -24,7 +24,7 @@ Copy to `hosts/<your-host>.md`, fill the **Tool** column with your agent's tools
 | `store.read` | | download a OneDrive file |
 | `store.write` | | upload a new OneDrive file (never overwrite facts) |
 | `ask` | | ask the user one question with options |
-| `run_python` | | run the engine (optional; prose mode without it) |
+| `run_python` | | run the engine (optional; lite mode without it) |
 | `schedule` | | create a recurring prompt (daily run, weekly learn); list existing first |
 <!-- adapter-ops:end -->
 

@@ -32,7 +32,7 @@ def build(host="cowork", adapter="hosts/cowork.md"):
                 with open(full, "rb") as fh:
                     data = fh.read()
                 if rel == "config/host.json":
-                    data = (json.dumps({"host": host, "adapter": adapter}) + "\n").encode()
+                    data = (json.dumps({"host": host, "adapter": adapter, "mode": "auto"}) + "\n").encode()
                 info = zipfile.ZipInfo(f"dear-inbox-zero/{rel}", FIXED)
                 info.compress_type = zipfile.ZIP_DEFLATED
                 z.writestr(info, data)
