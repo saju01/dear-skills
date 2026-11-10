@@ -10,18 +10,20 @@ Resumable: `state.setup.stage` records progress; `setup resume` continues from i
 
 ## S1 — Behaviour study (paged, resumable)
 
-Collect, in batches, the user's own behaviour:
-- sent mail (12 months): who they reply to, how fast, in which language;
-- inbox (30 days): what they read, flag, leave unread; Focused/Other overrides; existing mail rules;
-- calendar (±30 days): which organisers/series they accept, decline or ignore;
-- Teams (30 days): which chats and mentions they answer.
+**Sent box first** (`learn/sent-box.md`): 12 months of sent metadata plus up to 40 reply bodies (working memory only) →
+`python engine/dear_engine.py sent-study --state … --sent sent.json --bodies bodies.json`.
+This learns whom the user answers and how fast, language per contact, working hours, their own domain and voice.
 
-Write them as observations (`schemas/observation.schema.json`), then
-`python engine/dear_engine.py study --state … --observations obs.json --out facts.json`. This creates inferred rules, VIPs and person facts at confidence 0.6–0.8. Stage `s1_done`.
+Then the rest of their behaviour, as aggregated observations (`schemas/observation.schema.json`):
+- inbox (30 days): what they read without replying (`read_no_reply`), leave unread (`ignored`); Focused/Other overrides; existing mail rules;
+- calendar (±30 days): organisers/series they accept or decline;
+- Teams (30 days): chats and mentions they answer (`teams_replied`).
 
-## S2 — Voice study
+`python engine/dear_engine.py study --state … --observations obs.json` creates inferred rules and proposals. Stage `s1_done`.
 
-Sample up to 40 of the user's sent replies in memory (never stored). Record voice facts: greeting, sign-off, length, formality, language per contact (`engine … add-facts`). Stage `s2_done`.
+## S2 — Voice check
+
+`sent-study` already wrote the voice fact (greeting, sign-off, length, bullets, default language). Show it to the user in one line and ask: "Is this how you write? Yes / adjust". Adjustments become an explicit `voice` fact (`engine … add-facts`). Stage `s2_done`.
 
 ## S3 — Calibration (one question at a time)
 

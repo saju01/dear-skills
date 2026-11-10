@@ -41,4 +41,6 @@ Compare the items the last run acted on (`state.last_run`) with their state now:
 | `flag_added` / `flag_removed` / `flag_completed` | the user changed a flag (flags the run set and left alone are not signals) |
 | `draft_binned` / `draft_edited_heavily` | a run draft was deleted unsent / changed a lot before sending |
 
-Write them to `signals.json` as `{id, signal, at}`.
+Write them to `signals.json` as `{id, signal, at}`. Reply evidence comes from the Sent box: run `sent-signals` first (`learn/sent-box.md`). It adds `replied`, `replied_not_proposed` and `draft_edited_heavily` and updates the voice.
+
+When the run writes a draft, pass `{draft_id, item_id, thread_id}` to `learn --drafts` so the sent version can be matched later.

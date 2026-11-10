@@ -17,12 +17,12 @@
         {
           "path": "skills/dear-inbox-zero/CHANGELOG.md",
           "target": "CHANGELOG.md",
-          "sha256": "e457117d1691cb9d45263334ecb2a7febc5afc9b5a716846097078f68d4b2bc7"
+          "sha256": "8df8ae60378331a332a82faa5303c7996c849cfdd3e4145c3d5f30732caa1b89"
         },
         {
           "path": "skills/dear-inbox-zero/SKILL.md",
           "target": "SKILL.md",
-          "sha256": "9280f9634580ca1596af3c775172b811a20eeac47a369f410836085ce3a93810"
+          "sha256": "1ab88b6f856a5f8f21028947b047e1572003121d5c225f93f8758606e9c99396"
         },
         {
           "path": "skills/dear-inbox-zero/channels/calendar.md",
@@ -32,7 +32,7 @@
         {
           "path": "skills/dear-inbox-zero/channels/mail.md",
           "target": "channels/mail.md",
-          "sha256": "cd6e9a027207fb43ef520e996873ff3b48c66499e077be51efe4b47f437a8374"
+          "sha256": "366eb70edb0b2b488b9af1b5406e8ae5096027cf8793d2a723af0bd8aa053574"
         },
         {
           "path": "skills/dear-inbox-zero/channels/teams.md",
@@ -47,7 +47,7 @@
         {
           "path": "skills/dear-inbox-zero/engine/dear_engine.py",
           "target": "engine/dear_engine.py",
-          "sha256": "ea5ebe02b375251697c97ea820b83b72c5392c762f11c80ca8298dac16fc7e12"
+          "sha256": "02c9e7e5f194721f81ecf07089cab39ad8bd6699fd3324b52975dce2648a71d6"
         },
         {
           "path": "skills/dear-inbox-zero/engine/diz/__init__.py",
@@ -57,12 +57,12 @@
         {
           "path": "skills/dear-inbox-zero/engine/diz/classify.py",
           "target": "engine/diz/classify.py",
-          "sha256": "a963d9f8e746f9405f8ddc52d341c95aa06e321f4b0735af91ab5a2d4de7ff7d"
+          "sha256": "404e5eac3274c9017f7addbc6f1c4a5ecd64d312ed5e97e60026eb0e9e661125"
         },
         {
           "path": "skills/dear-inbox-zero/engine/diz/doctor.py",
           "target": "engine/diz/doctor.py",
-          "sha256": "6f04bfb160302cb9cb93928cd46ff7d4722507dea694200849e4734d9e0ac90b"
+          "sha256": "017f58c35145ba19487a1217d755ae6baa34a714d3a71449fc16f615f348258c"
         },
         {
           "path": "skills/dear-inbox-zero/engine/diz/learn.py",
@@ -78,6 +78,11 @@
           "path": "skills/dear-inbox-zero/engine/diz/report.py",
           "target": "engine/diz/report.py",
           "sha256": "28339127babbf44289127b93e81c0883dcb599d735f60845ec2551d9784397fc"
+        },
+        {
+          "path": "skills/dear-inbox-zero/engine/diz/sent.py",
+          "target": "engine/diz/sent.py",
+          "sha256": "1b2e0e33d7b7e069ab9689e6171c930456d837056965dbfce05a3d245c02be81"
         },
         {
           "path": "skills/dear-inbox-zero/engine/diz/store.py",
@@ -107,7 +112,12 @@
         {
           "path": "skills/dear-inbox-zero/learn/learning-loop.md",
           "target": "learn/learning-loop.md",
-          "sha256": "7b630704f63c4d8e59a8534b93bbc7e04ea8a26e99107020edf0efdb9a30af02"
+          "sha256": "3a81641f0decb48b52fa409285df4969e6036dc2e39b9c00cd13d4b25f92ba94"
+        },
+        {
+          "path": "skills/dear-inbox-zero/learn/sent-box.md",
+          "target": "learn/sent-box.md",
+          "sha256": "2db74dd54335ae344f92aabe1f41cc51e6b251c66d5e9e3fe65f68a0a9f33f7e"
         },
         {
           "path": "skills/dear-inbox-zero/policy/buckets.md",
@@ -142,17 +152,22 @@
         {
           "path": "skills/dear-inbox-zero/setup/first-install.md",
           "target": "setup/first-install.md",
-          "sha256": "2c097eb4b68c06bd5d64edb31b0b825e45d627985367a460412ffd2256fdeada"
+          "sha256": "5bb0314d0a30cf7ac5d46772922be30d88a6b7b1565851ecf02b748e4f6377f9"
         },
         {
           "path": "skills/dear-inbox-zero/tests/test_cli.py",
           "target": "tests/test_cli.py",
-          "sha256": "92bd54f9e64f54448b30b86c845672b174f7ba4992e7658f4f1432dce4e48357"
+          "sha256": "a290ac375c22f06be00d651877926667fe1bd326698d51d0e30ed4e0d3c97025"
         },
         {
           "path": "skills/dear-inbox-zero/tests/test_engine.py",
           "target": "tests/test_engine.py",
           "sha256": "3f898c32c0f7025f180101285150bd94ac52a8915dbfd4acfc25b866869811e6"
+        },
+        {
+          "path": "skills/dear-inbox-zero/tests/test_sent.py",
+          "target": "tests/test_sent.py",
+          "sha256": "b6717c0dbf34f5f6d778a12fcc8c96ad676a5b9edd7b9b2e8edd76b89305ea02"
         },
         {
           "path": "skills/dear-inbox-zero/tests/fixtures/alex_expected.json",
@@ -253,11 +268,11 @@
   "docs": [
     {
       "path": "README.md",
-      "sha256": "649d8a41b7d49b32ab9d3d4d8592ff787e8a75da7d5d9af465f490e5305f089f"
+      "sha256": "518cb9aab72c1a94b27b0392a3a5582d4d854fcfd0a312e370c79588d9e24392"
     },
     {
       "path": "DESIGN.md",
-      "sha256": "a7fac6f539efc48c5dc942ff0833ca8eaf5f281994047ad32602bfa66ab49000"
+      "sha256": "b33ef170fda1c6a45f85df587943a3bf372b1b2f5c97575c5c93dc227353bdea"
     },
     {
       "path": "LICENSE",

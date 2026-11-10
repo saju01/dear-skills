@@ -8,7 +8,7 @@ Personal skills for personal automation. Each one ships as a recipe, gets custom
 
 Mail, meeting invites and Teams messages, all in one place. It sorts what needs you from what doesn't, drafts replies in your voice, and earns more autonomy only as it proves accurate.
 
-- **Learns from you, not from a template.** At first install it studies how you actually handle mail, invites and chats, then asks you about the cases it isn't sure of, one at a time.
+- **Learns from you, not from a template.** At first install it studies your Sent box (whom you answer and how fast, your language per contact, your working hours and how you write) and how you handle invites and chats, then asks about the cases it isn't sure of, one at a time.
 - **Gets better with use.** Every tag you change, reply you send or draft you bin is a signal. Repeated signals become proposed rules; you confirm them once.
 - **Never acts behind your back.** It never sends, forwards, deletes or declines. Replies are drafts.
 - **Token-efficient.** Rules decide first; the model only sees what rules can't decide.

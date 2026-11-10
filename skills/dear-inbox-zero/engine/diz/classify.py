@@ -168,7 +168,8 @@ def classify(state, items, calendar=None, dry_run=False):
     for raw in items:
         it = normalise(raw)
         base = {"id": it["id"], "channel": it["channel"], "sender": it["sender"], "sender_name": it.get("sender_name", ""),
-                "subject": it.get("subject", ""), "series": it["series"], "received_at": it.get("received_at")}
+                "subject": it.get("subject", ""), "series": it["series"], "received_at": it.get("received_at"),
+                "thread_id": it.get("thread_id")}
         if it["channel"] == "invite" or it.get("is_invite"):
             base["channel"] = "invite"
             r = recommend_invite(it, facts, profile, rules, calendar or [], levels, dry_run)

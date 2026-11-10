@@ -32,6 +32,13 @@ class CliRun(unittest.TestCase):
         run("store-load", "--store", self.s, "--out", self.p("state.json"))
         dump([{"scope": "domain", "key": "newsletter.example.org", "bucket": "noise", "answer": "rule"}], open(self.p("ans.json"), "w"))
         run("add-facts", "--state", self.p("state.json"), "--answers", self.p("ans.json"), "--stage", "s3_done", "--now", t0)
+        sent = [{"id": f"s{i}", "conversation_id": f"c{i}", "sent_at": "2026-02-1%dT09:00:00Z" % i,
+                 "to": ["pat@example.com"], "in_reply_to_sender": "pat@example.com"} for i in range(4)]
+        dump(sent, open(self.p("sent.json"), "w"))
+        dump({"s1": "Hi Pat,\n\nThanks, will do.\n\nThanks, Alex"}, open(self.p("bodies.json"), "w"))
+        out = json.loads(run("sent-study", "--state", self.p("state.json"), "--sent", self.p("sent.json"),
+                             "--bodies", self.p("bodies.json"), "--now", t0))
+        self.assertTrue(out["voice"])
         run("go-live", "--state", self.p("state.json"), "--now", t0)
         run("store-publish", "--store", self.s, "--state", self.p("state.json"), "--now", t0)
         # run 1

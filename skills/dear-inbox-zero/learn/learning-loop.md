@@ -2,7 +2,7 @@
 
 Learns from one source only: what **the user** did.
 
-1. **Signals** (from each channel's Observe section) are kept for 7 days.
+1. **Signals** come from each channel's Observe section. The Sent box is the main source for mail (`learn/sent-box.md`). Signals are kept for 7 days.
 2. **Grouping** by series rule, else sender. ≥ 2 signals pointing the same way → a **proposal**: an inferred rule at confidence 0.6 with the evidence ids. Mixed directions → listed as inconsistent, never promoted.
 3. **Asking**: the report asks about each proposal once (one question). Confirm → explicit rule (confidence 1.0). Reject → a `correction` fact that blocks the same proposal for 60 days.
 4. **Expiry**: proposals expire after 14 days unanswered. Inferred rules with no supporting signal for 30 days are retired.

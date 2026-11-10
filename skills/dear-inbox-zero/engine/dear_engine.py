@@ -3,7 +3,7 @@
 import argparse, json, os, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from diz import __version__, store, classify as C, learn as L, ledger, report as R, doctor as D  # noqa: E402
+from diz import __version__, store, classify as C, learn as L, ledger, report as R, doctor as D, sent as S  # noqa: E402
 from diz.util import load, dump, parse_ts, iso, now_utc  # noqa: E402
 
 
@@ -55,13 +55,59 @@ def cmd_learn(a):
     ledger.update(st["head"], dec["decisions"], sig, now)
     if dec["decisions"] and not dec.get("dry_run"):
         st["head"]["last_run"] = {"at": iso(now), "decisions": [
-            {k: d.get(k) for k in ("id", "channel", "bucket", "recommendation", "reason", "sender", "sender_name", "series", "rule_id")}
+            {k: d.get(k) for k in ("id", "channel", "bucket", "recommendation", "reason", "sender", "sender_name", "series", "rule_id", "thread_id", "received_at")}
             for d in dec["decisions"]]}
+        for dr in (load(a.drafts, []) if a.drafts else []):
+            st["head"]["drafts"].append({**dr, "created_at": iso(now), "state": "open"})
         for ch, ts in (load(a.checkpoints, {}) if a.checkpoints else {}).items():
             st["head"]["checkpoints"][ch] = ts
     dump(a.state, st)
     print(json.dumps({"answers": answered, "proposals": [p["id"] for p in created["created"]],
                       "inconsistent": created["inconsistent"], **exp, "autonomy_changes": changes}, indent=2))
+
+
+def cmd_sent_study(a):
+    now = _now(a)
+    st = load(a.state)
+    res = S.study(load(a.sent), bodies=load(a.bodies, {}) if a.bodies else None, now=now)
+    made = L.study(st, res["observations"], now)
+    st["new_facts"] += res["people"]
+    if res["voice"]:
+        st["new_facts"].append(res["voice"])
+    prof = st["head"]["profile"]
+    hints = res["profile_hints"]
+    if hints.get("working_hours") and not prof.get("working_hours"):
+        prof["working_hours"] = hints["working_hours"]
+    for d in hints.get("internal_domains_guess") or []:
+        if d and d not in prof["internal_domains"]:
+            prof["internal_domains"].append(d)
+    st["head"]["setup"]["stage"] = "s2_done" if res["voice"] else "s1_done"
+    dump(a.state, st)
+    print(json.dumps({**res["stats"], "rules_or_proposals": len(made), "people": len(res["people"]),
+                      "voice": bool(res["voice"]), "profile_hints": hints}, indent=2))
+
+
+def cmd_sent_signals(a):
+    st = load(a.state)
+    head = st["head"]
+    sent_items = load(a.sent, [])
+    bodies = load(a.bodies, {}) if a.bodies else {}
+    res = S.daily_signals(sent_items, (head.get("last_run") or {}).get("decisions"), head.get("drafts"),
+                          bodies, load(a.draft_bodies, {}) if a.draft_bodies else None)
+    for out in res["drafts"]:
+        for dr in head.get("drafts", []):
+            if dr.get("draft_id") == out["draft_id"]:
+                dr.update({"state": "sent", "edit_ratio": out["edit_ratio"]})
+    feats = [S.features(b) for b in bodies.values()]
+    voice = S.update_voice(st["facts"], feats)
+    if voice:
+        old = [f for f in st["facts"] if f.get("kind") == "voice"]
+        st["superseded"] += [{"old_id": f["id"]} for f in old]
+        st["new_facts"].append(voice)
+    existing = load(a.out, []) if os.path.exists(a.out) else []
+    dump(a.out, existing + res["signals"])
+    dump(a.state, st)
+    print(json.dumps({"signals": len(res["signals"]), "drafts_sent": len(res["drafts"]), "voice_updated": bool(voice)}))
 
 
 def cmd_report(a):
@@ -140,7 +186,9 @@ def main(argv=None):
     add("store-publish", cmd_store_publish, ("--store", req), ("--state", req))
     add("observe", cmd_observe, ("--state", req), ("--signals", req))
     add("classify", cmd_classify, ("--state", req), ("--items", req), ("--calendar", {}), ("--out", req), ("--dry-run", {"action": "store_true"}))
-    add("learn", cmd_learn, ("--state", req), ("--decisions", {}), ("--answers", {}), ("--checkpoints", {}))
+    add("learn", cmd_learn, ("--state", req), ("--decisions", {}), ("--answers", {}), ("--checkpoints", {}), ("--drafts", {}))
+    add("sent-study", cmd_sent_study, ("--state", req), ("--sent", req), ("--bodies", {}))
+    add("sent-signals", cmd_sent_signals, ("--state", req), ("--sent", req), ("--bodies", {}), ("--draft-bodies", {}), ("--out", req))
     add("report", cmd_report, ("--state", req), ("--decisions", req), ("--out", {}), ("--note", {"action": "append"}))
     add("review", cmd_review, ("--state", req))
     add("show", cmd_show, ("--decisions", req), ("--bucket", req))

@@ -95,8 +95,8 @@ Location: the user's own **OneDrive**, default `OneDrive/dear-inbox-zero/<accoun
 | Stage | What happens | Writes |
 |---|---|---|
 | S0 Consent | Show what will be read (sent mail 12 months, inbox 30 days, calendar ±30 days, Teams chats 30 days), what is stored, where, and that nothing is ever sent. Choose the store folder and channels. | empty store, head v0 |
-| S1 Behaviour study | Reads the user's own history: who they reply to and how fast, which invites they accept, which Teams chats they answer, existing mail rules and Focused/Other overrides. Paged and resumable. | inferred `rule`/`person` facts |
-| S2 Voice study | Samples the user's sent replies (in memory only) and derives voice facts: greeting, sign-off, typical length, language per contact. | `voice` facts |
+| S1 Behaviour study | **Sent box first**: 12 months of sent metadata show whom the user answers, how fast, in which language, their working hours and own domain. Then inbox, calendar and Teams behaviour, existing mail rules and Focused/Other overrides. Paged and resumable. | inferred `rule`/`person`/profile facts |
+| S2 Voice study | Up to 40 sent replies (in memory only, quoted history stripped) → greeting, sign-off, typical length, bullets, default language; confirmed with the user in one line. | `voice` facts |
 | S3 Calibration | Asks about the uncertain senders/series one at a time (Noise · FYI · Reply · Personal · skip). | explicit rules |
 | S4 Dry run | One full run with no writes. Shows what it would have tagged, flagged, drafted and answered. | report only |
 | Live | Every bucket starts at level 1 (tag only). | — |
@@ -155,6 +155,10 @@ Calendar rules learned from real use:
 | 3 | + calendar accept under rules the user confirmed (never before a learned pattern was proposed and confirmed) |
 
 Promotion: at least 5 counted runs with an override rate under 5%, and at least 30 decisions in the streak. Demotion: any wrong action (e.g. a binned draft for a sender, or a Noise item marked unread again) pauses that rule and drops the bucket one level. Sending is not on the ladder.
+
+### 8.1 The Sent box in the loop
+
+Every run reads Sent Items since the checkpoint before anything else. A reply in a thread the run tagged Reply agrees and closes the open loop. A reply to something tagged Noise/FYI (or never surfaced) is `replied_not_proposed`; two of those for a sender or series become a proposal. A run draft that was sent with more than half its words changed is a voice signal; when the user's greeting, sign-off or length drift over five or more replies, the voice fact is replaced. Details: `skills/dear-inbox-zero/learn/sent-box.md`.
 
 ## 9. Safety guarantees (enforced in engine and host mapping)
 

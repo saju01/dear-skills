@@ -41,7 +41,7 @@ Install requests ("install dear-inbox-zero") follow `INSTALL.md` at the repo roo
 | Step | What | Engine |
 |---|---|---|
 | 1 Collect | per enabled channel, metadata only, in one batched read each (see channel guide) → `items.json` | — |
-| 2 Observe | what the user did since the last run (tags changed, replies, flags, binned drafts, invites answered, Teams replies) → `signals.json` | `observe` |
+| 2 Observe | Sent box first (`learn/sent-box.md`), then tags changed, flags, binned drafts, invites answered, Teams replies → `signals.json` | `sent-signals`, `observe` |
 | 3 Classify | rules decide; unknowns come back as a short list | `classify` |
 | 4 Judge unknowns | only `unknown` items: read their metadata (body only if a reply is needed) and pick a bucket, or leave unknown and ask once in the report | — |
 | 5 Act | do exactly the `actions[]` the engine planned (they already respect autonomy levels and safety) | — |

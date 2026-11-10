@@ -10,7 +10,7 @@ FORBIDDEN_TOOL_WORDS = re.compile(
     r"|\bPost(Channel)?Message\b|\bReplyTo(Channel)?Message\b|\bReplyAllToMessage\b|\bMoveMessage\b"
     r"|/send\b|/forward\b|/createForward\b|/decline\b|/tentativelyAccept\b|/move\b|\bDELETE\s)")
 REQUIRED_FILES = ["SKILL.md", "channels/mail.md", "channels/calendar.md", "channels/teams.md", "policy/buckets.md",
-                  "policy/voice.md", "policy/safety.md", "setup/first-install.md", "learn/learning-loop.md",
+                  "policy/voice.md", "policy/safety.md", "setup/first-install.md", "learn/learning-loop.md", "learn/sent-box.md",
                   "hosts/_template.md", "config/host.json", "engine/dear_engine.py"]
 BUDGET = {"SKILL.md": 6 * 1024, "per_run_guides": 15 * 1024}
 
@@ -59,7 +59,8 @@ def run(skill_dir, store_dir=None):
         info["SKILL.md_bytes"] = size
         if size > BUDGET["SKILL.md"]:
             errs.append(f"SKILL.md is {size} bytes (budget {BUDGET['SKILL.md']})")
-        head = open(sk, encoding="utf-8").read().split("---")
+        with open(sk, encoding="utf-8") as fh:
+            head = fh.read().split("---")
         if len(head) < 3 or "name: dear-inbox-zero" not in head[1] or "description:" not in head[1]:
             errs.append("SKILL.md frontmatter needs name and description")
     run_files = ["channels/mail.md", "channels/calendar.md", "channels/teams.md", "policy/buckets.md", "policy/voice.md", "policy/safety.md"]
