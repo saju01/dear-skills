@@ -1,0 +1,33 @@
+{
+  "@odata.nextLink": "https://graph.example.com/messages?page=2",
+  "value": [
+    {
+      "id": "mail-ask",
+      "conversationId": "conversation-1",
+      "from": {"emailAddress": {"name": "Alex", "address": "CONTACT@EXAMPLE.ORG"}},
+      "subject": "Synthetic review",
+      "receivedDateTime": "2026-03-02T09:00:00Z",
+      "bodyPreview": "Could you review the synthetic plan by Friday",
+      "toRecipients": [{"emailAddress": {"name": "Alex", "address": "Alex@example.com"}}],
+      "ccRecipients": [{"emailAddress": {"address": "alex@example.com"}}],
+      "isRead": false,
+      "importance": "high",
+      "categories": ["Existing"],
+      "flag": {"flagStatus": "flagged"},
+      "inferenceClassification": "focused"
+    },
+    {
+      "id": "mail-cc",
+      "conversationId": "conversation-2",
+      "from": {"emailAddress": {"address": "news@example.net"}},
+      "subject": "Synthetic update",
+      "receivedDateTime": "2026-03-02T10:00:00Z",
+      "bodyPreview": "An update for information.",
+      "toRecipients": [{"emailAddress": {"address": "team@example.com"}}],
+      "ccRecipients": [{"emailAddress": {"address": "ALEX@EXAMPLE.COM"}}],
+      "isRead": true,
+      "flag": {"flagStatus": "complete"},
+      "inferenceClassification": "other"
+    }
+  ]
+}

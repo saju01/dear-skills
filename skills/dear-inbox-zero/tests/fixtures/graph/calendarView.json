@@ -1,0 +1,27 @@
+{
+  "value": [
+    {
+      "id": "event-external",
+      "subject": "Synthetic review",
+      "organizer": {"emailAddress": {"name": "Alex", "address": "Organizer@example.com"}},
+      "start": {"dateTime": "2026-03-03T10:00:00.0000000", "timeZone": "UTC"},
+      "end": {"dateTime": "2026-03-03T11:00:00.0000000", "timeZone": "UTC"},
+      "responseStatus": {"response": "notResponded"},
+      "attendees": [
+        {"emailAddress": {"address": "alex@example.com"}},
+        {"emailAddress": {"address": "contact@example.org"}}
+      ],
+      "seriesMasterId": "series-review",
+      "type": "occurrence"
+    },
+    {
+      "id": "event-internal",
+      "subject": "Synthetic planning",
+      "organizer": {"emailAddress": {"address": "organizer@example.com"}},
+      "start": {"dateTime": "2026-03-03T12:00:00+01:00", "timeZone": "UTC"},
+      "end": {"dateTime": "2026-03-03T13:00:00+01:00", "timeZone": "UTC"},
+      "responseStatus": {"response": "accepted"},
+      "attendees": [{"emailAddress": {"address": "ALEX@EXAMPLE.COM"}}]
+    }
+  ]
+}

@@ -5,6 +5,7 @@ import argparse, json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from diz import __version__, store, classify as C, learn as L, ledger, report as R, doctor as D, sent as S  # noqa: E402
 from diz.util import load, dump, parse_ts, iso, now_utc  # noqa: E402
+from diz import collect as G  # noqa: E402
 
 
 def _now(a):
@@ -169,6 +170,34 @@ def cmd_doctor(a):
     sys.exit(0 if res["ok"] else 1)
 
 
+def cmd_collect(a):
+    raw = [load(path) for path in a.input]
+    if a.cmd == "collect-mail":
+        profile = load(a.state)["head"]["profile"] if a.state else {}
+        result = G.mail(raw, a.me, profile)
+    elif a.cmd == "collect-sent":
+        result = G.sent(raw, load(a.received) if a.received else [])
+    else:
+        profile = load(a.state)["head"]["profile"]
+        if a.cmd == "collect-calendar":
+            result = G.calendar(raw, profile)
+            result = [{k: item[k] for k in ("event_id", "subject", "start", "end", "my_response", "external")}
+                      for item in result]
+        else:
+            result = G.teams(raw, a.me_id, profile, load(a.chats) if a.chats else [], _now(a))
+    if a.cmd in ("collect-mail", "collect-teams"):
+        _write_items(a.out, result, a.append)
+    else:
+        dump(a.out, result)
+    print(json.dumps({"collected": len(result)}))
+
+
+def _write_items(path, items, append):
+    existing = load(path) if append and os.path.exists(path) else []
+    merged = {(item.get("channel", "mail"), item["id"]): item for item in existing + items}
+    dump(path, list(merged.values()))
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(prog="dear_engine", description=f"dear-inbox-zero engine {__version__}")
     p.add_argument("--version", action="version", version=__version__)
@@ -181,6 +210,15 @@ def main(argv=None):
         s.add_argument("--now", help="ISO time (tests, replays)")
         s.set_defaults(fn=fn)
     req = {"required": True}
+    for name, options in [
+        ("collect-mail", [("--me", req), ("--state", {}), ("--append", {"action": "store_true"})]),
+        ("collect-sent", [("--received", {"help": "Normalized received items.json for reply matching"})]),
+        ("collect-calendar", [("--state", req)]),
+        ("collect-teams", [("--state", req), ("--me-id", req), ("--chats", {}),
+                           ("--append", {"action": "store_true"})]),
+    ]:
+        add(name, cmd_collect, ("--input", {"required": True, "nargs": "+"}),
+            ("--out", req), *options)
     add("store-init", cmd_store_init, ("--store", req), ("--account", req), ("--tz", {"default": "UTC"}), ("--channels", {"default": "mail,calendar"}))
     add("store-load", cmd_store_load, ("--store", req), ("--out", req))
     add("store-publish", cmd_store_publish, ("--store", req), ("--state", req))

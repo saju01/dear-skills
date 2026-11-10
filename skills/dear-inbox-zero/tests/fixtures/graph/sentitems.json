@@ -1,0 +1,18 @@
+{
+  "value": [
+    {
+      "id": "sent-reply",
+      "conversationId": "conversation-1",
+      "sentDateTime": "2026-03-02T11:00:00Z",
+      "toRecipients": [{"emailAddress": {"name": "Alex", "address": "Contact@example.org"}}],
+      "ccRecipients": [{"emailAddress": {"address": "TEAM@EXAMPLE.COM"}}],
+      "bodyPreview": "This synthetic text must not be copied."
+    },
+    {
+      "id": "sent-new",
+      "conversationId": "conversation-new",
+      "sentDateTime": "2026-03-02T12:00:00Z",
+      "toRecipients": [{"emailAddress": {"address": "contact@example.net"}}]
+    }
+  ]
+}

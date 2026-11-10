@@ -47,7 +47,7 @@
         {
           "path": "skills/dear-inbox-zero/engine/dear_engine.py",
           "target": "engine/dear_engine.py",
-          "sha256": "02c9e7e5f194721f81ecf07089cab39ad8bd6699fd3324b52975dce2648a71d6"
+          "sha256": "3de638902cecf0fab68908ba4f6b00b6e6bc753bd2f8f871dc3e1ca6ee942e48"
         },
         {
           "path": "skills/dear-inbox-zero/engine/diz/__init__.py",
@@ -57,7 +57,12 @@
         {
           "path": "skills/dear-inbox-zero/engine/diz/classify.py",
           "target": "engine/diz/classify.py",
-          "sha256": "404e5eac3274c9017f7addbc6f1c4a5ecd64d312ed5e97e60026eb0e9e661125"
+          "sha256": "889b841e0a0b5148b5d73f398aca5e42a0dd810bc6b32a6f182ce1f76e08aac0"
+        },
+        {
+          "path": "skills/dear-inbox-zero/engine/diz/collect.py",
+          "target": "engine/diz/collect.py",
+          "sha256": "801be3663d755ae30f0b64d37a73591db4cf43e135fcc339e6ebe566b3b7a765"
         },
         {
           "path": "skills/dear-inbox-zero/engine/diz/doctor.py",
@@ -107,7 +112,7 @@
         {
           "path": "skills/dear-inbox-zero/hosts/graph-mcp.md",
           "target": "hosts/graph-mcp.md",
-          "sha256": "31c5e48ed6f76c6b464a93cd05e7adc1c922e633cde0845e8b598c4fd30ad272"
+          "sha256": "efa5434f4ba8d44404325c55683b5319ffe9665acd67af88ba43f2773503bc38"
         },
         {
           "path": "skills/dear-inbox-zero/learn/learning-loop.md",
@@ -137,7 +142,7 @@
         {
           "path": "skills/dear-inbox-zero/schemas/item.schema.json",
           "target": "schemas/item.schema.json",
-          "sha256": "71b62898370180ecd6113033b6f9146c3bbccf5f776f25401abee4f88d53ebd0"
+          "sha256": "e56611c37e292c886c905792ce7e7badf33544b6c55671258775408f939f9ab8"
         },
         {
           "path": "skills/dear-inbox-zero/schemas/observation.schema.json",
@@ -160,6 +165,11 @@
           "sha256": "a290ac375c22f06be00d651877926667fe1bd326698d51d0e30ed4e0d3c97025"
         },
         {
+          "path": "skills/dear-inbox-zero/tests/test_collect.py",
+          "target": "tests/test_collect.py",
+          "sha256": "45ba182bbb37c93a219e5364821b01879bff5e0bf308ab8aaff44345f1228ef6"
+        },
+        {
           "path": "skills/dear-inbox-zero/tests/test_engine.py",
           "target": "tests/test_engine.py",
           "sha256": "3f898c32c0f7025f180101285150bd94ac52a8915dbfd4acfc25b866869811e6"
@@ -178,6 +188,31 @@
           "path": "skills/dear-inbox-zero/tests/fixtures/alex_mail.json",
           "target": "tests/fixtures/alex_mail.json",
           "sha256": "be1732ab3224444d3c5daa2e68bedf47254f99b7d2daae6a59f286836e9e4bf1"
+        },
+        {
+          "path": "skills/dear-inbox-zero/tests/fixtures/graph/calendarView.json",
+          "target": "tests/fixtures/graph/calendarView.json",
+          "sha256": "2af3e6a997e2d77c74b681cda2286216aac209bad22300bd5bc913353319de3a"
+        },
+        {
+          "path": "skills/dear-inbox-zero/tests/fixtures/graph/chat-messages.json",
+          "target": "tests/fixtures/graph/chat-messages.json",
+          "sha256": "a894d9faf12b6b4f04b48288af261fa8038af729351f6a7e97f2d69be705a214"
+        },
+        {
+          "path": "skills/dear-inbox-zero/tests/fixtures/graph/chats.json",
+          "target": "tests/fixtures/graph/chats.json",
+          "sha256": "dc399c357c4dcaf1d1c6c57ccc80155593ec45fb665c3e5e37fcc256a100ad91"
+        },
+        {
+          "path": "skills/dear-inbox-zero/tests/fixtures/graph/messages.json",
+          "target": "tests/fixtures/graph/messages.json",
+          "sha256": "434fa08cf58c8a245a452692f3f130105c635e55c63fe3b5338940b2438196c3"
+        },
+        {
+          "path": "skills/dear-inbox-zero/tests/fixtures/graph/sentitems.json",
+          "target": "tests/fixtures/graph/sentitems.json",
+          "sha256": "5b866b4b0a7adc35c17b8503eb37c7566638aa96cd32c3854bcefbe2caa912d0"
         }
       ],
       "requires": {
