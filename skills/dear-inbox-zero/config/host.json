@@ -1,1 +1,1 @@
-{ "host": "generic", "adapter": "hosts/graph-mcp.md" }
+{ "host": "generic", "adapter": "hosts/graph-mcp.md", "mode": "auto" }

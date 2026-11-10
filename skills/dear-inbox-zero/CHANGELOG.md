@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- **Lite mode**: mail only, no Python. The agent applies the bucket and safety rules from `lite/run.md` and keeps memory in one small `lite.json` (OneDrive, or the agent's own memory). Graph scopes: `User.Read` and `Mail.ReadWrite`, plus `Files.ReadWrite` only for OneDrive memory. Lite setup is shorter: consent, a metadata-only study, calibration, voice check, dry run.
+- `SKILL.md` picks lite or pro from what the host can do (Python 3.10+ and the engine → pro); `config/host.json` `mode` (`auto` / `lite` / `pro`) overrides.
+- `doctor` checks the lite guides, their token budget and the `mode` setting, and accepts lite-only adapters marked `<!-- adapter-mode: lite -->`.
+- `install.json` describes both modes under `modes`.
+
 ## 0.1.0 — first public build
 
 - Mail, calendar and Teams in one skill; recipe-only package, memory in the user's OneDrive.

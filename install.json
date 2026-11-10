@@ -17,12 +17,12 @@
         {
           "path": "skills/dear-inbox-zero/CHANGELOG.md",
           "target": "CHANGELOG.md",
-          "sha256": "d05f35bd6dbc3995bd9b7dfe933f3a9948eca30f53fb079bec7392cb62230c34"
+          "sha256": "bbf8b000e7dc0fb1cb53cd2c2a927591e2aa3bcd91439f91b6b53f6e48c4de58"
         },
         {
           "path": "skills/dear-inbox-zero/SKILL.md",
           "target": "SKILL.md",
-          "sha256": "29468dfd6df4b2c100860cc0c3fad7b89082b84273561444afd468c15c13db93"
+          "sha256": "473cfe94a95a40be91800abfd8a875e3819e4468f2606af2c68d725ee1e20a2d"
         },
         {
           "path": "skills/dear-inbox-zero/channels/calendar.md",
@@ -42,7 +42,7 @@
         {
           "path": "skills/dear-inbox-zero/config/host.json",
           "target": "config/host.json",
-          "sha256": "76919d7394dd3bdd52d874a5fa35784c119f3ea2d611685d1585cbd4344432a0"
+          "sha256": "23bc6e0b4754956e46ee290aef700466b6d077400c1d8223ac32a24db86ae83c"
         },
         {
           "path": "skills/dear-inbox-zero/engine/dear_engine.py",
@@ -67,7 +67,7 @@
         {
           "path": "skills/dear-inbox-zero/engine/diz/doctor.py",
           "target": "engine/diz/doctor.py",
-          "sha256": "567b7711f95e4e86ea865490f1c45ab13ab72d0ba81da8e667e78f661b2b257a"
+          "sha256": "8662ffe0a5ac75599601a1a3927c0634d66565acc885adc7adb03e3d8cedb248"
         },
         {
           "path": "skills/dear-inbox-zero/engine/diz/learn.py",
@@ -107,7 +107,7 @@
         {
           "path": "skills/dear-inbox-zero/hosts/_template.md",
           "target": "hosts/_template.md",
-          "sha256": "f9e8de4fe63446808f01d21029814300abe9d10ef5f3e7db20a2f3b231d85543"
+          "sha256": "14fbf4c94a3d5b09d2364d75451ed57f66fec6423eff245a30a3370927c4606a"
         },
         {
           "path": "skills/dear-inbox-zero/hosts/cowork.md",
@@ -128,6 +128,16 @@
           "path": "skills/dear-inbox-zero/learn/sent-box.md",
           "target": "learn/sent-box.md",
           "sha256": "2db74dd54335ae344f92aabe1f41cc51e6b251c66d5e9e3fe65f68a0a9f33f7e"
+        },
+        {
+          "path": "skills/dear-inbox-zero/lite/run.md",
+          "target": "lite/run.md",
+          "sha256": "7c1e220b0fab973d798420291091b7a8ef2b98228e9dfd63b193da4b0bfee800"
+        },
+        {
+          "path": "skills/dear-inbox-zero/lite/setup.md",
+          "target": "lite/setup.md",
+          "sha256": "418e44cd88068a1998c5e9f1ef8814f96b9303d5d3a0906663a853d39555a91f"
         },
         {
           "path": "skills/dear-inbox-zero/policy/buckets.md",
@@ -183,6 +193,11 @@
           "path": "skills/dear-inbox-zero/tests/test_engine.py",
           "target": "tests/test_engine.py",
           "sha256": "ada9e17d644fc8b4eae1fd88142038cae675e4c3b95983d84a22b0fb2c90d9e9"
+        },
+        {
+          "path": "skills/dear-inbox-zero/tests/test_lite.py",
+          "target": "tests/test_lite.py",
+          "sha256": "647524a0c015dcc47e1812c16fce299790efd58cf3a1e1241c386ff889de6a68"
         },
         {
           "path": "skills/dear-inbox-zero/tests/test_sent.py",
@@ -241,7 +256,7 @@
           "onedrive.files.readwrite",
           "ask_user"
         ],
-        "python": ">=3.10 (optional; prose mode without it)",
+        "python": ">=3.10 for pro mode; lite mode needs none",
         "forbidden": [
           "mail.send",
           "mail.forward",
@@ -249,6 +264,44 @@
           "calendar.decline",
           "teams.post"
         ]
+      },
+      "modes": {
+        "lite": {
+          "channels": [
+            "mail"
+          ],
+          "python": false,
+          "guides": [
+            "lite/run.md",
+            "lite/setup.md"
+          ],
+          "graph_scopes": [
+            "User.Read",
+            "Mail.ReadWrite"
+          ],
+          "optional_graph_scopes": {
+            "Files.ReadWrite": "memory in OneDrive; without it memory lives in the agent's own memory"
+          },
+          "skip_files": [
+            "engine/",
+            "tests/"
+          ]
+        },
+        "pro": {
+          "channels": [
+            "mail",
+            "calendar",
+            "teams"
+          ],
+          "python": ">=3.10",
+          "guides": [
+            "SKILL.md",
+            "setup/first-install.md",
+            "channels/",
+            "learn/"
+          ]
+        },
+        "select": "config/host.json mode: auto (pro when Python 3.10+ and the engine are available, else lite), lite or pro"
       },
       "memory": {
         "location": "OneDrive/dear-inbox-zero/<account_key>/",
@@ -318,11 +371,11 @@
   "docs": [
     {
       "path": "README.md",
-      "sha256": "b1fb64a96ec8ce9720e35e523fe167060deed4881017bde4f0268d9b8f823716"
+      "sha256": "7bb521642ff82179c2927526f015e257232b0309ae3877ba74ed32ead624bcbc"
     },
     {
       "path": "DESIGN.md",
-      "sha256": "e76a282f09ada1db2693ca0d5a45b95de9f111b6dd72488d31af8c91a2cffd40"
+      "sha256": "52fb59048135ac56dff88cdba2411e926d106e55bafdbe305579af6ddf95ecdc"
     },
     {
       "path": "LICENSE",
@@ -342,11 +395,11 @@
     },
     {
       "path": "INSTALL.md",
-      "sha256": "b41608ceeeb51e30112c3e3b158a4ad1c0fe24b6b637603d2961958132f0ed24"
+      "sha256": "7ac765d493576ffd54c7e2c6edb9ae399c9702faaa0cc57cddf5702259f9fc5b"
     },
     {
       "path": "llms.txt",
-      "sha256": "2545ed99489860d543eb8d98ed05bdc283409466dabd6e2f80bcc81c5ce90ed1"
+      "sha256": "7d033cf7a6abc97d3cdebc2a3c1437741f7512fb3eda7a84d42983ff5089522f"
     },
     {
       "path": "TRADEMARKS.md",
