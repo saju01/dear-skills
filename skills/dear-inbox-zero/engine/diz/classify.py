@@ -150,6 +150,8 @@ def recommend_invite(it, facts, profile, rules, calendar, levels, dry_run=False)
         rec, reason = "fyi", "broadcast"
     elif accept_rule and (not it.get("event_id") or not start or not end):
         rec, reason = "ask", "incomplete_event"
+    elif accept_rule and not profile.get("invite_accept", False):
+        rec, reason = "ask", "accept_off"
     elif accept_rule and (levels.get("calendar", 0) >= 3 or (is_personal and levels.get("calendar", 0) >= 1)):
         rec, reason = "accept", "confirmed_rule"
         acts = [{"op": "accept", "occurrence_only": not accept_rule.get("series_ok", False)}, {"op": "mark_read"}]

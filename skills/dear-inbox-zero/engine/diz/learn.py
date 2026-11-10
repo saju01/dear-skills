@@ -271,6 +271,7 @@ def automation_plan(profile, preset=None):
     tz = profile.get("tz") or "UTC"
     return {
         "preset": preset,
+        "invite_accept": bool(profile.get("invite_accept", False)),
         "timezone": tz,
         "jobs": [
             {"name": "dear-inbox-zero daily", "when": f"weekdays {hh:02d}:{mm:02d}", "cron": f"{mm} {hh} * * 1-5",
@@ -279,7 +280,9 @@ def automation_plan(profile, preset=None):
              "prompt": "dear-inbox-zero learn"},
         ],
         "notes": "Check existing schedules first so runs never double up. Unattended runs keep every safety rule; "
-                 "anything that needs the user waits in the report.",
+                 "anything that needs the user waits in the report. Invite accepts are "
+                 + ("on: confirmed rules accept invites, which sends the organiser a response."
+                    if profile.get("invite_accept") else "off: the report asks about every invite; nothing is sent."),
     }
 
 

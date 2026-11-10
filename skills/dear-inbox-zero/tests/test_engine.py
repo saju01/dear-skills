@@ -165,12 +165,37 @@ class CalendarTests(Base):
 
     def test_accept_only_with_confirmed_rule_and_level3(self):
         self.live()
+        self.st["head"]["profile"]["invite_accept"] = True
         self.rule("sender", "org@example.com", "accept")
         self.assertEqual(self.inv()["recommendation"], "ask")
         self.st["head"]["autonomy"]["calendar"]["level"] = 3
         d = self.inv()
         self.assertEqual(d["recommendation"], "accept")
         self.assertTrue(d["actions"][0]["occurrence_only"])
+
+    def test_invite_accept_is_off_by_default(self):
+        self.assertFalse(self.st["head"]["profile"]["invite_accept"])
+        self.live(calendar=3)
+        self.rule("sender", "org@example.com", "accept")
+        d = self.inv()
+        self.assertEqual((d["recommendation"], d["reason"]), ("ask", "accept_off"))
+        self.assertFalse(any(a["op"] == "accept" for a in d["actions"]))
+        md = R.render(self.st, {"decisions": [d]}, NOW)
+        self.assertIn("accepting for you is off", md)
+
+    def test_no_preset_turns_invite_accept_on(self):
+        for preset in ("low", "medium", "high"):
+            L.go_live(self.st, NOW, preset)
+            self.assertFalse(self.st["head"]["profile"].get("invite_accept", False), preset)
+            self.assertFalse(L.automation_plan(self.st["head"]["profile"])["invite_accept"], preset)
+
+    def test_personal_invite_needs_the_opt_in_too(self):
+        self.live(calendar=1)
+        self.st["head"]["profile"]["personal"] = ["org@example.com"]
+        self.rule("sender", "org@example.com", "accept")
+        self.assertEqual(self.inv()["recommendation"], "ask")
+        self.st["head"]["profile"]["invite_accept"] = True
+        self.assertEqual(self.inv()["recommendation"], "accept")
 
 
 class LearnTests(Base):

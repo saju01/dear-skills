@@ -171,9 +171,15 @@ def cmd_calibrate(a):
     print(json.dumps({"questions": len(qs)}))
 
 
+def _invite_accept(st, value):
+    if value:
+        st["head"]["profile"]["invite_accept"] = value == "on"
+
+
 def cmd_go_live(a):
     st = load(a.state)
     levels = L.go_live(st, _now(a), a.preset)
+    _invite_accept(st, a.invite_accept)
     dump(a.state, st)
     print(json.dumps({"stage": "live", "preset": st["head"]["profile"]["preset"], "levels": levels,
                       "automation": L.automation_plan(st["head"]["profile"])}, indent=2))
@@ -183,6 +189,8 @@ def cmd_automation(a):
     st = load(a.state)
     if a.preset:
         L.go_live(st, _now(a), a.preset) if st["head"]["setup"]["stage"] == "live" else st["head"]["profile"].update({"preset": a.preset})
+    _invite_accept(st, a.invite_accept)
+    if a.preset or a.invite_accept:
         dump(a.state, st)
     print(json.dumps(L.automation_plan(st["head"]["profile"]), indent=2))
 
@@ -259,8 +267,10 @@ def main(argv=None):
     add("study", cmd_study, ("--state", req), ("--observations", req))
     add("add-facts", cmd_add_facts, ("--state", req), ("--answers", req), ("--stage", {}))
     add("calibrate", cmd_calibrate, ("--state", req), ("--volumes", {}), ("--out", req), ("--limit", {"type": int, "default": 15}))
-    add("go-live", cmd_go_live, ("--state", req), ("--preset", {"choices": ["low", "medium", "high"]}))
-    add("automation", cmd_automation, ("--state", req), ("--preset", {"choices": ["low", "medium", "high"]}))
+    accept = ("--invite-accept", {"choices": ["on", "off"],
+                                  "help": "accept invites under confirmed rules (sends the organiser a response); default off"})
+    add("go-live", cmd_go_live, ("--state", req), ("--preset", {"choices": ["low", "medium", "high"]}), accept)
+    add("automation", cmd_automation, ("--state", req), ("--preset", {"choices": ["low", "medium", "high"]}), accept)
     add("doctor", cmd_doctor, ("--skill-dir", {"default": os.path.dirname(os.path.dirname(os.path.abspath(__file__)))}), ("--store", {}))
     a = p.parse_args(argv)
     a.fn(a)
