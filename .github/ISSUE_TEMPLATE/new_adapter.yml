@@ -1,0 +1,27 @@
+name: New agent adapter
+description: Make dear-inbox-zero run in another agent.
+labels: [adapter]
+body:
+  - type: input
+    id: agent
+    attributes:
+      label: Agent
+      placeholder: Name and link
+    validations:
+      required: true
+  - type: textarea
+    id: tools
+    attributes:
+      label: How the agent reaches Microsoft 365
+      description: e.g. a Graph MCP server, built-in connectors, an HTTP tool.
+    validations:
+      required: true
+  - type: checkboxes
+    id: rules
+    attributes:
+      label: Hard rules
+      options:
+        - label: The adapter maps no send, forward, post, delete, move or decline operation.
+          required: true
+        - label: I will include the `doctor` output in the pull request.
+          required: true

@@ -1,0 +1,53 @@
+name: release
+# Builds the install zip from a version tag, checks it, and attaches it to the GitHub release.
+# Triggers: pushing a tag like v0.1.1, running it by hand, or a repository_dispatch "release-asset" event.
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag to build and (re)attach the zip to, e.g. v0.1.0"
+        required: true
+  repository_dispatch:
+    types: [release-asset]
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      TAG: ${{ github.event.inputs.tag || github.event.client_payload.tag || github.ref_name }}
+    steps:
+      - name: Validate tag
+        run: |
+          [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+([.-][0-9A-Za-z.]+)?$ ]] || { echo "not a version tag: $TAG"; exit 1; }
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TAG }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Checks (privacy, tests, doctor, manifest)
+        run: |
+          python scripts/privacy_scan.py
+          (cd skills/dear-inbox-zero && python -m unittest discover -s tests)
+          python skills/dear-inbox-zero/engine/dear_engine.py doctor
+          python scripts/build_manifest.py --check
+      - name: Version in SKILL.md matches the tag
+        run: |
+          V=$(python -c "import re;print(re.search(r'version:\s*\"([^\"]+)\"',open('skills/dear-inbox-zero/SKILL.md').read()).group(1))")
+          [ "v$V" = "$TAG" ] || { echo "SKILL.md says v$V but the tag is $TAG"; exit 1; }
+      - name: Build zip
+        run: |
+          python scripts/build_release.py > out.json
+          cat out.json
+          ZIP=$(python -c 'import json;print(json.load(open("out.json"))["zip"])')
+          sha256sum "$ZIP" | sed 's#dist/##' > "$ZIP.sha256"
+          echo "ZIP=$ZIP" >> "$GITHUB_ENV"
+      - name: Publish to the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "dear-inbox-zero $TAG" --notes-file skills/dear-inbox-zero/CHANGELOG.md
+          gh release upload "$TAG" "$ZIP" "$ZIP.sha256" --clobber

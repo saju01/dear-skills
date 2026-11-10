@@ -25,3 +25,15 @@ By submitting a pull request you agree that your contribution is licensed under 
 ## Adding an agent (host adapter)
 
 Copy `skills/dear-inbox-zero/hosts/_template.md`, map every abstract operation to your agent's tools, expose none of the forbidden ones, and include the `doctor` output in your pull request.
+
+## How changes land
+
+- `main` is protected: changes arrive through pull requests, and the checks (tests on Python 3.10 and 3.12, privacy scan, doctor, manifest) must pass. @saju01 reviews every change (CODEOWNERS).
+- The same checks also run every Monday, so breakage from newer Python versions shows up early.
+
+## Releasing (maintainers)
+
+1. Bump `version` in `skills/dear-inbox-zero/SKILL.md` and `install.json`, add a CHANGELOG entry, then run `python scripts/build_release.py` and `python scripts/build_manifest.py`.
+2. Merge to `main`, then push a tag `vX.Y.Z` matching the version.
+3. The `release` workflow runs every check, builds `dear-inbox-zero-vX.Y.Z.zip` with its `.sha256`, and attaches both to the GitHub release.
+4. Before tagging, run the new version for a day in a real mailbox (dry run first).

@@ -1,0 +1,21 @@
+name: Idea or improvement
+description: Suggest a change to the skill or the engine.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What would it help with?
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Your idea
+  - type: checkboxes
+    id: rules
+    attributes:
+      label: Fits the principles
+      options:
+        - label: It keeps the skill draft-only (never sends, posts, deletes or declines) and keeps memory in the user's own storage.
+          required: true

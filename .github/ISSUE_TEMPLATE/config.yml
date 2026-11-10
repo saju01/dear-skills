@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security or privacy problem
+    url: https://github.com/saju01/dear-skills/security/advisories/new
+    about: Report privately. Please don't open a public issue.
+  - name: Questions and how you use it
+    url: https://github.com/saju01/dear-skills/discussions
+    about: Ask questions and share setups in Discussions.
