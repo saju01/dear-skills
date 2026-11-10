@@ -22,7 +22,7 @@
         {
           "path": "skills/dear-inbox-zero/SKILL.md",
           "target": "SKILL.md",
-          "sha256": "1ab88b6f856a5f8f21028947b047e1572003121d5c225f93f8758606e9c99396"
+          "sha256": "a8e4ed3bd1d15af5666d4074bb1182e31d7233804d97489c06cb8287e77e67f7"
         },
         {
           "path": "skills/dear-inbox-zero/channels/calendar.md",
@@ -62,7 +62,7 @@
         {
           "path": "skills/dear-inbox-zero/engine/diz/doctor.py",
           "target": "engine/diz/doctor.py",
-          "sha256": "017f58c35145ba19487a1217d755ae6baa34a714d3a71449fc16f615f348258c"
+          "sha256": "62c1f6da6c9e81a04934c4496bece5b5dc8fe998a296d68665588df70ec61fe6"
         },
         {
           "path": "skills/dear-inbox-zero/engine/diz/learn.py",
@@ -152,7 +152,12 @@
         {
           "path": "skills/dear-inbox-zero/setup/first-install.md",
           "target": "setup/first-install.md",
-          "sha256": "5bb0314d0a30cf7ac5d46772922be30d88a6b7b1565851ecf02b748e4f6377f9"
+          "sha256": "c62c6a45d0b2561555331fe2bc0a9d6379e0a60597339d1c11fb2fc30526fa16"
+        },
+        {
+          "path": "skills/dear-inbox-zero/setup/install.md",
+          "target": "setup/install.md",
+          "sha256": "f4d2c028b0f42171c512a4b88a1e8a4c75ee75c0053cee0d5e3fd50f64fba90e"
         },
         {
           "path": "skills/dear-inbox-zero/tests/test_cli.py",
@@ -268,7 +273,7 @@
   "docs": [
     {
       "path": "README.md",
-      "sha256": "518cb9aab72c1a94b27b0392a3a5582d4d854fcfd0a312e370c79588d9e24392"
+      "sha256": "e2d959566ec426157bb07a5ca87556c7aea470b75c4092b99a677192e54317a0"
     },
     {
       "path": "DESIGN.md",

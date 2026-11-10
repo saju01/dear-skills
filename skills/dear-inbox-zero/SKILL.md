@@ -27,7 +27,7 @@ Takes the mental load of everything that asks for the user's attention. This fil
 | `dear-inbox-zero show <bucket>` | list a bucket with reasons | engine `show` |
 | `dear-inbox-zero doctor` | health check | engine `doctor` |
 
-Install requests ("install dear-inbox-zero") follow `INSTALL.md` at the repo root.
+Install requests ("install dear-inbox-zero", an uploaded `dear-inbox-zero-v*.zip`) follow `setup/install.md`; after installing, setup starts right away with the consent prompt.
 
 ## Before anything
 

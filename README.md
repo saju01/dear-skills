@@ -18,7 +18,20 @@ Works with Microsoft Outlook, Outlook Calendar and Microsoft Teams. One core run
 
 > Status: **v0.1.0**: mail, calendar and Teams. See [DESIGN.md](DESIGN.md), an [example report](examples/persona-alex/report.md) and the [changelog](skills/dear-inbox-zero/CHANGELOG.md).
 
-### Install with your agent
+### Simple setup in Copilot Cowork (first install)
+
+1. **Download** [dear-inbox-zero-v0.1.0.zip](https://github.com/saju01/dear-skills/raw/main/dist/dear-inbox-zero-v0.1.0.zip) (also attached to the [v0.1.0 release](https://github.com/saju01/dear-skills/releases/tag/v0.1.0)).
+2. **Upload** the zip to a new Cowork task.
+3. **Ask:** `Install this skill and set it up.`
+
+That's all. Cowork installs it into your skills folder, checks it, and starts setup straight away:
+
+- **One consent prompt** shows what it will read, that your memory stays in your own OneDrive, and that it never sends anything.
+- **Learning starts immediately.** It studies your Sent box (whom you answer and how fast, your language per contact, your working hours, how you write) and how you handle invites and Teams chats.
+- **It customises itself to you.** It asks about the cases it isn't sure of, one question at a time, then shows a dry run of what it would do.
+- **It keeps learning after you go live.** Daily runs (scheduled if you want) learn from every reply you send, tag you change and draft you rewrite, and earn more autonomy only as they prove accurate.
+
+### Install with your agent (any agent)
 
 Ask your agent:
 

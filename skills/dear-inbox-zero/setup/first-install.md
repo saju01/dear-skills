@@ -5,7 +5,7 @@ Resumable: `state.setup.stage` records progress; `setup resume` continues from i
 ## S0 — Consent (one prompt)
 
 1. Get the user's address, timezone and working hours (`me`). Propose `account_key` (a short slug, e.g. `work`, never the address).
-2. Ask once, as a multi-select: which channels (mail, calendar, Teams); what will be read (sent mail 12 months, inbox 30 days, calendar ±30 days, Teams chats 30 days); what is stored (rules, ids, short summaries; never bodies); where (`OneDrive/dear-inbox-zero/<account_key>/`); and that nothing is ever sent.
+2. Ask once, as a multi-select (all on by default): which channels (mail, calendar, Teams); a daily run on weekdays plus a weekly learn (scheduled at S4); what will be read (sent mail 12 months, inbox 30 days, calendar ±30 days, Teams chats 30 days); what is stored (rules, ids, short summaries; never bodies); where (`OneDrive/dear-inbox-zero/<account_key>/`); and that nothing is ever sent.
 3. `python engine/dear_engine.py store-init --store <working>/store --account <account_key> --tz <tz> --channels mail,calendar,teams` → upload the store folder. Stage `s0_done`.
 
 ## S1 — Behaviour study (paged, resumable)
@@ -31,4 +31,4 @@ Then the rest of their behaviour, as aggregated observations (`schemas/observati
 
 ## S4 — Dry run
 
-Run the daily run with `--dry-run`: no writes. Show the report: what it would tag, flag, draft and recommend. Ask "Go live?". Yes → autonomy level 1 for every bucket, stage `live`. Offer to schedule a daily run.
+Run the daily run with `--dry-run`: no writes. Show the report: what it would tag, flag, draft and recommend. Ask "Go live?". Yes → `go-live` (autonomy level 1 for every bucket, stage `live`), then schedule the daily run and the weekly learn if the user ticked them in S0 (check existing schedules first). From here every run keeps learning from the Sent box and the user's actions.

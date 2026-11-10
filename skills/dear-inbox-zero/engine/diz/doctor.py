@@ -10,7 +10,7 @@ FORBIDDEN_TOOL_WORDS = re.compile(
     r"|\bPost(Channel)?Message\b|\bReplyTo(Channel)?Message\b|\bReplyAllToMessage\b|\bMoveMessage\b"
     r"|/send\b|/forward\b|/createForward\b|/decline\b|/tentativelyAccept\b|/move\b|\bDELETE\s)")
 REQUIRED_FILES = ["SKILL.md", "channels/mail.md", "channels/calendar.md", "channels/teams.md", "policy/buckets.md",
-                  "policy/voice.md", "policy/safety.md", "setup/first-install.md", "learn/learning-loop.md", "learn/sent-box.md",
+                  "policy/voice.md", "policy/safety.md", "setup/first-install.md", "setup/install.md", "learn/learning-loop.md", "learn/sent-box.md",
                   "hosts/_template.md", "config/host.json", "engine/dear_engine.py"]
 BUDGET = {"SKILL.md": 6 * 1024, "per_run_guides": 15 * 1024}
 
