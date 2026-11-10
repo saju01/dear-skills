@@ -1,0 +1,7 @@
+{
+  "value": [
+    {"id": "chat-direct", "chatType": "oneOnOne"},
+    {"id": "chat-group", "chatType": "group", "topic": "Synthetic planning"},
+    {"id": "chat-answered", "chatType": "oneOnOne"}
+  ]
+}

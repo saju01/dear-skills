@@ -25,6 +25,7 @@ Batch every per-item loop in one tool script (`RunScript`), never one call per i
 | `store.write` | `UploadFileContent` | unattended runs may be refused: park files in the task output and report |
 | `ask` | `AskUserQuestion` | one item per question |
 | `run_python` | `Bash` / `RunScript` | Python 3.10+ |
+| `schedule` | `GetScheduledPrompts` then `SetupScheduledPrompt` | one prompt per job from `automation`; never duplicate an existing one |
 <!-- adapter-ops:end -->
 
 ## Never call

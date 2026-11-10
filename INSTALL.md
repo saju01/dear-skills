@@ -56,14 +56,9 @@ Then run the health check if you can run Python:
 python <target>/engine/dear_engine.py doctor --skill-dir <target>
 ```
 
-## Step 7 — Hand over to setup
+## Step 7 — Start setup
 
-Tell the user, in one short message:
-- where it is installed, the version and the adapter,
-- the `doctor` result,
-- the next step: **"Say `dear-inbox-zero setup` to start. I'll ask your consent before reading anything, and your memory will live in your own OneDrive."**
-
-Don't start setup yourself unless the user asks you to. Setup is where consent is given.
+Tell the user in one short message where it is installed, the version, the adapter and the `doctor` result. Then **start setup straight away** (`skills/dear-inbox-zero/setup/first-install.md`), unless the user said "install only". Setup's first step is the consent prompt, so nothing is read before the user agrees. The automation level defaults to **Auto · Medium**, and at go-live setup schedules the recommended daily run and weekly learn.
 
 ---
 

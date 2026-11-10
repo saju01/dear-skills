@@ -47,6 +47,7 @@ Install requests ("install dear-inbox-zero", an uploaded `dear-inbox-zero-v*.zip
 | 5 Act | do exactly the `actions[]` the engine planned (they already respect autonomy levels and safety) | — |
 | 6 Draft | for Reply items: draft in the user's voice (`policy/voice.md`); Teams: suggested reply text in the report | — |
 | 7 Learn | proposals from signals; expiry; autonomy update | `learn` |
+| 7b Automation | first run after setup: create the daily run + weekly learn from `automation` (preset Auto · Medium unless the user chose otherwise) | `automation` |
 | 8 Publish | new head + facts + index, uploaded to the store; re-list to confirm | `store-publish` |
 | 9 Report | `report` output, shown to the user | `report` |
 

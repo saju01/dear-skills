@@ -3,8 +3,9 @@
 import argparse, json, os, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from diz import __version__, store, classify as C, learn as L, ledger, report as R, doctor as D, sent as S  # noqa: E402
+from diz import __version__, store, classify as C, learn as L, ledger, report as R, doctor as D, sent as S, teams as T  # noqa: E402
 from diz.util import load, dump, parse_ts, iso, now_utc  # noqa: E402
+from diz import collect as G  # noqa: E402
 
 
 def _now(a):
@@ -110,6 +111,21 @@ def cmd_sent_signals(a):
     print(json.dumps({"signals": len(res["signals"]), "drafts_sent": len(res["drafts"]), "voice_updated": bool(voice)}))
 
 
+def cmd_teams_filter(a):
+    st = load(a.state)
+    result = T.needs_response(load(a.chats, []), st["head"]["profile"], a.user_id, _now(a))
+    dump(a.out, result)
+    print(json.dumps({"messages": len(result)}))
+
+
+def cmd_teams_signals(a):
+    st = load(a.state)
+    result = T.signals(load(a.posts, []), st, a.user_id, _now(a))
+    existing = load(a.out, []) if os.path.exists(a.out) else []
+    dump(a.out, existing + result)
+    print(json.dumps({"signals": len(result)}))
+
+
 def cmd_report(a):
     st = load(a.state)
     md = R.render(st, load(a.decisions, {"decisions": []}), _now(a), a.note)
@@ -157,9 +173,18 @@ def cmd_calibrate(a):
 
 def cmd_go_live(a):
     st = load(a.state)
-    L.go_live(st, _now(a))
+    levels = L.go_live(st, _now(a), a.preset)
     dump(a.state, st)
-    print(json.dumps({"stage": "live", "levels": {b: v["level"] for b, v in st["head"]["autonomy"].items()}}))
+    print(json.dumps({"stage": "live", "preset": st["head"]["profile"]["preset"], "levels": levels,
+                      "automation": L.automation_plan(st["head"]["profile"])}, indent=2))
+
+
+def cmd_automation(a):
+    st = load(a.state)
+    if a.preset:
+        L.go_live(st, _now(a), a.preset) if st["head"]["setup"]["stage"] == "live" else st["head"]["profile"].update({"preset": a.preset})
+        dump(a.state, st)
+    print(json.dumps(L.automation_plan(st["head"]["profile"]), indent=2))
 
 
 def cmd_doctor(a):
@@ -167,6 +192,34 @@ def cmd_doctor(a):
     res["engine"] = __version__
     print(json.dumps(res, indent=2))
     sys.exit(0 if res["ok"] else 1)
+
+
+def cmd_collect(a):
+    raw = [load(path) for path in a.input]
+    if a.cmd == "collect-mail":
+        profile = load(a.state)["head"]["profile"] if a.state else {}
+        result = G.mail(raw, a.me, profile)
+    elif a.cmd == "collect-sent":
+        result = G.sent(raw, load(a.received) if a.received else [])
+    else:
+        profile = load(a.state)["head"]["profile"]
+        if a.cmd == "collect-calendar":
+            result = G.calendar(raw, profile)
+            result = [{k: item[k] for k in ("event_id", "subject", "start", "end", "my_response", "external")}
+                      for item in result]
+        else:
+            result = G.teams(raw, a.me_id, profile, load(a.chats) if a.chats else [], _now(a))
+    if a.cmd in ("collect-mail", "collect-teams"):
+        _write_items(a.out, result, a.append)
+    else:
+        dump(a.out, result)
+    print(json.dumps({"collected": len(result)}))
+
+
+def _write_items(path, items, append):
+    existing = load(path) if append and os.path.exists(path) else []
+    merged = {(item.get("channel", "mail"), item["id"]): item for item in existing + items}
+    dump(path, list(merged.values()))
 
 
 def main(argv=None):
@@ -181,6 +234,15 @@ def main(argv=None):
         s.add_argument("--now", help="ISO time (tests, replays)")
         s.set_defaults(fn=fn)
     req = {"required": True}
+    for name, options in [
+        ("collect-mail", [("--me", req), ("--state", {}), ("--append", {"action": "store_true"})]),
+        ("collect-sent", [("--received", {"help": "Normalized received items.json for reply matching"})]),
+        ("collect-calendar", [("--state", req)]),
+        ("collect-teams", [("--state", req), ("--me-id", req), ("--chats", {}),
+                           ("--append", {"action": "store_true"})]),
+    ]:
+        add(name, cmd_collect, ("--input", {"required": True, "nargs": "+"}),
+            ("--out", req), *options)
     add("store-init", cmd_store_init, ("--store", req), ("--account", req), ("--tz", {"default": "UTC"}), ("--channels", {"default": "mail,calendar"}))
     add("store-load", cmd_store_load, ("--store", req), ("--out", req))
     add("store-publish", cmd_store_publish, ("--store", req), ("--state", req))
@@ -189,13 +251,16 @@ def main(argv=None):
     add("learn", cmd_learn, ("--state", req), ("--decisions", {}), ("--answers", {}), ("--checkpoints", {}), ("--drafts", {}))
     add("sent-study", cmd_sent_study, ("--state", req), ("--sent", req), ("--bodies", {}))
     add("sent-signals", cmd_sent_signals, ("--state", req), ("--sent", req), ("--bodies", {}), ("--draft-bodies", {}), ("--out", req))
+    add("teams-filter", cmd_teams_filter, ("--state", req), ("--chats", req), ("--user-id", req), ("--out", req))
+    add("teams-signals", cmd_teams_signals, ("--state", req), ("--posts", req), ("--user-id", req), ("--out", req))
     add("report", cmd_report, ("--state", req), ("--decisions", req), ("--out", {}), ("--note", {"action": "append"}))
     add("review", cmd_review, ("--state", req))
     add("show", cmd_show, ("--decisions", req), ("--bucket", req))
     add("study", cmd_study, ("--state", req), ("--observations", req))
     add("add-facts", cmd_add_facts, ("--state", req), ("--answers", req), ("--stage", {}))
     add("calibrate", cmd_calibrate, ("--state", req), ("--volumes", {}), ("--out", req), ("--limit", {"type": int, "default": 15}))
-    add("go-live", cmd_go_live, ("--state", req))
+    add("go-live", cmd_go_live, ("--state", req), ("--preset", {"choices": ["low", "medium", "high"]}))
+    add("automation", cmd_automation, ("--state", req), ("--preset", {"choices": ["low", "medium", "high"]}))
     add("doctor", cmd_doctor, ("--skill-dir", {"default": os.path.dirname(os.path.dirname(os.path.abspath(__file__)))}), ("--store", {}))
     a = p.parse_args(argv)
     a.fn(a)

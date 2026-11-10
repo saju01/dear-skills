@@ -17,12 +17,12 @@
         {
           "path": "skills/dear-inbox-zero/CHANGELOG.md",
           "target": "CHANGELOG.md",
-          "sha256": "8df8ae60378331a332a82faa5303c7996c849cfdd3e4145c3d5f30732caa1b89"
+          "sha256": "d05f35bd6dbc3995bd9b7dfe933f3a9948eca30f53fb079bec7392cb62230c34"
         },
         {
           "path": "skills/dear-inbox-zero/SKILL.md",
           "target": "SKILL.md",
-          "sha256": "a8e4ed3bd1d15af5666d4074bb1182e31d7233804d97489c06cb8287e77e67f7"
+          "sha256": "29468dfd6df4b2c100860cc0c3fad7b89082b84273561444afd468c15c13db93"
         },
         {
           "path": "skills/dear-inbox-zero/channels/calendar.md",
@@ -37,7 +37,7 @@
         {
           "path": "skills/dear-inbox-zero/channels/teams.md",
           "target": "channels/teams.md",
-          "sha256": "73bd4d150f0b2a87dd4a81f20e50fd1e16da323f7dd30bd7d9db7beb1a29e6d5"
+          "sha256": "7b35419d0aaf805c86f9514ee1d853eaab0fe374af272b814c20869b7a99edd2"
         },
         {
           "path": "skills/dear-inbox-zero/config/host.json",
@@ -47,32 +47,37 @@
         {
           "path": "skills/dear-inbox-zero/engine/dear_engine.py",
           "target": "engine/dear_engine.py",
-          "sha256": "02c9e7e5f194721f81ecf07089cab39ad8bd6699fd3324b52975dce2648a71d6"
+          "sha256": "4b06b3c2a7635fdbafd452e13fee2af9c51c88a023c51cdea257ef47a754f1d6"
         },
         {
           "path": "skills/dear-inbox-zero/engine/diz/__init__.py",
           "target": "engine/diz/__init__.py",
-          "sha256": "c5cfb3ccaec19f9af28a56d49e72c82e536ac9319180405c3b50046333e760fe"
+          "sha256": "d041d75a187e8a369496dafbcfaa41ec00cfb355956a2ad78e92999cf7c9ec66"
         },
         {
           "path": "skills/dear-inbox-zero/engine/diz/classify.py",
           "target": "engine/diz/classify.py",
-          "sha256": "404e5eac3274c9017f7addbc6f1c4a5ecd64d312ed5e97e60026eb0e9e661125"
+          "sha256": "889b841e0a0b5148b5d73f398aca5e42a0dd810bc6b32a6f182ce1f76e08aac0"
+        },
+        {
+          "path": "skills/dear-inbox-zero/engine/diz/collect.py",
+          "target": "engine/diz/collect.py",
+          "sha256": "801be3663d755ae30f0b64d37a73591db4cf43e135fcc339e6ebe566b3b7a765"
         },
         {
           "path": "skills/dear-inbox-zero/engine/diz/doctor.py",
           "target": "engine/diz/doctor.py",
-          "sha256": "62c1f6da6c9e81a04934c4496bece5b5dc8fe998a296d68665588df70ec61fe6"
+          "sha256": "567b7711f95e4e86ea865490f1c45ab13ab72d0ba81da8e667e78f661b2b257a"
         },
         {
           "path": "skills/dear-inbox-zero/engine/diz/learn.py",
           "target": "engine/diz/learn.py",
-          "sha256": "f9e322433d8cc95cc3c8c5e52e1475e9cb59b4e477c0bb89d54aef740d289bfb"
+          "sha256": "3d5073a5efe5e9eed438024dbd800d663d1183d0845f625e352c2392fdf90518"
         },
         {
           "path": "skills/dear-inbox-zero/engine/diz/ledger.py",
           "target": "engine/diz/ledger.py",
-          "sha256": "55718dfb975418a0b6aab491c0897461d210ea4fa42421bd7c122ed95390e6cd"
+          "sha256": "e718789258daa25506d73d6d3d616a5476a40a8603754af27a801299ae3600d1"
         },
         {
           "path": "skills/dear-inbox-zero/engine/diz/report.py",
@@ -90,6 +95,11 @@
           "sha256": "2cf95c57aac89a046c637eb344460e94682d8c0fa0a7c61e119fd611990a3656"
         },
         {
+          "path": "skills/dear-inbox-zero/engine/diz/teams.py",
+          "target": "engine/diz/teams.py",
+          "sha256": "ddc17d7799beeefc4e3d0927b6d05f981c75c108ef9af244a64f25368a896d60"
+        },
+        {
           "path": "skills/dear-inbox-zero/engine/diz/util.py",
           "target": "engine/diz/util.py",
           "sha256": "b1dae680db2f771dfda71c9b64a2c3bc8648a737609569b1a00fad1cca1b9bd6"
@@ -97,17 +107,17 @@
         {
           "path": "skills/dear-inbox-zero/hosts/_template.md",
           "target": "hosts/_template.md",
-          "sha256": "b9dae51210f70c05f642da3e4316b3f1636f160a0d00ece19ed9cd4ad10f9955"
+          "sha256": "f9e8de4fe63446808f01d21029814300abe9d10ef5f3e7db20a2f3b231d85543"
         },
         {
           "path": "skills/dear-inbox-zero/hosts/cowork.md",
           "target": "hosts/cowork.md",
-          "sha256": "ab5eeab40a0b35339956ea89319c39bc6373b3f8bf409848712c56dfbb81243c"
+          "sha256": "743c7de540896cea2d971e1a8dd2874bca4e9a7aa0bbafea3c4dcd7989d65910"
         },
         {
           "path": "skills/dear-inbox-zero/hosts/graph-mcp.md",
           "target": "hosts/graph-mcp.md",
-          "sha256": "31c5e48ed6f76c6b464a93cd05e7adc1c922e633cde0845e8b598c4fd30ad272"
+          "sha256": "1b99bc95948d275208b36811a049a12b47ba3c9d4ffa90bca29b1b9258c7d42c"
         },
         {
           "path": "skills/dear-inbox-zero/learn/learning-loop.md",
@@ -122,7 +132,7 @@
         {
           "path": "skills/dear-inbox-zero/policy/buckets.md",
           "target": "policy/buckets.md",
-          "sha256": "7b76694641b3a9a5cddde68e7d58f3a53fbd426cf4bd05242ef7620a8612616d"
+          "sha256": "66ceb05421484d5ea34e0bb8a71fed0aff592bd2bf3ea8ea297b84fc84af94ce"
         },
         {
           "path": "skills/dear-inbox-zero/policy/safety.md",
@@ -137,7 +147,7 @@
         {
           "path": "skills/dear-inbox-zero/schemas/item.schema.json",
           "target": "schemas/item.schema.json",
-          "sha256": "71b62898370180ecd6113033b6f9146c3bbccf5f776f25401abee4f88d53ebd0"
+          "sha256": "e56611c37e292c886c905792ce7e7badf33544b6c55671258775408f939f9ab8"
         },
         {
           "path": "skills/dear-inbox-zero/schemas/observation.schema.json",
@@ -152,7 +162,7 @@
         {
           "path": "skills/dear-inbox-zero/setup/first-install.md",
           "target": "setup/first-install.md",
-          "sha256": "c62c6a45d0b2561555331fe2bc0a9d6379e0a60597339d1c11fb2fc30526fa16"
+          "sha256": "13243588d44773b2c776d7c06b3fa1fb0594a800613f5904f5c46c2592e70a6d"
         },
         {
           "path": "skills/dear-inbox-zero/setup/install.md",
@@ -165,14 +175,24 @@
           "sha256": "a290ac375c22f06be00d651877926667fe1bd326698d51d0e30ed4e0d3c97025"
         },
         {
+          "path": "skills/dear-inbox-zero/tests/test_collect.py",
+          "target": "tests/test_collect.py",
+          "sha256": "45ba182bbb37c93a219e5364821b01879bff5e0bf308ab8aaff44345f1228ef6"
+        },
+        {
           "path": "skills/dear-inbox-zero/tests/test_engine.py",
           "target": "tests/test_engine.py",
-          "sha256": "3f898c32c0f7025f180101285150bd94ac52a8915dbfd4acfc25b866869811e6"
+          "sha256": "ada9e17d644fc8b4eae1fd88142038cae675e4c3b95983d84a22b0fb2c90d9e9"
         },
         {
           "path": "skills/dear-inbox-zero/tests/test_sent.py",
           "target": "tests/test_sent.py",
           "sha256": "b6717c0dbf34f5f6d778a12fcc8c96ad676a5b9edd7b9b2e8edd76b89305ea02"
+        },
+        {
+          "path": "skills/dear-inbox-zero/tests/test_teams.py",
+          "target": "tests/test_teams.py",
+          "sha256": "69ba41e0f94762537964677e5cb049778cc0ab874dca41cecb4bf1d6ff5e364c"
         },
         {
           "path": "skills/dear-inbox-zero/tests/fixtures/alex_expected.json",
@@ -183,6 +203,31 @@
           "path": "skills/dear-inbox-zero/tests/fixtures/alex_mail.json",
           "target": "tests/fixtures/alex_mail.json",
           "sha256": "be1732ab3224444d3c5daa2e68bedf47254f99b7d2daae6a59f286836e9e4bf1"
+        },
+        {
+          "path": "skills/dear-inbox-zero/tests/fixtures/graph/calendarView.json",
+          "target": "tests/fixtures/graph/calendarView.json",
+          "sha256": "2af3e6a997e2d77c74b681cda2286216aac209bad22300bd5bc913353319de3a"
+        },
+        {
+          "path": "skills/dear-inbox-zero/tests/fixtures/graph/chat-messages.json",
+          "target": "tests/fixtures/graph/chat-messages.json",
+          "sha256": "a894d9faf12b6b4f04b48288af261fa8038af729351f6a7e97f2d69be705a214"
+        },
+        {
+          "path": "skills/dear-inbox-zero/tests/fixtures/graph/chats.json",
+          "target": "tests/fixtures/graph/chats.json",
+          "sha256": "dc399c357c4dcaf1d1c6c57ccc80155593ec45fb665c3e5e37fcc256a100ad91"
+        },
+        {
+          "path": "skills/dear-inbox-zero/tests/fixtures/graph/messages.json",
+          "target": "tests/fixtures/graph/messages.json",
+          "sha256": "434fa08cf58c8a245a452692f3f130105c635e55c63fe3b5338940b2438196c3"
+        },
+        {
+          "path": "skills/dear-inbox-zero/tests/fixtures/graph/sentitems.json",
+          "target": "tests/fixtures/graph/sentitems.json",
+          "sha256": "5b866b4b0a7adc35c17b8503eb37c7566638aa96cd32c3854bcefbe2caa912d0"
         }
       ],
       "requires": {
@@ -273,11 +318,11 @@
   "docs": [
     {
       "path": "README.md",
-      "sha256": "e2d959566ec426157bb07a5ca87556c7aea470b75c4092b99a677192e54317a0"
+      "sha256": "ba104407161b3e70f1957b38a6a99fbedc51ccae09bf8dbdd580c67635e06e36"
     },
     {
       "path": "DESIGN.md",
-      "sha256": "b33ef170fda1c6a45f85df587943a3bf372b1b2f5c97575c5c93dc227353bdea"
+      "sha256": "e76a282f09ada1db2693ca0d5a45b95de9f111b6dd72488d31af8c91a2cffd40"
     },
     {
       "path": "LICENSE",
@@ -293,15 +338,23 @@
     },
     {
       "path": "AGENTS.md",
-      "sha256": "9ea643dbc00f59cc3b567bfa56421272ddf241e637bcd8549212c47edfae50a1"
+      "sha256": "d14a0f54376607396a96b7f8a9e20dbb964995035a70aa95ff0c1f5373a67a5a"
     },
     {
       "path": "INSTALL.md",
-      "sha256": "bbb1c9f0193415e85f5dd95c3ed8834192753cba34ca399797160e8d6f345217"
+      "sha256": "b41608ceeeb51e30112c3e3b158a4ad1c0fe24b6b637603d2961958132f0ed24"
     },
     {
       "path": "llms.txt",
       "sha256": "2545ed99489860d543eb8d98ed05bdc283409466dabd6e2f80bcc81c5ce90ed1"
+    },
+    {
+      "path": "TRADEMARKS.md",
+      "sha256": "1adc27679faf33bfac30d4e51e4cf26ffc38963ccab835a0ddcea619b321d696"
+    },
+    {
+      "path": "docs/hosts/github-copilot.md",
+      "sha256": "1d87f7dfb8d68c4166dabc57fdb3313d7f3db765d1bb6561e640b50fa5fcf3f9"
     }
   ]
 }

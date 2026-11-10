@@ -10,6 +10,16 @@
 
 Level 0 = report only. Calendar accept is level 3 and needs a confirmed rule (`channels/calendar.md`).
 
+## Automation presets (chosen at setup; `automation --preset` changes it later)
+
+| Preset | Starts at | Can earn up to | In practice |
+|---|---|---|---|
+| Low | 1 everywhere | 1 | tags and drafts only; nothing marked read or flagged |
+| **Auto · Medium (default)** | Noise/FYI/Reply 2, calendar 1 | calendar 3 | tags, drafts, flags Reply, marks Noise (confirmed rules) and FYI (after the digest) read; asks about invites until it has learned a confirmed rule and an accurate streak |
+| High | Noise/FYI/Reply 2, calendar 3 | same | as Medium, plus accepts invites under confirmed rules from day one |
+
+Every preset: a wrong action drops that bucket one level and pauses the rule. Never send, forward, post, delete or decline.
+
 ## Precedence (first match wins)
 
 1. **Personal**: sender or domain pinned personal.

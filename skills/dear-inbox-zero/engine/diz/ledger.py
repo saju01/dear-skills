@@ -16,7 +16,8 @@ def update(head, decisions, signals, now=None):
         if l is None:
             led[d["id"]] = {"id": d["id"], "channel": d.get("channel"), "who": d.get("sender_name") or d.get("sender"),
                             "subject": (d.get("subject") or "")[:120], "first_reported": iso(now),
-                            "last_reported": iso(now), "received_at": d.get("received_at"), "state": "open"}
+                            "last_reported": iso(now), "received_at": d.get("received_at"),
+                            "thread_id": d.get("thread_id"), "state": "open"}
         elif l["state"] == "open":
             l["last_reported"] = iso(now)
     for s in signals or []:

@@ -8,4 +8,7 @@
 - Engine (Python 3.10+, standard library only): content-addressed store, rule precedence, invite clash check, learning loop with expiring proposals, per-bucket autonomy, open-loop ledger, report, doctor.
 - Adapters: Microsoft 365 Copilot Cowork, Microsoft Graph (any agent with Graph access), template for new agents.
 - Agent-led install: `AGENTS.md`, `INSTALL.md`, `install.json` with sha256 per file.
-- 33 tests on synthetic data; CI with privacy scan and manifest check.
+- Automation presets Low / **Auto · Medium (default)** / High; recommended daily run + weekly learn scheduled at go-live (`automation`).
+- Microsoft Graph collectors (`collect-mail`, `collect-sent`, `collect-calendar`, `collect-teams`) and Teams needs-response filter and signals (`teams-filter`, `teams-signals`), built by Copilot coding agent (#1, #2).
+- GitHub Copilot + Graph setup guide (#4).
+- 62 tests on synthetic data; CI with privacy scan and manifest check.

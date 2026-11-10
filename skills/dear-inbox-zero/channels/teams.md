@@ -1,20 +1,30 @@
 # Channel: Teams
 
-Goal: find the messages that **need a response** from the user and help them answer. The skill never posts.
+The engine applies the needs-response rules. Collect each chat's messages and
+channel mentions, then run:
 
-## Collect
+```text
+python engine/dear_engine.py teams-filter --state state.json --chats chats.json --user-id <me-id> --out items.json
+```
 
-- 1:1 and group chats with activity since the Teams checkpoint, and channel messages that @mention the user.
-- Keep only messages where the latest message isn't from the user **and** it asks the user something, mentions them, or is a 1:1 message left unanswered for more than `profile.teams_reply_hours` (default 4 working hours).
-- Item fields (`channel: "teams"`): `id` (message id), `thread_id` (chat/channel thread), `sender`, `sender_name`, `sender_domain`, `subject` (chat topic or channel name), `mentions_me`, `direct` (1:1), `has_question`, `received_at`, `preview` (≤ 300 chars, kept in working files only, never stored).
+`chats.json` is a list of `{id, thread_id, direct, subject, messages}` records.
+Each message has `id`, `sender_id`, `sent_at`, and optional `sender`,
+`sender_name`, `has_question`, `mentions_me`, and `preview` (or `text`).
+The latest message is tested; its preview stays in working files only. The
+engine reads `profile.tz`, `profile.working_hours`, and
+`profile.teams_reply_hours` (default 4).
 
-## Help the user answer
+Read recent thread context with `teams.thread` and show a suggested reply; the
+user posts it. Never post from the engine or host.
 
-For each Teams item in Reply: read the last few messages of that thread (`teams.thread`), then put in the report:
-- who, where and what they need, in one line;
-- a suggested reply in the user's voice (`policy/voice.md`), ready to paste;
-- a link to the message.
+For reply signals, collect the user's own posts (`teams.my_replies`) and run
+before `observe`:
 
-## Observe
+```text
+python engine/dear_engine.py teams-signals --state state.json --posts own-posts.json --user-id <me-id> --out signals.json
+```
 
-`replied` (the user posted in the thread after the message), `ignored` (no reply after 2 working days), `replied_not_proposed` (the user answered a thread the run didn't surface).
+Posts use `id`, `thread_id`, `sender_id`, and `sent_at`; optional
+`reply_to_sender` identifies the other participant for an unsurfaced thread.
+The command emits `replied`, `replied_not_proposed`, and `ignored` (after two
+working days without a reply) from the user's own posts and open Teams loops.

@@ -99,7 +99,7 @@ Location: the user's own **OneDrive**, default `OneDrive/dear-inbox-zero/<accoun
 | S2 Voice study | Up to 40 sent replies (in memory only, quoted history stripped) → greeting, sign-off, typical length, bullets, default language; confirmed with the user in one line. | `voice` facts |
 | S3 Calibration | Asks about the uncertain senders/series one at a time (Noise · FYI · Reply · Personal · skip). | explicit rules |
 | S4 Dry run | One full run with no writes. Shows what it would have tagged, flagged, drafted and answered. | report only |
-| Live | Every bucket starts at level 1 (tag only). | — |
+| Live | Automation preset applied (default **Auto · Medium**) and the recommended daily run + weekly learn scheduled. | head, schedule |
 
 Resumable at every stage (`setup resume`). A broken or foreign head is treated as recovery, never overwritten.
 
@@ -153,6 +153,8 @@ Calendar rules learned from real use:
 | 1 | tag |
 | 2 | + mark read, flag |
 | 3 | + calendar accept under rules the user confirmed (never before a learned pattern was proposed and confirmed) |
+
+**Presets** set the starting level and the ceiling: Low (1 everywhere), **Auto · Medium, the default** (Noise/FYI/Reply 2, calendar 1 → may earn 3), High (calendar 3 from the start). Inside the ceiling, levels still move with accuracy.
 
 Promotion: at least 5 counted runs with an override rate under 5%, and at least 30 decisions in the streak. Demotion: any wrong action (e.g. a binned draft for a sender, or a Noise item marked unread again) pauses that rule and drops the bucket one level. Sending is not on the ladder.
 
@@ -268,3 +270,6 @@ Every ported module is scanned before commit. Tests are rewritten on synthetic d
 | 3 | Teams | Find chats and @mentions that need a response and help the user answer them; the user posts |
 | 4 | Licence | **Apache-2.0**: permissive for broad use, explicit patent grant, and its contribution clause (§5) makes contributions flow back under the same terms without a separate CLA |
 | 5 | Hosts | One core for every agent; host adapters per agent (§11) |
+| 6 | Install | Agent-led: the agent installs (zip upload in Cowork, or from the repo), then starts setup straight away |
+| 7 | Default automation | Auto · Medium, with a daily run each weekday and a weekly learn |
+| 8 | Names | Apache-2.0 for the code; names covered by `TRADEMARKS.md` |

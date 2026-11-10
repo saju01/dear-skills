@@ -14,40 +14,66 @@ Mail, meeting invites and Teams messages, all in one place. It sorts what needs 
 - **Token-efficient.** Rules decide first; the model only sees what rules can't decide.
 - **Your memory stays yours.** The store lives in your OneDrive or a local folder. Nothing about you is in this repo.
 
-Works with Microsoft Outlook, Outlook Calendar and Microsoft Teams. One core runs in any [Agent Skills](https://github.com/agentskills/agentskills)–compatible agent; a small adapter per agent maps its tools (see [DESIGN.md §11](DESIGN.md#11-portability-one-core-thin-host-adapters)). Adding your agent is one file.
+Works with Microsoft Outlook, Outlook Calendar and Microsoft Teams. One core runs in any [Agent Skills](https://github.com/agentskills/agentskills)–compatible agent; a small adapter per agent maps its tools (see [DESIGN.md §11](DESIGN.md#11-portability-one-core-thin-host-adapters)). Adding your agent is one file. See the [GitHub Copilot and Graph setup guide](docs/hosts/github-copilot.md).
 
 > Status: **v0.1.0**: mail, calendar and Teams. See [DESIGN.md](DESIGN.md), an [example report](examples/persona-alex/report.md) and the [changelog](skills/dear-inbox-zero/CHANGELOG.md).
 
-### Simple setup in Copilot Cowork (first install)
+## Install: let your agent do it
 
-1. **Download** [dear-inbox-zero-v0.1.0.zip](https://github.com/saju01/dear-skills/raw/main/dist/dear-inbox-zero-v0.1.0.zip) (also attached to the [v0.1.0 release](https://github.com/saju01/dear-skills/releases/tag/v0.1.0)).
-2. **Upload** the zip to a new Cowork task.
-3. **Ask:** `Install this skill and set it up.`
+You don't install anything by hand. Your agent does the installation, then starts customising itself to you.
 
-That's all. Cowork installs it into your skills folder, checks it, and starts setup straight away:
+### Copilot Cowork
 
-- **One consent prompt** shows what it will read, that your memory stays in your own OneDrive, and that it never sends anything.
-- **Learning starts immediately.** It studies your Sent box (whom you answer and how fast, your language per contact, your working hours, how you write) and how you handle invites and Teams chats.
-- **It customises itself to you.** It asks about the cases it isn't sure of, one question at a time, then shows a dry run of what it would do.
-- **It keeps learning after you go live.** Daily runs (scheduled if you want) learn from every reply you send, tag you change and draft you rewrite, and earn more autonomy only as they prove accurate.
+1. **Download** [dear-inbox-zero-v0.1.0.zip](https://github.com/saju01/dear-skills/releases/download/v0.1.0/dear-inbox-zero-v0.1.0.zip) from the [v0.1.0 release](https://github.com/saju01/dear-skills/releases/tag/v0.1.0).
+2. **Upload** it to a new Cowork task.
+3. **Say:** `Install this skill and set it up.`
 
-### Install with your agent (any agent)
+### Any other agent (GitHub Copilot and other Agent Skills–compatible agents)
 
-Ask your agent:
+Say:
 
-> Install dear-inbox-zero from https://github.com/saju01/dear-skills
+> Install dear-inbox-zero from https://github.com/saju01/dear-skills and set it up.
 
-Agents read [AGENTS.md](AGENTS.md) and follow [INSTALL.md](INSTALL.md), using the [install.json](install.json) manifest. The manifest lists every file with its sha256, the skills folder for each agent and the adapter to use. The agent copies and verifies the files, picks the adapter, runs a health check, then hands over to `dear-inbox-zero setup`, which asks your consent before reading anything.
+The agent reads [AGENTS.md](AGENTS.md) and [INSTALL.md](INSTALL.md), copies every file listed in [install.json](install.json), checks each file's sha256, picks the adapter for itself, and runs a health check. For GitHub Copilot with Microsoft Graph, see the [setup guide](docs/hosts/github-copilot.md).
 
-### Manual install
+## What happens at first install
 
-```text
-1. Copy skills/dear-inbox-zero into your agent's skills folder
-   (e.g. .github/skills/ for GitHub Copilot, Documents/Cowork/skills for Cowork)
-   and pick the adapter for your agent in skills/dear-inbox-zero/hosts/.
-2. Run:  dear-inbox-zero setup
-3. Review the dry-run report, then run:  dear-inbox-zero
-```
+Setup starts as soon as the install finishes. You answer a few questions; the skill does the rest.
+
+| Step | What you see | What it does |
+|---|---|---|
+| 1. Consent | One prompt | Shows what it will read, that your memory lives in your own OneDrive, and that it never sends anything. You pick channels and the automation level (**Auto · Medium** is preselected). |
+| 2. Learns from your Sent box | Nothing to do | Whom you answer and how fast, your language per contact, your working hours, your own domain and how you write. |
+| 3. Learns your habits | Nothing to do | What you read, ignore or flag, which invites you accept, which Teams chats you answer. |
+| 4. Customises itself | A few questions, one at a time | Confirms VIPs, your writing style and the senders it isn't sure about. |
+| 5. Dry run | A report | Shows what it would tag, flag, draft and recommend, without changing anything. |
+| 6. Goes live | "Go live on Auto · Medium?" | Sets the automation level and schedules the recommended daily automation. |
+
+## The default: Auto · Medium, every weekday
+
+At go-live the skill builds a recommended daily automation for you:
+
+- **Daily run** every weekday at the start of your working day (learned from your Sent box; 08:30 if unknown).
+- **Weekly learn** on Monday: accuracy per bucket, rules learned, proposals to confirm.
+
+On **Auto · Medium** each daily run:
+
+| Bucket | What it does on its own |
+|---|---|
+| Noise | tags it and marks it read (only under rules you confirmed) |
+| FYI | tags it, gives you one digest line, marks it read |
+| Reply | tags it, flags it for To Do, writes a draft in your voice |
+| Invites | recommends and asks; once you've confirmed a rule and it has proven accurate, it accepts those for you |
+| Teams | lists messages that need your answer, with a suggested reply |
+| Personal | counts it, never opens it |
+
+Prefer less or more? **Low** only tags and drafts. **High** also accepts invites under confirmed rules from day one. Change it any time: `dear-inbox-zero automation --preset low|medium|high`.
+
+It keeps learning every day: each reply you send, tag you change and draft you rewrite is a signal. A wrong action drops that bucket a level and pauses the rule.
+
+### Manual install (only if your agent can't fetch files)
+
+Copy `skills/dear-inbox-zero` into your agent's skills folder (`.github/skills/` for GitHub Copilot, `Documents/Cowork/skills` for Cowork), set `config/host.json` to your agent's adapter in `hosts/`, then say `dear-inbox-zero setup`.
 
 ### Commands
 
@@ -57,6 +83,7 @@ Agents read [AGENTS.md](AGENTS.md) and follow [INSTALL.md](INSTALL.md), using th
 | `dear-inbox-zero` | the daily run |
 | `dear-inbox-zero learn` | weekly review of proposals and accuracy |
 | `dear-inbox-zero show <bucket>` | what is in a bucket and why |
+| `dear-inbox-zero automation` | shows or changes the automation level and the daily schedule |
 | `dear-inbox-zero doctor` | checks the store, the host mapping and the token budget |
 
 ### Safety
@@ -70,7 +97,7 @@ Agents read [AGENTS.md](AGENTS.md) and follow [INSTALL.md](INSTALL.md), using th
 
 ---
 
-Independent project, not affiliated with or endorsed by Microsoft or Inbox Zero (getinboxzero.com). Microsoft, Outlook, Teams and Microsoft 365 are trademarks of the Microsoft group of companies.
+Independent project, not affiliated with or endorsed by Microsoft, by Inbox Zero (getinboxzero.com) or by any holder of an "Inbox Zero" mark. "Inbox zero" is used here in its common descriptive sense. Microsoft, Outlook, Teams and Microsoft 365 are trademarks of the Microsoft group of companies. The names "dear-skills" and "dear-inbox-zero" are covered by [TRADEMARKS.md](TRADEMARKS.md).
 
 ## Contributing
 

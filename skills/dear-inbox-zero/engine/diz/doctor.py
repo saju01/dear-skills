@@ -3,7 +3,7 @@ import json, os, re, sys
 
 REQUIRED_OPS = ["me", "mail.list", "mail.meta", "mail.body", "mail.sent", "mail.tag", "mail.read", "mail.flag",
                 "mail.reply_draft", "mail.categories", "cal.view", "cal.accept", "teams.needs_response",
-                "teams.thread", "teams.my_replies", "store.list", "store.read", "store.write", "ask", "run_python"]
+                "teams.thread", "teams.my_replies", "store.list", "store.read", "store.write", "ask", "run_python", "schedule"]
 FORBIDDEN_OPS = ["mail.send", "mail.forward", "mail.delete", "mail.move", "cal.decline", "teams.post"]
 FORBIDDEN_TOOL_WORDS = re.compile(
     r"(\bSend(Email\w*|Draft\w*|Mail\w*)\b|\bForward\w*|\bDelete(Message|Event)\w*|\bDecline\w*|\bTentatively\w*"

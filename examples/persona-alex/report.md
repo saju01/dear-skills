@@ -30,4 +30,4 @@
 
 Personal: 1 item(s), not opened.
 
-_Autonomy: noise L1, fyi L1, reply L1, calendar L1_
+_Autonomy: noise L2, fyi L2, reply L2, calendar L1_

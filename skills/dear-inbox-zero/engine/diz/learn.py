@@ -1,6 +1,6 @@
 """Learning loop: signals -> proposals -> confirmed rules; expiry; autonomy ladder."""
 from datetime import timedelta
-from . import AUTONOMY_BUCKETS, MAX_LEVEL
+from . import AUTONOMY_BUCKETS, MAX_LEVEL, PRESETS, DEFAULT_PRESET
 from .util import parse_ts, iso, now_utc, sha256
 
 WINDOW_DAYS = 7
@@ -50,7 +50,14 @@ def observe(state, signals, now=None):
     for sig in signals or []:
         dec = last.get(sig.get("id"))
         if dec is None:
-            continue  # only items the run decided count
+            if sig.get("channel") != "teams" or sig.get("signal") != "replied_not_proposed":
+                continue  # only decided items, plus own Teams replies to unsurfaced threads
+            d = direction_of(sig)
+            enriched.append({**sig, "at": sig.get("at") or iso(now), "series": sig.get("series"),
+                             "sender": sig.get("sender"), "decided": None, "direction": d,
+                             "by_series": False, "outcome": "override", "rule_id": None,
+                             "abucket": None, "wrong": False})
+            continue
         d = direction_of(sig)
         decided = decided_bucket(dec)
         outcome = None if d is None else ("agree" if d == decided else "override")
@@ -230,7 +237,8 @@ def update_autonomy(state, now=None):
                 break
             if r.get("counted"):
                 streak.append(r)
-        if len(streak) >= 5 and sum(r["decisions"] for r in streak) >= 30 and a["level"] < MAX_LEVEL[b] and a["level"] >= 1:
+        cap = min(MAX_LEVEL[b], PRESETS.get(head["profile"].get("preset", DEFAULT_PRESET), PRESETS[DEFAULT_PRESET])["cap"][b])
+        if len(streak) >= 5 and sum(r["decisions"] for r in streak) >= 30 and a["level"] < cap and a["level"] >= 1:
             a["history"].append({"at": iso(now), "from": a["level"], "to": a["level"] + 1, "reason": "accurate_streak"})
             a["level"] += 1
             changes.append((b, "up"))
@@ -238,14 +246,41 @@ def update_autonomy(state, now=None):
     return changes
 
 
-def go_live(state, now=None):
+def go_live(state, now=None, preset=None):
+    """Go live with an automation preset (default: medium). Returns the levels set."""
     now = now or now_utc()
     head = state["head"]
+    preset = preset or head["profile"].get("preset") or DEFAULT_PRESET
+    if preset not in PRESETS:
+        raise ValueError(f"unknown preset {preset}: use one of {', '.join(PRESETS)}")
+    head["profile"]["preset"] = preset
     head["setup"]["stage"] = "live"
     for b, a in head["autonomy"].items():
-        if a["level"] == 0:
-            a["level"] = 1
-            a["history"].append({"at": iso(now), "from": 0, "to": 1, "reason": "go_live"})
+        target = PRESETS[preset]["start"][b]
+        if a["level"] != target:
+            a["history"].append({"at": iso(now), "from": a["level"], "to": target, "reason": f"preset_{preset}"})
+            a["level"] = target
+    return {b: a["level"] for b, a in head["autonomy"].items()}
+
+
+def automation_plan(profile, preset=None):
+    """The recommended daily automation for this user: when to run and what the prompts are."""
+    preset = preset or profile.get("preset") or DEFAULT_PRESET
+    start = (profile.get("working_hours") or [8, 17])[0]
+    hh, mm = (start, 30) if start <= 9 else (start, 0)
+    tz = profile.get("tz") or "UTC"
+    return {
+        "preset": preset,
+        "timezone": tz,
+        "jobs": [
+            {"name": "dear-inbox-zero daily", "when": f"weekdays {hh:02d}:{mm:02d}", "cron": f"{mm} {hh} * * 1-5",
+             "prompt": "dear-inbox-zero"},
+            {"name": "dear-inbox-zero weekly learn", "when": f"Mondays {hh + 1:02d}:{mm:02d}", "cron": f"{mm} {hh + 1} * * 1",
+             "prompt": "dear-inbox-zero learn"},
+        ],
+        "notes": "Check existing schedules first so runs never double up. Unattended runs keep every safety rule; "
+                 "anything that needs the user waits in the report.",
+    }
 
 
 def study(state, observations, now=None):

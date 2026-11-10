@@ -7,6 +7,7 @@
     "id": {"type": "string"},
     "channel": {"enum": ["mail", "invite", "teams"], "default": "mail"},
     "thread_id": {"type": "string"},
+    "message_id": {"type": "string", "description": "Original Graph Teams message id; item id is scoped by chat"},
     "received_at": {"type": "string", "format": "date-time"},
     "sender": {"type": "string", "description": "address, lower-case"},
     "sender_name": {"type": "string"},

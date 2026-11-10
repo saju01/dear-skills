@@ -35,7 +35,7 @@ class Base(unittest.TestCase):
         self.st = store.load_state(self.dir)
 
     def live(self, **levels):
-        L.go_live(self.st, NOW)
+        L.go_live(self.st, NOW, "low")
         for b, l in levels.items():
             self.st["head"]["autonomy"][b]["level"] = l
 
@@ -242,6 +242,7 @@ class LearnTests(Base):
 
     def test_autonomy_promotion_and_demotion(self):
         self.live()
+        self.st["head"]["profile"]["preset"] = "medium"  # ceiling 2 for noise
         a = self.st["head"]["autonomy"]["noise"]
         for i in range(5):
             self.st["head"]["_run_stats"] = {"noise": {"decisions": 8, "overrides": 0, "wrong": 0}}
@@ -258,6 +259,32 @@ class LearnTests(Base):
         ledger.update(self.st["head"], dec["decisions"], [], NOW)
         aged = ledger.aged(self.st["head"], NOW)
         self.assertEqual(aged[0]["working_days"], 2)
+
+
+class PresetTests(Base):
+    def test_medium_is_default_and_capped(self):
+        self.st["head"]["profile"].pop("preset", None)
+        levels = L.go_live(self.st, NOW)
+        self.assertEqual(levels, {"noise": 2, "fyi": 2, "reply": 2, "calendar": 1})
+        self.assertEqual(self.st["head"]["profile"]["preset"], "medium")
+        a = self.st["head"]["autonomy"]["noise"]
+        for i in range(6):
+            self.st["head"]["_run_stats"] = {"noise": {"decisions": 8, "overrides": 0, "wrong": 0}}
+            L.update_autonomy(self.st, NOW + timedelta(days=i))
+        self.assertEqual(a["level"], 2)  # capped
+
+    def test_low_and_high(self):
+        self.assertEqual(L.go_live(self.st, NOW, "low"), {"noise": 1, "fyi": 1, "reply": 1, "calendar": 1})
+        self.assertEqual(L.go_live(self.st, NOW, "high")["calendar"], 3)
+        with self.assertRaises(ValueError):
+            L.go_live(self.st, NOW, "max")
+
+    def test_automation_plan_follows_working_hours(self):
+        self.st["head"]["profile"]["working_hours"] = [8, 17]
+        plan = L.automation_plan(self.st["head"]["profile"])
+        self.assertEqual(plan["preset"], "medium")
+        self.assertEqual(plan["jobs"][0]["cron"], "30 8 * * 1-5")
+        self.assertEqual(plan["jobs"][1]["prompt"], "dear-inbox-zero learn")
 
 
 class SetupTests(Base):
