@@ -268,7 +268,7 @@
   "docs": [
     {
       "path": "README.md",
-      "sha256": "518cb9aab72c1a94b27b0392a3a5582d4d854fcfd0a312e370c79588d9e24392"
+      "sha256": "0a571c8af3b1b3d9cc3b9334d9acf0d2d0dc92d359540a3ac3219bd088fb574b"
     },
     {
       "path": "DESIGN.md",
@@ -297,6 +297,10 @@
     {
       "path": "llms.txt",
       "sha256": "2545ed99489860d543eb8d98ed05bdc283409466dabd6e2f80bcc81c5ce90ed1"
+    },
+    {
+      "path": "docs/hosts/github-copilot.md",
+      "sha256": "1d87f7dfb8d68c4166dabc57fdb3313d7f3db765d1bb6561e640b50fa5fcf3f9"
     }
   ]
 }

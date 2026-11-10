@@ -3,7 +3,8 @@
 import hashlib, json, os, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DOCS = ["README.md", "DESIGN.md", "LICENSE", "CONTRIBUTING.md", "SECURITY.md", "AGENTS.md", "INSTALL.md", "llms.txt"]
+DOCS = ["README.md", "DESIGN.md", "LICENSE", "CONTRIBUTING.md", "SECURITY.md", "AGENTS.md", "INSTALL.md", "llms.txt",
+        "docs/hosts/github-copilot.md"]
 SKIP = {"__pycache__"}
 
 

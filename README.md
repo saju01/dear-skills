@@ -14,7 +14,7 @@ Mail, meeting invites and Teams messages, all in one place. It sorts what needs 
 - **Token-efficient.** Rules decide first; the model only sees what rules can't decide.
 - **Your memory stays yours.** The store lives in your OneDrive or a local folder. Nothing about you is in this repo.
 
-Works with Microsoft Outlook, Outlook Calendar and Microsoft Teams. One core runs in any [Agent Skills](https://github.com/agentskills/agentskills)–compatible agent; a small adapter per agent maps its tools (see [DESIGN.md §11](DESIGN.md#11-portability-one-core-thin-host-adapters)). Adding your agent is one file.
+Works with Microsoft Outlook, Outlook Calendar and Microsoft Teams. One core runs in any [Agent Skills](https://github.com/agentskills/agentskills)–compatible agent; a small adapter per agent maps its tools (see [DESIGN.md §11](DESIGN.md#11-portability-one-core-thin-host-adapters)). Adding your agent is one file. See the [GitHub Copilot and Graph setup guide](docs/hosts/github-copilot.md).
 
 > Status: **v0.1.0**: mail, calendar and Teams. See [DESIGN.md](DESIGN.md), an [example report](examples/persona-alex/report.md) and the [changelog](skills/dear-inbox-zero/CHANGELOG.md).
 
