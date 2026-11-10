@@ -1,0 +1,10 @@
+# A user's private store must never be committed
+**/head/
+**/store/
+**/snapshots/
+index.json
+!skills/**/schemas/index.json
+working/
+*.pyz
+__pycache__/
+.venv/
