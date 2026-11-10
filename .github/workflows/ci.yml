@@ -1,0 +1,27 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Privacy scan (no personal data, ever)
+        run: python scripts/privacy_scan.py
+      - name: Unit and end-to-end tests (synthetic data)
+        working-directory: skills/dear-inbox-zero
+        run: python -W error::ResourceWarning -m unittest discover -s tests -v
+      - name: Doctor (files, token budget, adapters, forbidden operations)
+        run: python skills/dear-inbox-zero/engine/dear_engine.py doctor
+      - name: Install manifest is current
+        run: python scripts/build_manifest.py --check

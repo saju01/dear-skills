@@ -1,0 +1,10 @@
+[
+  {"id": "m01", "sender": "news@newsletter.example.org", "sender_name": "Example Newsletter", "subject": "This week in gadgets"},
+  {"id": "m02", "sender": "digest@tools.example.org", "sender_name": "Tools digest", "subject": "Weekly digest 13"},
+  {"id": "m03", "sender": "boss@example.com", "sender_name": "Robin (manager)", "subject": "Quick sync", "to_me": true},
+  {"id": "m04", "sender": "pat@example.com", "sender_name": "Pat", "subject": "Can you send the deck by Friday?", "to_me": true, "has_question": true},
+  {"id": "m05", "sender": "mum@example.net", "sender_name": "Mum", "subject": "Sunday lunch"},
+  {"id": "m06", "sender": "noreply@bank.example.org", "sender_name": "Bank", "subject": "Your password was changed"},
+  {"id": "m07", "sender": "stranger@example.org", "sender_name": "New vendor", "subject": "Introduction"},
+  {"id": "m08", "sender": "lee@example.com", "sender_name": "Lee", "subject": "Contract renewal due 15 March", "to_me": true, "deadline_hint": "15 March"}
+]

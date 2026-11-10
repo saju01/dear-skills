@@ -16,7 +16,7 @@ Mail, meeting invites and Teams messages, all in one place. It sorts what needs 
 
 Works with Microsoft Outlook, Outlook Calendar and Microsoft Teams. One core runs in any [Agent Skills](https://github.com/agentskills/agentskills)–compatible agent; a small adapter per agent maps its tools (see [DESIGN.md §11](DESIGN.md#11-portability-one-core-thin-host-adapters)). Adding your agent is one file.
 
-> Status: v0.1 in development. See [DESIGN.md](DESIGN.md).
+> Status: **v0.1.0**: mail, calendar and Teams. See [DESIGN.md](DESIGN.md), an [example report](examples/persona-alex/report.md) and the [changelog](skills/dear-inbox-zero/CHANGELOG.md).
 
 ### Install with your agent
 

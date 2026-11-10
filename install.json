@@ -7,13 +7,164 @@
   "skills": [
     {
       "name": "dear-inbox-zero",
-      "version": "0.0.0-design",
-      "installable": false,
-      "status": "design stage; v0.1 in development. Report 'not yet installable' and do not install partial files.",
+      "version": "0.1.0",
+      "installable": true,
+      "status": "v0.1.0: mail, calendar and Teams; Cowork and Microsoft Graph adapters.",
       "path": "skills/dear-inbox-zero/",
       "entry": "skills/dear-inbox-zero/SKILL.md",
       "post_install_message": "Say `dear-inbox-zero setup` to start. I'll ask your consent before reading anything; your memory will live in your own OneDrive.",
-      "files": [],
+      "files": [
+        {
+          "path": "skills/dear-inbox-zero/CHANGELOG.md",
+          "target": "CHANGELOG.md",
+          "sha256": "e457117d1691cb9d45263334ecb2a7febc5afc9b5a716846097078f68d4b2bc7"
+        },
+        {
+          "path": "skills/dear-inbox-zero/SKILL.md",
+          "target": "SKILL.md",
+          "sha256": "9280f9634580ca1596af3c775172b811a20eeac47a369f410836085ce3a93810"
+        },
+        {
+          "path": "skills/dear-inbox-zero/channels/calendar.md",
+          "target": "channels/calendar.md",
+          "sha256": "59640c9f6fb6bc10dbe5d1e9d6b3205ea8c47640f144a849dd4059f76bc2ffee"
+        },
+        {
+          "path": "skills/dear-inbox-zero/channels/mail.md",
+          "target": "channels/mail.md",
+          "sha256": "cd6e9a027207fb43ef520e996873ff3b48c66499e077be51efe4b47f437a8374"
+        },
+        {
+          "path": "skills/dear-inbox-zero/channels/teams.md",
+          "target": "channels/teams.md",
+          "sha256": "73bd4d150f0b2a87dd4a81f20e50fd1e16da323f7dd30bd7d9db7beb1a29e6d5"
+        },
+        {
+          "path": "skills/dear-inbox-zero/config/host.json",
+          "target": "config/host.json",
+          "sha256": "76919d7394dd3bdd52d874a5fa35784c119f3ea2d611685d1585cbd4344432a0"
+        },
+        {
+          "path": "skills/dear-inbox-zero/engine/dear_engine.py",
+          "target": "engine/dear_engine.py",
+          "sha256": "ea5ebe02b375251697c97ea820b83b72c5392c762f11c80ca8298dac16fc7e12"
+        },
+        {
+          "path": "skills/dear-inbox-zero/engine/diz/__init__.py",
+          "target": "engine/diz/__init__.py",
+          "sha256": "c5cfb3ccaec19f9af28a56d49e72c82e536ac9319180405c3b50046333e760fe"
+        },
+        {
+          "path": "skills/dear-inbox-zero/engine/diz/classify.py",
+          "target": "engine/diz/classify.py",
+          "sha256": "a963d9f8e746f9405f8ddc52d341c95aa06e321f4b0735af91ab5a2d4de7ff7d"
+        },
+        {
+          "path": "skills/dear-inbox-zero/engine/diz/doctor.py",
+          "target": "engine/diz/doctor.py",
+          "sha256": "6f04bfb160302cb9cb93928cd46ff7d4722507dea694200849e4734d9e0ac90b"
+        },
+        {
+          "path": "skills/dear-inbox-zero/engine/diz/learn.py",
+          "target": "engine/diz/learn.py",
+          "sha256": "f9e322433d8cc95cc3c8c5e52e1475e9cb59b4e477c0bb89d54aef740d289bfb"
+        },
+        {
+          "path": "skills/dear-inbox-zero/engine/diz/ledger.py",
+          "target": "engine/diz/ledger.py",
+          "sha256": "55718dfb975418a0b6aab491c0897461d210ea4fa42421bd7c122ed95390e6cd"
+        },
+        {
+          "path": "skills/dear-inbox-zero/engine/diz/report.py",
+          "target": "engine/diz/report.py",
+          "sha256": "28339127babbf44289127b93e81c0883dcb599d735f60845ec2551d9784397fc"
+        },
+        {
+          "path": "skills/dear-inbox-zero/engine/diz/store.py",
+          "target": "engine/diz/store.py",
+          "sha256": "2cf95c57aac89a046c637eb344460e94682d8c0fa0a7c61e119fd611990a3656"
+        },
+        {
+          "path": "skills/dear-inbox-zero/engine/diz/util.py",
+          "target": "engine/diz/util.py",
+          "sha256": "b1dae680db2f771dfda71c9b64a2c3bc8648a737609569b1a00fad1cca1b9bd6"
+        },
+        {
+          "path": "skills/dear-inbox-zero/hosts/_template.md",
+          "target": "hosts/_template.md",
+          "sha256": "b9dae51210f70c05f642da3e4316b3f1636f160a0d00ece19ed9cd4ad10f9955"
+        },
+        {
+          "path": "skills/dear-inbox-zero/hosts/cowork.md",
+          "target": "hosts/cowork.md",
+          "sha256": "ab5eeab40a0b35339956ea89319c39bc6373b3f8bf409848712c56dfbb81243c"
+        },
+        {
+          "path": "skills/dear-inbox-zero/hosts/graph-mcp.md",
+          "target": "hosts/graph-mcp.md",
+          "sha256": "31c5e48ed6f76c6b464a93cd05e7adc1c922e633cde0845e8b598c4fd30ad272"
+        },
+        {
+          "path": "skills/dear-inbox-zero/learn/learning-loop.md",
+          "target": "learn/learning-loop.md",
+          "sha256": "7b630704f63c4d8e59a8534b93bbc7e04ea8a26e99107020edf0efdb9a30af02"
+        },
+        {
+          "path": "skills/dear-inbox-zero/policy/buckets.md",
+          "target": "policy/buckets.md",
+          "sha256": "7b76694641b3a9a5cddde68e7d58f3a53fbd426cf4bd05242ef7620a8612616d"
+        },
+        {
+          "path": "skills/dear-inbox-zero/policy/safety.md",
+          "target": "policy/safety.md",
+          "sha256": "325c9cec3947c84e19c7eebae0958efc7582214232ca0412e69aa66ed9e0442e"
+        },
+        {
+          "path": "skills/dear-inbox-zero/policy/voice.md",
+          "target": "policy/voice.md",
+          "sha256": "380195a6b111cd585f4bcd51c58453464d0289d2b8012ea29777cd97c6ca4147"
+        },
+        {
+          "path": "skills/dear-inbox-zero/schemas/item.schema.json",
+          "target": "schemas/item.schema.json",
+          "sha256": "71b62898370180ecd6113033b6f9146c3bbccf5f776f25401abee4f88d53ebd0"
+        },
+        {
+          "path": "skills/dear-inbox-zero/schemas/observation.schema.json",
+          "target": "schemas/observation.schema.json",
+          "sha256": "5efec2ed93cb1e25291e67bd4323d1659041c792bee4e1255804d6685100113b"
+        },
+        {
+          "path": "skills/dear-inbox-zero/schemas/signal.schema.json",
+          "target": "schemas/signal.schema.json",
+          "sha256": "a4d54c886f5122ee6b5efe2c9d077829c48c22e9f0fe2e1a345b3bfd31c3ac87"
+        },
+        {
+          "path": "skills/dear-inbox-zero/setup/first-install.md",
+          "target": "setup/first-install.md",
+          "sha256": "2c097eb4b68c06bd5d64edb31b0b825e45d627985367a460412ffd2256fdeada"
+        },
+        {
+          "path": "skills/dear-inbox-zero/tests/test_cli.py",
+          "target": "tests/test_cli.py",
+          "sha256": "92bd54f9e64f54448b30b86c845672b174f7ba4992e7658f4f1432dce4e48357"
+        },
+        {
+          "path": "skills/dear-inbox-zero/tests/test_engine.py",
+          "target": "tests/test_engine.py",
+          "sha256": "3f898c32c0f7025f180101285150bd94ac52a8915dbfd4acfc25b866869811e6"
+        },
+        {
+          "path": "skills/dear-inbox-zero/tests/fixtures/alex_expected.json",
+          "target": "tests/fixtures/alex_expected.json",
+          "sha256": "2116bdde56b7a0372ae8f50c03e1329c352d0985aee80bf7b137472f38de105f"
+        },
+        {
+          "path": "skills/dear-inbox-zero/tests/fixtures/alex_mail.json",
+          "target": "tests/fixtures/alex_mail.json",
+          "sha256": "be1732ab3224444d3c5daa2e68bedf47254f99b7d2daae6a59f286836e9e4bf1"
+        }
+      ],
       "requires": {
         "capabilities": [
           "mail.read",
@@ -38,7 +189,14 @@
         "location": "OneDrive/dear-inbox-zero/<account_key>/",
         "created_by": "dear-inbox-zero setup (after consent)",
         "never_in_skill_folder": true
-      }
+      },
+      "adapters": {
+        "cowork": "hosts/cowork.md",
+        "graph": "hosts/graph-mcp.md",
+        "template": "hosts/_template.md"
+      },
+      "doctor": "python <target>/engine/dear_engine.py doctor --skill-dir <target>",
+      "config_file": "config/host.json"
     }
   ],
   "hosts": [
@@ -51,13 +209,13 @@
       "adapter": "hosts/cowork.md",
       "detect": [
         "a Documents/Cowork/skills folder in the user's OneDrive",
-        "Cowork host tools available"
+        "Cowork host tools available (e.g. ExecuteSql, UploadFileContent)"
       ],
-      "status": "planned v0.1"
+      "status": "supported"
     },
     {
       "id": "github-copilot",
-      "name": "GitHub Copilot (VS Code, CLI, coding agent)",
+      "name": "GitHub Copilot (VS Code, CLI)",
       "skills_dirs": [
         ".github/skills/",
         "~/.copilot/skills/"
@@ -65,29 +223,41 @@
       "adapter": "hosts/graph-mcp.md",
       "detect": [
         "a .github/skills folder in the workspace",
-        "~/.copilot/skills exists"
+        "a Microsoft Graph MCP server or HTTP tool is configured"
       ],
-      "status": "planned v0.1.x"
+      "status": "adapter ready; verification pending"
     },
     {
       "id": "generic",
-      "name": "Any Agent Skills\u2013compatible agent",
+      "name": "Any Agent Skills\u2013compatible agent with Microsoft Graph access",
       "skills_dirs": [
         "<ask the user once>"
       ],
-      "adapter": "hosts/graph-mcp.md or hosts/_template.md",
+      "adapter": "hosts/graph-mcp.md",
+      "detect": [
+        "Microsoft Graph tools available"
+      ],
+      "status": "adapter ready; verification pending"
+    },
+    {
+      "id": "new",
+      "name": "Agent without a Graph adapter",
+      "skills_dirs": [
+        "<ask the user once>"
+      ],
+      "adapter": "hosts/_template.md",
       "detect": [],
-      "status": "via template"
+      "status": "fill the template, then run doctor"
     }
   ],
   "docs": [
     {
       "path": "README.md",
-      "sha256": "86dee5dd0104ce0fa3e11e8f2fb1b1a99157b1c4447a12e4c57d22988cf47257"
+      "sha256": "649d8a41b7d49b32ab9d3d4d8592ff787e8a75da7d5d9af465f490e5305f089f"
     },
     {
       "path": "DESIGN.md",
-      "sha256": "396ddffe8629ce8e9c50af19cbd91a2c15e4b9b0503c3435827cc42d12758c9b"
+      "sha256": "a7fac6f539efc48c5dc942ff0833ca8eaf5f281994047ad32602bfa66ab49000"
     },
     {
       "path": "LICENSE",
@@ -107,7 +277,7 @@
     },
     {
       "path": "INSTALL.md",
-      "sha256": "e8139d26594bbf2192cbec5dd8b919aa1ed3f6106b2198f635b03134ab9b68db"
+      "sha256": "bbb1c9f0193415e85f5dd95c3ed8834192753cba34ca399797160e8d6f345217"
     },
     {
       "path": "llms.txt",

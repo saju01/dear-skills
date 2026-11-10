@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "dear-inbox-zero setup observation (aggregated behaviour, never content)",
+  "type": "object",
+  "required": ["kind", "key"],
+  "properties": {
+    "kind": {"enum": ["replied_to", "read_no_reply", "ignored", "accepted", "declined", "teams_replied", "vip_hint"]},
+    "scope": {"enum": ["sender", "domain", "series"], "default": "sender"},
+    "key": {"type": "string"},
+    "count": {"type": "integer", "minimum": 1}
+  }
+}

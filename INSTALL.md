@@ -74,4 +74,4 @@ Don't start setup yourself unless the user asks you to. Setup is where consent i
 
 ## Status
 
-The repository is in **design stage (v0.1 in development)**. `install.json` currently lists the documentation only (`"installable": false`). Agents should report that the skill is not yet installable, rather than install partial files.
+`dear-inbox-zero` **0.1.0 is installable**. Supported and verified: Microsoft 365 Copilot Cowork. Adapter ready (verification pending): GitHub Copilot and other agents with Microsoft Graph access. Any other agent: fill `hosts/_template.md`.

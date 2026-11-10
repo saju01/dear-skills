@@ -1,0 +1,61 @@
+[
+  {
+    "kind": "rule",
+    "scope": "domain",
+    "key": "newsletter.example.org",
+    "bucket": "noise",
+    "origin": "explicit",
+    "confidence": 1.0
+  },
+  {
+    "kind": "rule",
+    "scope": "series",
+    "key": "weekly digest",
+    "bucket": "fyi",
+    "origin": "explicit",
+    "confidence": 1.0
+  },
+  {
+    "kind": "rule",
+    "scope": "sender",
+    "key": "mum@example.net",
+    "bucket": "personal",
+    "origin": "explicit",
+    "confidence": 1.0
+  },
+  {
+    "kind": "rule",
+    "scope": "sender",
+    "key": "org@example.com",
+    "bucket": "accept",
+    "origin": "explicit",
+    "confidence": 1.0
+  },
+  {
+    "kind": "rule",
+    "scope": "sender",
+    "key": "promo@example.org",
+    "bucket": "noise",
+    "origin": "inferred",
+    "confidence": 0.7,
+    "why": "ignored x8"
+  },
+  {
+    "kind": "person",
+    "key": "boss@example.com",
+    "vip": true,
+    "origin": "explicit"
+  },
+  {
+    "kind": "voice",
+    "greeting": "Hi {first_name},",
+    "sign_off": "Thanks, Alex",
+    "length": "short",
+    "language_default": "en"
+  },
+  {
+    "kind": "preference",
+    "key": "questions",
+    "value": "one item per question"
+  }
+]

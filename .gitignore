@@ -8,3 +8,4 @@ working/
 *.pyz
 __pycache__/
 .venv/
+.privacy-denylist

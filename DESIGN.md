@@ -2,7 +2,7 @@
 
 > A personal-automation skill that takes the mental load out of everything that asks for your attention: mail, meeting invites and Teams messages. It ships as a recipe with no personal data. The first install customises it for one person. It keeps that person's memory in their own storage and gets better from what they actually do.
 
-Status: design v0.1 (decisions of 10 Nov 2026 applied) · Repo: `dear-skills` · Skill: `dear-inbox-zero` · License: Apache-2.0
+Status: v0.1.0 built (decisions of 10 Nov 2026 applied) · Repo: `dear-skills` · Skill: `dear-inbox-zero` · License: Apache-2.0
 
 ---
 

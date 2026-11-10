@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "dear-inbox-zero signal (something the user did to an item the last run decided)",
+  "type": "object",
+  "required": ["id", "signal"],
+  "properties": {
+    "id": {"type": "string"},
+    "signal": {"type": "string", "examples": ["tag_removed", "tag_changed:fyi", "marked_unread", "replied", "replied_not_proposed", "flag_added", "flag_removed", "flag_completed", "draft_binned", "draft_edited_heavily", "answered_differently", "answered_after_ask", "clash_resolved", "left_unanswered", "ignored"]},
+    "response": {"enum": ["accepted", "tentative", "declined"]},
+    "at": {"type": "string", "format": "date-time"}
+  }
+}
