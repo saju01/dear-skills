@@ -58,7 +58,7 @@ python <target>/engine/dear_engine.py doctor --skill-dir <target>
 
 ## Step 7 — Start setup
 
-Tell the user in one short message where it is installed, the version, the adapter and the `doctor` result. Then **start setup straight away** (`skills/dear-inbox-zero/setup/first-install.md`), unless the user said "install only". Setup's first step is the consent prompt, so nothing is read before the user agrees. The automation level defaults to **Auto · Medium**, and at go-live setup schedules the recommended daily run and weekly learn.
+Tell the user in one short message where it is installed, the version, the adapter and the `doctor` result. Then **start setup straight away** (`skills/dear-inbox-zero/setup/first-install.md`), unless the user said "install only". Setup's first step is the consent prompt, so nothing is read before the user agrees. If the user wants to see what it does first, run `python <target>/engine/dear_engine.py quickstart` and show the report: it uses fictional data only. The automation level defaults to **Auto · Medium**, and at go-live setup schedules the recommended daily run and weekly learn.
 
 ---
 

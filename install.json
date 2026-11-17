@@ -17,7 +17,7 @@
         {
           "path": "skills/dear-inbox-zero/CHANGELOG.md",
           "target": "CHANGELOG.md",
-          "sha256": "a102df576eace90f286602f9ede418c23ec861176b272e0e9345e64d5df5da61"
+          "sha256": "2610f79cb9b9cac17e40ee27d3802e22020fa2badc1b14c9fe19acf50c7a4d86"
         },
         {
           "path": "skills/dear-inbox-zero/SKILL.md",
@@ -45,9 +45,34 @@
           "sha256": "23bc6e0b4754956e46ee290aef700466b6d077400c1d8223ac32a24db86ae83c"
         },
         {
+          "path": "skills/dear-inbox-zero/demo/README.md",
+          "target": "demo/README.md",
+          "sha256": "7aeebbe0bfd71fec013630b23c61fbfc14f29a274534b17214332d1d41083f5e"
+        },
+        {
+          "path": "skills/dear-inbox-zero/demo/answers.json",
+          "target": "demo/answers.json",
+          "sha256": "4b10b6f9f376bccbade24fb83c188ef67675842db2a4d89ccc7b5bbf1001d34e"
+        },
+        {
+          "path": "skills/dear-inbox-zero/demo/calendar.json",
+          "target": "demo/calendar.json",
+          "sha256": "a17bdcdaaf0eeebfaf7e20155807b3b76b4559801e308179c502798f71ac813d"
+        },
+        {
+          "path": "skills/dear-inbox-zero/demo/items.json",
+          "target": "demo/items.json",
+          "sha256": "db90fc97577ee56e9304a6bb86a0e4386cccb2593ff3f8641c1b1aed27487d01"
+        },
+        {
+          "path": "skills/dear-inbox-zero/demo/observations.json",
+          "target": "demo/observations.json",
+          "sha256": "c9da1121e827283a221bb1df4076be49cb94ed06b0c08459a6686ac261ee9f4a"
+        },
+        {
           "path": "skills/dear-inbox-zero/engine/dear_engine.py",
           "target": "engine/dear_engine.py",
-          "sha256": "d2e06aa675b147ec1910a1106598cef8e74301ffa40f95caa070a93b4867c7cf"
+          "sha256": "95eb92ea9b03ec7ee33b17bb3d9914aee3f1a1afb1e5200f3159bbb5e86e928d"
         },
         {
           "path": "skills/dear-inbox-zero/engine/diz/__init__.py",
@@ -80,9 +105,14 @@
           "sha256": "e718789258daa25506d73d6d3d616a5476a40a8603754af27a801299ae3600d1"
         },
         {
+          "path": "skills/dear-inbox-zero/engine/diz/quickstart.py",
+          "target": "engine/diz/quickstart.py",
+          "sha256": "746d4926232e087788167942fc03af13bcdf6b4c6c7317b3e1ea7dbf96c49268"
+        },
+        {
           "path": "skills/dear-inbox-zero/engine/diz/report.py",
           "target": "engine/diz/report.py",
-          "sha256": "c22ae8daf36f1e7526b519abc0e04b67afae4562dc4d2dc903f350cf7f626995"
+          "sha256": "f84e087dda18dc6a36506a33fd8b9eb4f72d0760eb4aeb9707490220b89d6823"
         },
         {
           "path": "skills/dear-inbox-zero/engine/diz/sent.py",
@@ -177,7 +207,7 @@
         {
           "path": "skills/dear-inbox-zero/setup/install.md",
           "target": "setup/install.md",
-          "sha256": "f4d2c028b0f42171c512a4b88a1e8a4c75ee75c0053cee0d5e3fd50f64fba90e"
+          "sha256": "88a43e6eba06bdeba529cde46a8655dc354995edbd1905257484f044865815c6"
         },
         {
           "path": "skills/dear-inbox-zero/tests/test_cli.py",
@@ -198,6 +228,11 @@
           "path": "skills/dear-inbox-zero/tests/test_lite.py",
           "target": "tests/test_lite.py",
           "sha256": "647524a0c015dcc47e1812c16fce299790efd58cf3a1e1241c386ff889de6a68"
+        },
+        {
+          "path": "skills/dear-inbox-zero/tests/test_quickstart.py",
+          "target": "tests/test_quickstart.py",
+          "sha256": "25acf15da63a36eb87ef2fd3c22c25a60c93cda39a27bc24b81a8cf1ee73f727"
         },
         {
           "path": "skills/dear-inbox-zero/tests/test_sending.py",
@@ -376,11 +411,11 @@
   "docs": [
     {
       "path": "README.md",
-      "sha256": "88b81f948953533474c7a41175bf7e813a6dbe565eb2409f4c72fedda079968d"
+      "sha256": "bf98836600f0ec8cef2fbc173ce6967abb721936dbecbb5ceb047ed8156f5618"
     },
     {
       "path": "DESIGN.md",
-      "sha256": "8fa0f9d714e2690036267e17e01725cdd1fdbfd92e5f982d38525e5427c34d2a"
+      "sha256": "7e4756c442f91cb5fa9c6e5c2c3cbbd0fbe0e836a005fcdfd59c785a2d7a79eb"
     },
     {
       "path": "LICENSE",
@@ -400,7 +435,7 @@
     },
     {
       "path": "INSTALL.md",
-      "sha256": "7ac765d493576ffd54c7e2c6edb9ae399c9702faaa0cc57cddf5702259f9fc5b"
+      "sha256": "40f9a39e997c62969d335466b9cf3b524a70b7327d6eb7c2728d904490ae6de7"
     },
     {
       "path": "llms.txt",

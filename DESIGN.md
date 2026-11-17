@@ -59,6 +59,7 @@ dear-skills/
 │       ├── hosts/                  cowork.md · graph.md   (abstract op → host tool)
 │       ├── engine/                 Python package source (no compiled bundle)
 │       ├── schemas/                store + head + fact JSON schemas
+│       ├── demo/                   fictional morning for `quickstart` (Alex, example.com)
 │       └── tests/                  unit tests on synthetic fixtures only
 ├── examples/persona-alex/          a fictional user's store, to show what a tuned memory looks like
 └── .github/workflows/              tests · personal-data scan · skill lint

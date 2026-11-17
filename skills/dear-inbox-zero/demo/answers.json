@@ -1,0 +1,28 @@
+[
+ {
+  "scope": "domain",
+  "key": "newsletter.example.org",
+  "bucket": "noise",
+  "answer": "rule"
+ },
+ {
+  "scope": "series",
+  "key": "weekly digest",
+  "bucket": "fyi",
+  "answer": "rule"
+ },
+ {
+  "scope": "sender",
+  "key": "org@example.com",
+  "bucket": "accept",
+  "answer": "rule"
+ },
+ {
+  "person": "boss@example.com",
+  "vip": true
+ },
+ {
+  "person": "mum@example.net",
+  "personal": true
+ }
+]

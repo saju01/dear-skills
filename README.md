@@ -32,6 +32,17 @@ The skill picks its mode from what your agent can do; it doesn't ask.
 
 Both keep the same safety rules. To force one, set `"mode": "lite"` or `"pro"` in `config/host.json` (default `"auto"`).
 
+## Try it in two minutes
+
+See a morning's report before you connect anything. With Python 3.10+:
+
+```sh
+git clone https://github.com/saju01/dear-skills
+python dear-skills/skills/dear-inbox-zero/engine/dear_engine.py quickstart
+```
+
+It creates a throwaway store for Alex, a fictional user, dry-runs a morning of fictional mail, invites and Teams messages, and prints the report ([this one](examples/persona-alex/report.md)). Nothing is read from your mailbox and nothing is sent. Add `--dir <folder>` to keep the store and report somewhere you choose.
+
 ## Install: let your agent do it
 
 You don't install anything by hand. Your agent does the installation, then starts customising itself to you.
