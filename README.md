@@ -26,7 +26,7 @@ The skill picks its mode from what your agent can do; it doesn't ask.
 |---|---|---|
 | Channels | mail | mail, meeting invites, Teams |
 | Needs Python | no | yes, 3.10+ (standard library only) |
-| Microsoft Graph permissions | `User.Read`, `Mail.ReadWrite` (+ `Files.ReadWrite` to keep memory in OneDrive) | adds calendar, Teams and OneDrive scopes ([adapter](skills/dear-inbox-zero/hosts/graph-mcp.md)) |
+| Microsoft Graph permissions | `User.Read`, `Mail.ReadWrite` (+ `Files.ReadWrite` to keep memory in OneDrive); no admin consent | adds mailbox settings, calendar, Teams chats and OneDrive; Teams channels need admin consent ([permissions](skills/dear-inbox-zero/setup/permissions.md)) |
 | Memory | one small `lite.json` in your OneDrive, or the agent's own memory | content-addressed store in your OneDrive |
 | Learning | rules you confirm; your re-tags pause rules and become proposals | full learning loop, earned autonomy per bucket |
 

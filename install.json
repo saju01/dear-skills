@@ -17,7 +17,7 @@
         {
           "path": "skills/dear-inbox-zero/CHANGELOG.md",
           "target": "CHANGELOG.md",
-          "sha256": "a102df576eace90f286602f9ede418c23ec861176b272e0e9345e64d5df5da61"
+          "sha256": "75b4b237b3b36b04288a9c28dd418524b00c03815bc0a6b745ee1392f0b23914"
         },
         {
           "path": "skills/dear-inbox-zero/SKILL.md",
@@ -67,7 +67,7 @@
         {
           "path": "skills/dear-inbox-zero/engine/diz/doctor.py",
           "target": "engine/diz/doctor.py",
-          "sha256": "8662ffe0a5ac75599601a1a3927c0634d66565acc885adc7adb03e3d8cedb248"
+          "sha256": "9db0a2dc2c7760ae5bad46124e9252f5ba3e8f321c08491bfea9cf6f304de0dc"
         },
         {
           "path": "skills/dear-inbox-zero/engine/diz/learn.py",
@@ -117,7 +117,7 @@
         {
           "path": "skills/dear-inbox-zero/hosts/graph-mcp.md",
           "target": "hosts/graph-mcp.md",
-          "sha256": "fbd003e8084ef63e66d0a1080c87103687f70c136c09e62e5e701b9f823c625e"
+          "sha256": "52bddfc7715acc199e13e88cb23e0b38f832fb823934efc31fe6b536b87d45ef"
         },
         {
           "path": "skills/dear-inbox-zero/learn/learning-loop.md",
@@ -132,12 +132,12 @@
         {
           "path": "skills/dear-inbox-zero/lite/run.md",
           "target": "lite/run.md",
-          "sha256": "7c1e220b0fab973d798420291091b7a8ef2b98228e9dfd63b193da4b0bfee800"
+          "sha256": "f21ca6e33c6f42176ead776073ef3aa1cc9eb833bbf1bbbe92061aace5950626"
         },
         {
           "path": "skills/dear-inbox-zero/lite/setup.md",
           "target": "lite/setup.md",
-          "sha256": "418e44cd88068a1998c5e9f1ef8814f96b9303d5d3a0906663a853d39555a91f"
+          "sha256": "fdc32b9bae0aaddc8424224c91c2260e174c1789538a05d3c0e21c2aaf3dae9f"
         },
         {
           "path": "skills/dear-inbox-zero/policy/buckets.md",
@@ -172,12 +172,17 @@
         {
           "path": "skills/dear-inbox-zero/setup/first-install.md",
           "target": "setup/first-install.md",
-          "sha256": "2d8950a0131a96ebb919040a80c3e1f5a4c3082df8178847802f465134cba020"
+          "sha256": "9b1ecab86c0a1645246c60b331142f7ecf5ce5060998f3fce94a60eedf131d44"
         },
         {
           "path": "skills/dear-inbox-zero/setup/install.md",
           "target": "setup/install.md",
           "sha256": "f4d2c028b0f42171c512a4b88a1e8a4c75ee75c0053cee0d5e3fd50f64fba90e"
+        },
+        {
+          "path": "skills/dear-inbox-zero/setup/permissions.md",
+          "target": "setup/permissions.md",
+          "sha256": "e895cddf037ae926a63a2a8f2f515b126af517ca49d88fd77a756d0d6cc14026"
         },
         {
           "path": "skills/dear-inbox-zero/tests/test_cli.py",
@@ -198,6 +203,11 @@
           "path": "skills/dear-inbox-zero/tests/test_lite.py",
           "target": "tests/test_lite.py",
           "sha256": "647524a0c015dcc47e1812c16fce299790efd58cf3a1e1241c386ff889de6a68"
+        },
+        {
+          "path": "skills/dear-inbox-zero/tests/test_permissions.py",
+          "target": "tests/test_permissions.py",
+          "sha256": "145c27eb4f6d96727d9c1970df08263511083c6cebd117a24a3f5feb61b77135"
         },
         {
           "path": "skills/dear-inbox-zero/tests/test_sending.py",
@@ -268,6 +278,16 @@
           "mail.delete",
           "calendar.decline",
           "teams.post"
+        ],
+        "forbidden_graph_scopes": [
+          "Mail.Send",
+          "Mail.Send.Shared",
+          "ChatMessage.Send",
+          "ChannelMessage.Send",
+          "Chat.ReadWrite",
+          "Mail.ReadWrite.Shared",
+          "Calendars.ReadWrite.Shared",
+          "Files.ReadWrite.All"
         ]
       },
       "modes": {
@@ -290,7 +310,8 @@
           "skip_files": [
             "engine/",
             "tests/"
-          ]
+          ],
+          "admin_consent": false
         },
         "pro": {
           "channels": [
@@ -304,10 +325,23 @@
             "setup/first-install.md",
             "channels/",
             "learn/"
-          ]
+          ],
+          "graph_scopes": [
+            "User.Read",
+            "Mail.ReadWrite",
+            "MailboxSettings.ReadWrite",
+            "Calendars.Read",
+            "Chat.Read",
+            "Files.ReadWrite"
+          ],
+          "optional_graph_scopes": {
+            "Calendars.ReadWrite": "replaces Calendars.Read only when invite accepts are on (accepting sends the organiser a response)",
+            "ChannelMessage.Read.All": "Teams channel threads and mentions; needs tenant admin consent"
+          }
         },
         "select": "config/host.json mode: auto (pro when Python 3.10+ and the engine are available, else lite), lite or pro"
       },
+      "permissions": "setup/permissions.md",
       "memory": {
         "location": "OneDrive/dear-inbox-zero/<account_key>/",
         "created_by": "dear-inbox-zero setup (after consent)",
@@ -376,7 +410,7 @@
   "docs": [
     {
       "path": "README.md",
-      "sha256": "88b81f948953533474c7a41175bf7e813a6dbe565eb2409f4c72fedda079968d"
+      "sha256": "cfd91287e4c666ca0689471dec8e05d62420fa8497a2d4652a302e364120a30f"
     },
     {
       "path": "DESIGN.md",
@@ -412,7 +446,7 @@
     },
     {
       "path": "docs/hosts/github-copilot.md",
-      "sha256": "9efde8e3fccc0e06faa6c896759827ff987b1fc073e0feba4d8aeb9b20365fd8"
+      "sha256": "3ad4201e54bc7cb2f802c4a93da4b3cb44be9e89deb308c449c95561220062c0"
     }
   ]
 }

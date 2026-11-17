@@ -6,7 +6,7 @@ Lite does for mail what pro does, with you (the agent) applying the rules straig
 
 Lite uses these operations from the adapter: `me`, `mail.list`, `mail.meta`, `mail.body`, `mail.sent`, `mail.tag`, `mail.read`, `mail.flag`, `mail.reply_draft`, `store.read`, `store.write`, `ask`, and `schedule` if the host has one.
 
-On Microsoft Graph that is two delegated scopes: `User.Read` and `Mail.ReadWrite`. Keeping memory in OneDrive adds `Files.ReadWrite`; without it, memory lives in the agent's own memory. Lite never needs `Mail.Send`, `MailboxSettings.*`, `Calendars.*`, `Chat.*` or `ChannelMessage.*`. So on Graph:
+On Microsoft Graph that is two delegated scopes: `User.Read` and `Mail.ReadWrite`. Keeping memory in OneDrive adds `Files.ReadWrite`; without it, memory lives in the agent's own memory. Lite never needs `Mail.Send`, `MailboxSettings.*`, `Calendars.*`, `Chat.*` or `ChannelMessage.*`. None of lite's scopes needs admin consent (`setup/permissions.md`). So on Graph:
 - `me` is `GET /me` only (the timezone is confirmed at setup, not read from mailbox settings);
 - lite doesn't create the coloured DIZ category list (that needs mailbox settings). Tags still work; they show uncoloured until the user adds colours in Outlook.
 

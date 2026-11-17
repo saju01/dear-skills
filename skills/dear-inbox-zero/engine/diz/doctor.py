@@ -15,10 +15,13 @@ FORBIDDEN_TOOL_WORDS = re.compile(
 REQUIRED_FILES = ["SKILL.md", "channels/mail.md", "channels/calendar.md", "channels/teams.md", "policy/buckets.md",
                   "policy/voice.md", "policy/safety.md", "setup/first-install.md", "setup/install.md", "learn/learning-loop.md", "learn/sent-box.md",
                   "hosts/_template.md", "config/host.json", "engine/dear_engine.py",
-                  "lite/run.md", "lite/setup.md"]
+                  "lite/run.md", "lite/setup.md", "setup/permissions.md"]
 BUDGET = {"SKILL.md": 6 * 1024, "per_run_guides": 15 * 1024, "lite_run_guides": 15 * 1024}
 LITE_RUN_FILES = ["lite/run.md", "policy/buckets.md", "policy/safety.md", "policy/voice.md"]
 MODES = ("auto", "lite", "pro")
+# Graph scopes that would let the skill send, post, or reach beyond the user's own mailbox and files.
+NEVER_GRANT = ("Mail.Send", "Mail.Send.Shared", "ChatMessage.Send", "ChannelMessage.Send", "Chat.ReadWrite",
+               "Mail.ReadWrite.Shared", "Calendars.ReadWrite.Shared", "Files.ReadWrite.All")
 
 
 def adapter_table(text):
@@ -62,6 +65,46 @@ def check_adapter(path, template=False):
     return errs
 
 
+def scope_table(text):
+    """Rows of the scopes table in setup/permissions.md, keyed by scope."""
+    m = re.search(r"<!-- scopes:begin -->(.*?)<!-- scopes:end -->", text, re.S)
+    if not m:
+        return None
+    rows = {}
+    for line in m.group(1).splitlines():
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) < 6 or not cells[0].startswith("`"):
+            continue
+        rows[cells[0].strip("`")] = {"admin": cells[3].strip("*"), "lite": cells[4], "pro": cells[5]}
+    return rows
+
+
+def check_permissions(path):
+    """Lite must need no admin-consent scope, and no scope that could send or post is ever listed as needed."""
+    name = "setup/permissions.md"
+    with open(path, encoding="utf-8") as fh:
+        text = fh.read()
+    rows = scope_table(text)
+    if not rows:
+        return [f"{name}: no scopes table"]
+    errs = []
+    for scope, r in rows.items():
+        if r["admin"] not in ("Yes", "No"):
+            errs.append(f"{name}: {scope} admin consent must be Yes or No")
+        if r["lite"] not in ("yes", "optional", "no"):
+            errs.append(f"{name}: {scope} lite must be yes, optional or no")
+        if r["lite"] != "no" and r["admin"] != "No":
+            errs.append(f"{name}: lite uses {scope}, which needs admin consent")
+        if scope in NEVER_GRANT:
+            errs.append(f"{name}: {scope} must never be granted")
+    m = re.search(r"<!-- never-grant:begin -->(.*?)<!-- never-grant:end -->", text, re.S)
+    listed = set(re.findall(r"`([A-Za-z-]+\.[A-Za-z.]+)`", m.group(1))) if m else set()
+    for scope in NEVER_GRANT:
+        if scope not in listed:
+            errs.append(f"{name}: never-grant list must name {scope}")
+    return errs
+
+
 def run(skill_dir, store_dir=None):
     errs, warns, info = [], [], {}
     for f in REQUIRED_FILES:
@@ -86,6 +129,9 @@ def run(skill_dir, store_dir=None):
     info["lite_run_guides_bytes"] = lite_total
     if lite_total > BUDGET["lite_run_guides"]:
         errs.append(f"guides loaded per lite run are {lite_total} bytes (budget {BUDGET['lite_run_guides']})")
+    perms = os.path.join(skill_dir, "setup", "permissions.md")
+    if os.path.exists(perms):
+        errs += check_permissions(perms)
     hdir = os.path.join(skill_dir, "hosts")
     for name in sorted(os.listdir(hdir)) if os.path.isdir(hdir) else []:
         if name.endswith(".md"):
