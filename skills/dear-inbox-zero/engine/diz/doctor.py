@@ -1,6 +1,8 @@
 """Health check: files, token budget, adapter coverage and forbidden operations, store integrity."""
 import json, os, re, sys
 
+from . import __version__
+
 REQUIRED_OPS = ["me", "mail.list", "mail.meta", "mail.body", "mail.sent", "mail.tag", "mail.read", "mail.flag",
                 "mail.reply_draft", "mail.categories", "cal.view", "cal.accept", "teams.needs_response",
                 "teams.thread", "teams.my_replies", "store.list", "store.read", "store.write", "ask", "run_python", "schedule"]
@@ -16,7 +18,7 @@ REQUIRED_FILES = ["SKILL.md", "channels/mail.md", "channels/calendar.md", "chann
                   "policy/voice.md", "policy/safety.md", "setup/first-install.md", "setup/install.md", "learn/learning-loop.md", "learn/sent-box.md",
                   "hosts/_template.md", "config/host.json", "engine/dear_engine.py",
                   "lite/run.md", "lite/setup.md"]
-BUDGET = {"SKILL.md": 6 * 1024, "per_run_guides": 15 * 1024, "lite_run_guides": 15 * 1024}
+BUDGET = {"SKILL.md": 6 * 1024, "description_chars": 300, "per_run_guides": 15 * 1024, "lite_run_guides": 15 * 1024}
 LITE_RUN_FILES = ["lite/run.md", "policy/buckets.md", "policy/safety.md", "policy/voice.md"]
 MODES = ("auto", "lite", "pro")
 
@@ -62,6 +64,15 @@ def check_adapter(path, template=False):
     return errs
 
 
+def skill_description(front):
+    """The frontmatter description as one line (folded YAML: `>`, `>-` or plain)."""
+    m = re.search(r"^description:[ \t]*(.*?)(?=^\S)", front + "\nend:", re.M | re.S)
+    text = m.group(1).strip() if m else ""
+    if text[:2] in (">-", "|-") or text[:1] in (">", "|"):
+        text = text.lstrip(">|-+")
+    return " ".join(text.split())
+
+
 def run(skill_dir, store_dir=None):
     errs, warns, info = [], [], {}
     for f in REQUIRED_FILES:
@@ -77,6 +88,14 @@ def run(skill_dir, store_dir=None):
             head = fh.read().split("---")
         if len(head) < 3 or "name: dear-inbox-zero" not in head[1] or "description:" not in head[1]:
             errs.append("SKILL.md frontmatter needs name and description")
+        else:
+            desc = skill_description(head[1])
+            info["description_chars"] = len(desc)
+            if len(desc) > BUDGET["description_chars"]:
+                errs.append(f"SKILL.md description is {len(desc)} characters (budget {BUDGET['description_chars']})")
+            m = re.search(r'version:\s*"([^"]+)"', head[1])
+            if not m or m.group(1) != __version__:
+                errs.append(f"SKILL.md version {m.group(1) if m else '(none)'} != engine {__version__}")
     run_files = ["channels/mail.md", "channels/calendar.md", "channels/teams.md", "policy/buckets.md", "policy/voice.md", "policy/safety.md"]
     total = sum(os.path.getsize(os.path.join(skill_dir, f)) for f in run_files if os.path.exists(os.path.join(skill_dir, f)))
     info["per_run_guides_bytes"] = total

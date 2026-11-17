@@ -7,9 +7,9 @@
   "skills": [
     {
       "name": "dear-inbox-zero",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "installable": true,
-      "status": "v0.1.0: mail, calendar and Teams; Cowork and Microsoft Graph adapters.",
+      "status": "v0.2.0: lite (mail only, no Python) or pro (mail, calendar and Teams); Cowork and Microsoft Graph adapters.",
       "path": "skills/dear-inbox-zero/",
       "entry": "skills/dear-inbox-zero/SKILL.md",
       "post_install_message": "Say `dear-inbox-zero setup` to start. I'll ask your consent before reading anything; your memory will live in your own OneDrive.",
@@ -17,12 +17,12 @@
         {
           "path": "skills/dear-inbox-zero/CHANGELOG.md",
           "target": "CHANGELOG.md",
-          "sha256": "a102df576eace90f286602f9ede418c23ec861176b272e0e9345e64d5df5da61"
+          "sha256": "3d400fc6786dd0697a15cb2725269c71a05b008324c7402d9a371d2be0ce953a"
         },
         {
           "path": "skills/dear-inbox-zero/SKILL.md",
           "target": "SKILL.md",
-          "sha256": "8e95f593e16f846366ed21c5a05b164968bfc385de83993cbbe0fbd16b180390"
+          "sha256": "4b62c21a2d83feded42af788130dfcb6d9eac599671a38c7ab32749978dd1206"
         },
         {
           "path": "skills/dear-inbox-zero/channels/calendar.md",
@@ -52,7 +52,7 @@
         {
           "path": "skills/dear-inbox-zero/engine/diz/__init__.py",
           "target": "engine/diz/__init__.py",
-          "sha256": "69bac1b044585daef3545ac7ce8a1daef85abe3ec26c1e93c05bb45a5bcc3d58"
+          "sha256": "760135c5986caec69fac36a3afcd8169b3844ea2faa002d2a4248f97ba21622c"
         },
         {
           "path": "skills/dear-inbox-zero/engine/diz/classify.py",
@@ -67,7 +67,7 @@
         {
           "path": "skills/dear-inbox-zero/engine/diz/doctor.py",
           "target": "engine/diz/doctor.py",
-          "sha256": "8662ffe0a5ac75599601a1a3927c0634d66565acc885adc7adb03e3d8cedb248"
+          "sha256": "78fdc2be61267611c3cd94639fe91763b83fdc5703f796b5722d4440632f85fd"
         },
         {
           "path": "skills/dear-inbox-zero/engine/diz/learn.py",
@@ -177,7 +177,7 @@
         {
           "path": "skills/dear-inbox-zero/setup/install.md",
           "target": "setup/install.md",
-          "sha256": "f4d2c028b0f42171c512a4b88a1e8a4c75ee75c0053cee0d5e3fd50f64fba90e"
+          "sha256": "81dfbdd3778d49bc99ee1a6015388a7b2e9e197789724b95754d3a50eef60b50"
         },
         {
           "path": "skills/dear-inbox-zero/tests/test_cli.py",
@@ -198,6 +198,11 @@
           "path": "skills/dear-inbox-zero/tests/test_lite.py",
           "target": "tests/test_lite.py",
           "sha256": "647524a0c015dcc47e1812c16fce299790efd58cf3a1e1241c386ff889de6a68"
+        },
+        {
+          "path": "skills/dear-inbox-zero/tests/test_release.py",
+          "target": "tests/test_release.py",
+          "sha256": "a7e012fcabe339b9ab51872fa2648d1cf9eb3f09d7b442c143cd520daadb0852"
         },
         {
           "path": "skills/dear-inbox-zero/tests/test_sending.py",
@@ -376,11 +381,11 @@
   "docs": [
     {
       "path": "README.md",
-      "sha256": "88b81f948953533474c7a41175bf7e813a6dbe565eb2409f4c72fedda079968d"
+      "sha256": "7624d07d90bea9009006aec60403879bb2c5b0b34b47ac90a3c1b48b6e267cdc"
     },
     {
       "path": "DESIGN.md",
-      "sha256": "8fa0f9d714e2690036267e17e01725cdd1fdbfd92e5f982d38525e5427c34d2a"
+      "sha256": "2d00fca0d973c0fda3384c85c891ad40f952b264dc8c4cfa8baa6cc2b8e2d532"
     },
     {
       "path": "LICENSE",
@@ -388,7 +393,7 @@
     },
     {
       "path": "CONTRIBUTING.md",
-      "sha256": "69711328ac32ace258be6e477be08bf97b3592e93429d14b7d1e25749787962f"
+      "sha256": "7bb6c2b17fb9aba04bc5c0af349a850ab26594a7530bf72990e967d033b34129"
     },
     {
       "path": "SECURITY.md",
@@ -400,7 +405,7 @@
     },
     {
       "path": "INSTALL.md",
-      "sha256": "7ac765d493576ffd54c7e2c6edb9ae399c9702faaa0cc57cddf5702259f9fc5b"
+      "sha256": "8eeb11516ce2fc0d439ba8802a6aa4261e5230969c31462a912630ff34a7b6a8"
     },
     {
       "path": "llms.txt",
