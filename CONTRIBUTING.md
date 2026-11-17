@@ -33,7 +33,7 @@ Copy `skills/dear-inbox-zero/hosts/_template.md`, map every abstract operation t
 
 ## Releasing (maintainers)
 
-1. Bump `version` in `skills/dear-inbox-zero/SKILL.md` and `install.json`, add a CHANGELOG entry, then run `python scripts/build_release.py` and `python scripts/build_manifest.py`.
+1. Bump `version` in `skills/dear-inbox-zero/SKILL.md`, `engine/diz/__init__.py` (`__version__`; `doctor` checks they match) and `install.json`, add a CHANGELOG entry, then run `python scripts/build_release.py` and `python scripts/build_manifest.py`.
 2. Merge to `main`, then push a tag `vX.Y.Z` matching the version.
-3. The `release` workflow runs every check, builds `dear-inbox-zero-vX.Y.Z.zip` with its `.sha256`, and attaches both to the GitHub release.
+3. The `release` workflow runs every check, builds `dear-inbox-zero-lite-vX.Y.Z.zip` and `dear-inbox-zero-pro-vX.Y.Z.zip`, each with its `.sha256`, and attaches them to the GitHub release.
 4. Before tagging, run the new version for a day in a real mailbox (dry run first).

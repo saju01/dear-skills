@@ -1,18 +1,13 @@
 ---
 name: dear-inbox-zero
-description: >
-  Personal inbox-zero for Microsoft 365: mail, meeting invites and Teams messages that need the
-  user. Tags mail Noise / FYI / Reply / Personal, drafts replies in the user's voice, recommends
-  invite responses and helps answer Teams messages; learns only from the user's own actions and
-  keeps its memory in the user's OneDrive. Never sends mail, forwards, posts, deletes or declines.
-  One opt-in exception, off by default: accepting invites under rules the user confirmed, which
-  sends the organiser an acceptance. Lite (mail only, no Python) or pro mode, picked from what
-  the host can do. Use on "dear-inbox-zero",
-  "dear-inbox-zero setup|learn|show|doctor", or when the user asks to install it. Not for
-  one-off questions about a single message.
+description: >-
+  Inbox-zero for Outlook mail, invites and Teams: sorts what needs the user, drafts replies in their
+  voice. Never sends mail, forwards, deletes or declines; one exception, off by default, sends the
+  organiser an acceptance for invites under confirmed rules. Use on "dear-inbox-zero" or to install
+  it.
 license: Apache-2.0
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
   repo: https://github.com/saju01/dear-skills
 ---
 
@@ -37,7 +32,7 @@ Read `config/host.json`. `"mode": "lite"` or `"pro"` wins. Otherwise (`"auto"` o
 | `dear-inbox-zero show <bucket>` | list a bucket with reasons | engine `show` | `lite/run.md` |
 | `dear-inbox-zero doctor` | health check | engine `doctor` | `lite/run.md` |
 
-Install requests ("install dear-inbox-zero", an uploaded `dear-inbox-zero-v*.zip`) follow `setup/install.md`; after installing, setup starts right away with the consent prompt.
+Install requests ("install dear-inbox-zero", an uploaded `dear-inbox-zero-*.zip`) follow `setup/install.md`; after installing, setup starts right away with the consent prompt.
 
 ## Pro: before anything
 

@@ -1,5 +1,5 @@
 name: release
-# Builds the install zip from a version tag, checks it, and attaches it to the GitHub release.
+# Builds the lite and pro install zips from a version tag, checks them, and attaches them to the GitHub release.
 # Triggers: pushing a tag like v0.1.1, running it by hand, or a repository_dispatch "release-asset" event.
 on:
   push:
@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: "Tag to build and (re)attach the zip to, e.g. v0.1.0"
+        description: "Tag to build and (re)attach the zips to, e.g. v0.2.0"
         required: true
   repository_dispatch:
     types: [release-asset]
@@ -38,16 +38,24 @@ jobs:
         run: |
           V=$(python -c "import re;print(re.search(r'version:\s*\"([^\"]+)\"',open('skills/dear-inbox-zero/SKILL.md').read()).group(1))")
           [ "v$V" = "$TAG" ] || { echo "SKILL.md says v$V but the tag is $TAG"; exit 1; }
-      - name: Build zip
+      - name: Build zips (lite and pro)
         run: |
           python scripts/build_release.py > out.json
           cat out.json
-          ZIP=$(python -c 'import json;print(json.load(open("out.json"))["zip"])')
-          sha256sum "$ZIP" | sed 's#dist/##' > "$ZIP.sha256"
-          echo "ZIP=$ZIP" >> "$GITHUB_ENV"
+          python - <<'PY' > zips.txt
+          import json
+          for z in json.load(open("out.json"))["zips"]:
+              print(z["zip"])
+          PY
+          while read -r ZIP; do
+            unzip -l "$ZIP" | grep -q " dear-inbox-zero/SKILL.md$" || { echo "$ZIP: no dear-inbox-zero/SKILL.md"; exit 1; }
+            sha256sum "$ZIP" | sed 's#dist/##' > "$ZIP.sha256"
+          done < zips.txt
       - name: Publish to the release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "dear-inbox-zero $TAG" --notes-file skills/dear-inbox-zero/CHANGELOG.md
-          gh release upload "$TAG" "$ZIP" "$ZIP.sha256" --clobber
+          while read -r ZIP; do
+            gh release upload "$TAG" "$ZIP" "$ZIP.sha256" --clobber
+          done < zips.txt

@@ -69,4 +69,4 @@ Tell the user in one short message where it is installed, the version, the adapt
 
 ## Status
 
-`dear-inbox-zero` **0.1.0 is installable**. Supported and verified: Microsoft 365 Copilot Cowork. Adapter ready (verification pending): GitHub Copilot and other agents with Microsoft Graph access. Any other agent: fill `hosts/_template.md`.
+`dear-inbox-zero` **0.2.0 is installable**, as a lite or a pro zip or from the repo. Supported and verified: Microsoft 365 Copilot Cowork. Adapter ready (verification pending): GitHub Copilot and other agents with Microsoft Graph access. Any other agent: fill `hosts/_template.md`.

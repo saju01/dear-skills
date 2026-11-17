@@ -16,7 +16,26 @@ Mail, meeting invites and Teams messages, all in one place. It sorts what needs 
 
 Works with Microsoft Outlook, Outlook Calendar and Microsoft Teams. One core runs in any [Agent Skills](https://github.com/agentskills/agentskills)–compatible agent; a small adapter per agent maps its tools (see [DESIGN.md §11](DESIGN.md#11-portability-one-core-thin-host-adapters)). Adding your agent is one file. See the [GitHub Copilot and Graph setup guide](docs/hosts/github-copilot.md).
 
-> Status: **v0.1.0**: mail, calendar and Teams. See [DESIGN.md](DESIGN.md), an [example report](examples/persona-alex/report.md) and the [changelog](skills/dear-inbox-zero/CHANGELOG.md).
+> Status: **v0.2.0**: lite (mail) or pro (mail, calendar and Teams). See [DESIGN.md](DESIGN.md), an [example report](examples/persona-alex/report.md) and the [changelog](skills/dear-inbox-zero/CHANGELOG.md).
+
+## Before and after
+
+A Monday morning for Alex, a fictional user (`example.com`), on the default level, Auto · Medium.
+
+| | Before: unread, in three apps | After the morning run |
+|---|---|---|
+| Mail | Example Newsletter: *This week in gadgets* | **Noise**: tagged and marked read |
+| Mail | Tools digest: *Weekly digest 13* | **FYI**: one line in the report, then marked read |
+| Mail | Bank: *Your password was changed* | **FYI**: one line in the report, then marked read |
+| Mail | Robin (manager): *Quick sync* | **Reply**: tagged, flagged, draft waiting in Drafts |
+| Mail | Pat: *Can you send the deck by Friday?* | **Reply**: tagged, flagged, draft waiting in Drafts |
+| Mail | Lee: *Contract renewal due 15 March* | **Reply**: tagged, flagged, draft waiting in Drafts |
+| Mail | Mum: *Sunday lunch* | **Personal**: tagged and counted, never opened |
+| Mail | New vendor: *Introduction* | **Unknown**: one question in the report |
+| Invite | *Quarterly planning*, Tue 10:30 | Clashes with *Customer review*: under "Decide today", not answered |
+| Teams | Pat: *Launch chat* | **Reply**: suggested answer in the report |
+
+Nothing was sent, forwarded, deleted or declined. Alex reads one report instead of three inboxes: [the full example](examples/persona-alex/report.md). Lite does the mail rows only.
 
 ## Lite or pro
 
@@ -38,7 +57,7 @@ You don't install anything by hand. Your agent does the installation, then start
 
 ### Copilot Cowork
 
-1. **Download** [dear-inbox-zero-v0.1.0.zip](https://github.com/saju01/dear-skills/raw/v0.1.0/dist/dear-inbox-zero-v0.1.0.zip) (the [v0.1.0 release](https://github.com/saju01/dear-skills/releases/tag/v0.1.0)).
+1. **Download** one zip from the [v0.2.0 release](https://github.com/saju01/dear-skills/releases/tag/v0.2.0): [pro](https://github.com/saju01/dear-skills/releases/download/v0.2.0/dear-inbox-zero-pro-v0.2.0.zip) (mail, invites and Teams; falls back to lite where Python can't run) or [lite](https://github.com/saju01/dear-skills/releases/download/v0.2.0/dear-inbox-zero-lite-v0.2.0.zip) (mail only, no Python). Each holds one folder, `dear-inbox-zero/`, with `SKILL.md` at its top.
 2. **Upload** it to a new Cowork task.
 3. **Say:** `Install this skill and set it up.`
 

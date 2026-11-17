@@ -1,7 +1,11 @@
 # Changelog
 
-## Unreleased
+## 0.2.0
 
+- **Two release zips**: `dear-inbox-zero-lite-v0.2.0.zip` (mail only, no Python: `SKILL.md`, `lite/`, `policy/`, `hosts/`, install and permission guides, `mode: lite`) and `dear-inbox-zero-pro-v0.2.0.zip` (everything but the tests, `mode: auto`). Each holds one folder, `dear-inbox-zero/`, with `SKILL.md` at its top and a `SHA256SUMS`; both are reproducible. The release workflow builds, checks and attaches both.
+- **Shorter description** (297 characters, was about 800), still naming the one exception: invite accepts, off by default. `doctor` now fails a description over 300 characters, or a `SKILL.md` version that differs from the engine's.
+- Install from a zip checks `SHA256SUMS`; the pro zip also runs `doctor`. The lite zip starts setup at `lite/setup.md`.
+- README: before and after, on fictional data.
 - **Invite accepts are opt-in, off by default at every preset.** Accepting sends the organiser a response, so it now needs its own switch (`automation --invite-accept on`, or the unticked box in setup) on top of a confirmed rule and calendar level 3. Without it the report asks about every invite and says when a rule would have accepted. Existing installs, High included, stop accepting until the user switches it on.
 - The description, `SKILL.md` hard rules and `policy/safety.md` now say exactly what can reach other people: an invite accept, only when switched on. Tags, flags, read state, drafts and memory stay with the user.
 - **Lite mode**: mail only, no Python. The agent applies the bucket and safety rules from `lite/run.md` and keeps memory in one small `lite.json` (OneDrive, or the agent's own memory). Graph scopes: `User.Read` and `Mail.ReadWrite`, plus `Files.ReadWrite` only for OneDrive memory. Lite setup is shorter: consent, a metadata-only study, calibration, voice check, dry run.
