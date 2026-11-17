@@ -14,14 +14,15 @@ The engine returns one recommendation per invite: `accept`, `ask` or `fyi`.
 |---|---|
 | Broadcast (invitees ≥ `profile.broadcast_threshold`, default 50) | `fyi`: never flagged, no RSVP needed unless a rule says otherwise |
 | Overlaps an accepted meeting or one with external attendees | `ask` with the clash listed; never answered automatically |
-| Matches a rule the user **confirmed** and the calendar bucket is at autonomy level 3 | `accept` (one occurrence at a time unless the rule covers the series) |
+| Matches a rule the user **confirmed**, invite accepts are switched on (`profile.invite_accept`, off by default) and the calendar bucket is at autonomy level 3 | `accept` (one occurrence at a time unless the rule covers the series) |
+| Matches a confirmed rule but invite accepts are off | `ask`, noting the rule says yes |
 | Anything else | `ask`: one question per invite ("Accept / Tentative-by-you / Skip / Always accept from this organiser") |
 
-Never decline. Never answer on the user's behalf without a confirmed rule. "Always accept from this organiser" creates a proposal the user confirms once.
+Never decline. Never answer on the user's behalf without a confirmed rule and invite accepts switched on: an accept sends the organiser a response. "Always accept from this organiser" creates a proposal the user confirms once.
 
 ## Act
 
-`accept` → `cal.accept(event_id, occurrence)`, then mark the invite mail read. `ask` → list in the report under **Decide today**; flag the invite mail only on a clash.
+`accept` → `cal.accept(event_id, occurrence)` (the organiser receives the acceptance), then mark the invite mail read. `ask` → list in the report under **Decide today**; flag the invite mail only on a clash.
 
 ## Observe
 

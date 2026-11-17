@@ -16,7 +16,7 @@ Batch every per-item loop in one tool script (`RunScript`), never one call per i
 | `mail.reply_draft` | `CreateReplyDraft` / `CreateReplyAllDraft` | always `body_file_path=` a Markdown file; re-read with `GetMessage` |
 | `mail.categories` | `QueryGraph` `/me/outlook/masterCategories` | create the four DIZ categories once |
 | `cal.view` | `ListCalendarView` | not raw Graph calendarView (can return 0 rows) |
-| `cal.accept` | `AcceptEvent` | one occurrence id at a time |
+| `cal.accept` | `AcceptEvent` | one occurrence id at a time; sends the organiser a response, so only when invite accepts are on |
 | `teams.needs_response` | `ListChats` + `ListChatMessages`; `SearchM365` for channel mentions | in one tool script |
 | `teams.thread` | `ListChatMessages` / `ListChannelMessages` | last 10 messages |
 | `teams.my_replies` | `ListChatMessages` filtered on the user's id | |

@@ -18,7 +18,7 @@ Least-privilege delegated scopes: `User.Read`, `Mail.ReadWrite`, `Calendars.Read
 | `mail.reply_draft` | `POST /me/messages/{id}/createReply` then `PATCH` the draft `{body: {contentType: "HTML", content}}` | never `/send` |
 | `mail.categories` | `GET/POST /me/outlook/masterCategories` | |
 | `cal.view` | `GET /me/calendarView?startDateTime=…&endDateTime=…&$select=id,subject,start,end,responseStatus,attendees,organizer,seriesMasterId,type,isCancelled` | header `Prefer: outlook.timezone="UTC"` |
-| `cal.accept` | `POST /me/events/{id}/accept` `{sendResponse: true}` | occurrence id |
+| `cal.accept` | `POST /me/events/{id}/accept` `{sendResponse: true}` | occurrence id; sends the organiser a response, so only when invite accepts are on |
 | `teams.needs_response` | `GET /me/chats?$expand=lastMessagePreview` + `GET /chats/{id}/messages?$top=20`; mentions via `POST /search/query` (entityTypes `chatMessage`) | |
 | `teams.thread` | `GET /chats/{id}/messages?$top=10` or `GET /teams/{t}/channels/{c}/messages/{m}/replies` | |
 | `teams.my_replies` | same, filtered on `from.user.id = me` | |
