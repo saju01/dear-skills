@@ -18,6 +18,20 @@ Works with Microsoft Outlook, Outlook Calendar and Microsoft Teams. One core run
 
 > Status: **v0.1.0**: mail, calendar and Teams. See [DESIGN.md](DESIGN.md), an [example report](examples/persona-alex/report.md) and the [changelog](skills/dear-inbox-zero/CHANGELOG.md).
 
+## Lite or pro
+
+The skill picks its mode from what your agent can do; it doesn't ask.
+
+| | Lite | Pro |
+|---|---|---|
+| Channels | mail | mail, meeting invites, Teams |
+| Needs Python | no | yes, 3.10+ (standard library only) |
+| Microsoft Graph permissions | `User.Read`, `Mail.ReadWrite` (+ `Files.ReadWrite` to keep memory in OneDrive) | adds calendar, Teams and OneDrive scopes ([adapter](skills/dear-inbox-zero/hosts/graph-mcp.md)) |
+| Memory | one small `lite.json` in your OneDrive, or the agent's own memory | content-addressed store in your OneDrive |
+| Learning | rules you confirm; your re-tags pause rules and become proposals | full learning loop, earned autonomy per bucket |
+
+Both keep the same safety rules. To force one, set `"mode": "lite"` or `"pro"` in `config/host.json` (default `"auto"`).
+
 ## Install: let your agent do it
 
 You don't install anything by hand. Your agent does the installation, then starts customising itself to you.

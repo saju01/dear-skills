@@ -8,7 +8,7 @@ Least-privilege delegated scopes: `User.Read`, `Mail.ReadWrite`, `Calendars.Read
 | Operation | Tool | Notes |
 |---|---|---|
 | `me` | `GET /me` + `GET /me/mailboxSettings` | timezone, working hours |
-| `mail.list` | `GET /me/mailFolders/inbox/messages?$filter=receivedDateTime ge {t}&$select=id,conversationId,from,subject,receivedDateTime,isRead,importance,categories,flag,inferenceClassification,bodyPreview,toRecipients,ccRecipients&$top=50` | follow `@odata.nextLink` |
+| `mail.list` | `GET /me/mailFolders/inbox/messages?$filter=receivedDateTime ge {t}&$select=id,conversationId,from,subject,receivedDateTime,isRead,importance,categories,flag,inferenceClassification,bodyPreview,toRecipients,ccRecipients&$top=50` | follow `@odata.nextLink`; pass `$filter` unencoded if the tool encodes it (double-encoding silently returns 0 rows) |
 | `mail.meta` | `POST /$batch` of `GET /me/messages/{id}?$select=…` | ≤ 20 per batch |
 | `mail.body` | `GET /me/messages/{id}?$select=body,uniqueBody` | only for drafting |
 | `mail.sent` | `GET /me/mailFolders/sentitems/messages?$filter=sentDateTime ge {t}&$select=id,conversationId,sentDateTime,toRecipients,ccRecipients` | |

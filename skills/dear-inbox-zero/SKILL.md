@@ -6,8 +6,10 @@ description: >
   invite responses and helps answer Teams messages; learns only from the user's own actions and
   keeps its memory in the user's OneDrive. Never sends mail, forwards, posts, deletes or declines.
   One opt-in exception, off by default: accepting invites under rules the user confirmed, which
-  sends the organiser an acceptance. Use on "dear-inbox-zero", "dear-inbox-zero setup|learn|show|doctor", or when the user asks to
-  install it. Not for one-off questions about a single message.
+  sends the organiser an acceptance. Lite (mail only, no Python) or pro mode, picked from what
+  the host can do. Use on "dear-inbox-zero",
+  "dear-inbox-zero setup|learn|show|doctor", or when the user asks to install it. Not for
+  one-off questions about a single message.
 license: Apache-2.0
 metadata:
   version: "0.1.0"
@@ -18,26 +20,33 @@ metadata:
 
 Takes the mental load of everything that asks for the user's attention. This file is the router: load only the guide the current step needs.
 
+## Mode: lite or pro (detect, don't ask)
+
+Read `config/host.json`. `"mode": "lite"` or `"pro"` wins. Otherwise (`"auto"` or absent): **pro** if you can run Python 3.10+ (the adapter maps `run_python`) and `engine/dear_engine.py` is present; else **lite**. Don't ask the user. If the memory folder holds `lite.json` but no `head/`, stay in lite until the user runs pro setup. Name the mode in the first line of every report.
+
+- **Lite**: mail only, no Python, Graph scopes `User.Read` + `Mail.ReadWrite` (plus `Files.ReadWrite` for OneDrive memory). Operations come from the adapter `config/host.json` names. Follow `lite/run.md` and `lite/setup.md`; the rest of this file is pro only, except the hard rules.
+- **Pro**: mail, invites and Teams, with the engine. The rest of this file.
+
 ## Commands
 
-| Command | Do | Load |
-|---|---|---|
-| `dear-inbox-zero setup` (also `setup resume`) | first install for this user | `setup/first-install.md` |
-| `dear-inbox-zero` | the daily run | this file + enabled `channels/*.md` |
-| `dear-inbox-zero learn` | weekly review of proposals and accuracy | `learn/learning-loop.md` |
-| `dear-inbox-zero show <bucket>` | list a bucket with reasons | engine `show` |
-| `dear-inbox-zero doctor` | health check | engine `doctor` |
+| Command | Do | Pro loads | Lite loads |
+|---|---|---|---|
+| `dear-inbox-zero setup` (also `setup resume`) | first install for this user | `setup/first-install.md` | `lite/setup.md` |
+| `dear-inbox-zero` | the daily run | this file + enabled `channels/*.md` | `lite/run.md` |
+| `dear-inbox-zero learn` | weekly review of proposals and accuracy | `learn/learning-loop.md` | `lite/run.md` |
+| `dear-inbox-zero show <bucket>` | list a bucket with reasons | engine `show` | `lite/run.md` |
+| `dear-inbox-zero doctor` | health check | engine `doctor` | `lite/run.md` |
 
 Install requests ("install dear-inbox-zero", an uploaded `dear-inbox-zero-v*.zip`) follow `setup/install.md`; after installing, setup starts right away with the consent prompt.
 
-## Before anything
+## Pro: before anything
 
 1. Read `config/host.json` → open the adapter it names (`hosts/<file>.md`). Every operation below (`mail.*`, `cal.*`, `teams.*`, `store.*`, `ask`) is mapped there. If the file is missing, run `doctor`.
 2. Load the store: `store.list` the user's memory folder (default `OneDrive/dear-inbox-zero/<account_key>/`), download `head/` into a working folder, then
    `python engine/dear_engine.py store-load --store <working>/store --out <working>/state.json`.
    No head → the user has not run setup: say so and offer `dear-inbox-zero setup`. A hash mismatch → stop and show the user; never initialise over it.
 
-## The daily run
+## Pro: the daily run
 
 | Step | What | Engine |
 |---|---|---|
@@ -45,14 +54,15 @@ Install requests ("install dear-inbox-zero", an uploaded `dear-inbox-zero-v*.zip
 | 2 Observe | Sent box first (`learn/sent-box.md`), then tags changed, flags, binned drafts, invites answered, Teams replies → `signals.json` | `sent-signals`, `observe` |
 | 3 Classify | rules decide; unknowns come back as a short list | `classify` |
 | 4 Judge unknowns | only `unknown` items: read their metadata (body only if a reply is needed) and pick a bucket, or leave unknown and ask once in the report | — |
-| 5 Act | do exactly the `actions[]` the engine planned (they already respect autonomy levels and safety) | — |
+| 5 Act | do exactly the `actions[]` the engine planned (they already respect autonomy levels and safety); **gated** ones wait for step 10 | — |
 | 6 Draft | for Reply items: draft in the user's voice (`policy/voice.md`); Teams: suggested reply text in the report | — |
 | 7 Learn | proposals from signals; expiry; autonomy update | `learn` |
 | 7b Automation | first run after setup: create the daily run + weekly learn from `automation` (preset Auto · Medium unless the user chose otherwise) | `automation` |
 | 8 Publish | new head + facts + index, uploaded to the store; re-list to confirm | `store-publish` |
 | 9 Report | `report` output, shown to the user | `report` |
+| 10 Gated | gated actions; still pending → listed, re-planned next run, not waited for | — |
 
-Commands: `python engine/dear_engine.py <cmd> --help`. All files are JSON in, JSON/Markdown out.
+Commands: `python engine/dear_engine.py <cmd> --help`. JSON in, JSON/Markdown out.
 
 ## Buckets
 

@@ -60,6 +60,8 @@ def observe(state, signals, now=None):
             continue
         d = direction_of(sig)
         decided = decided_bucket(dec)
+        if sig.get("signal") == "flag_completed" and decided != "reply":
+            d = None  # ticking off an old flag in To Do is housekeeping, not "this needed a reply" (#13)
         outcome = None if d is None else ("agree" if d == decided else "override")
         enriched.append({**sig, "at": sig.get("at") or iso(now), "series": dec.get("series"), "sender": dec.get("sender"),
                          "decided": decided, "direction": d, "by_series": (dec.get("reason") or "").endswith("_series"), "outcome": outcome, "rule_id": dec.get("rule_id"),

@@ -224,6 +224,16 @@ class LearnTests(Base):
         d = C.classify(self.st, [{"id": "m3", "sender": "promo@example.org", "subject": "Offer C"}])["decisions"][0]
         self.assertEqual(d["bucket"], "reply")
 
+    def test_completed_old_flags_do_not_teach_reply(self):
+        self.live()
+        self.rule("sender", "events@example.org", "fyi")
+        items = [{"id": "e1", "sender": "events@example.org", "subject": "Webinar A"},
+                 {"id": "e2", "sender": "events@example.org", "subject": "Webinar B"}]
+        self.run_once(items, [], NOW)
+        self.run_once([], [{"id": "e1", "signal": "flag_completed"}, {"id": "e2", "signal": "flag_completed"}],
+                      NOW + timedelta(days=1))
+        self.assertEqual([p for p in self.st["head"]["proposals"] if p["state"] == "open"], [])
+
     def test_signals_without_direction_do_not_crash(self):
         self.live()
         self.st["head"]["last_run"] = {"decisions": [{"id": "x", "channel": "mail", "bucket": "fyi", "sender": "a@example.org", "series": "s"}]}

@@ -38,7 +38,7 @@ Compare the items the last run acted on (`state.last_run`) with their state now:
 | `marked_unread` | a Noise/FYI item the run marked read is unread again |
 | `replied` | the user sent a reply in the thread after the item arrived (not meeting responses) |
 | `replied_not_proposed` | the user replied to an item that wasn't tagged Reply |
-| `flag_added` / `flag_removed` / `flag_completed` | the user changed a flag (flags the run set and left alone are not signals) |
+| `flag_added` / `flag_removed` / `flag_completed` | the user changed a flag (flags the run set and left alone are not signals; a flag the run planned but never applied, e.g. its approval is still pending, is not `flag_removed`) |
 | `draft_binned` / `draft_edited_heavily` | a run draft was deleted unsent / changed a lot before sending |
 
 Write them to `signals.json` as `{id, signal, at}`. Reply evidence comes from the Sent box: run `sent-signals` first (`learn/sent-box.md`). It adds `replied`, `replied_not_proposed` and `draft_edited_heavily` and updates the voice.

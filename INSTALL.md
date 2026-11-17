@@ -48,7 +48,7 @@ The adapter maps the skill's abstract operations (mail, calendar, Teams, OneDriv
 
 Confirm each item in `requires`:
 - `capabilities`: you can call tools covering each listed operation group (mail, calendar, Teams, OneDrive files, ask the user).
-- `python`: if you can run Python ≥ the stated version, the engine runs; if not, the skill runs in prose mode (slower, same rules).
+- `python`: if you can run Python ≥ the stated version, the skill runs in **pro** mode with the engine. If not, it runs in **lite** mode: mail only, no Python, the same safety rules (see `modes` in `install.json`). A lite-only install can skip `engine/` and `tests/`.
 - `forbidden`: make sure the adapter exposes **none** of these operations.
 
 Then run the health check if you can run Python:

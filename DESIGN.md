@@ -191,7 +191,7 @@ Goal: install the same folder in any agent that can read a skill folder and call
 **Portability rules for the core**
 - Only the Agent Skills basics: `SKILL.md` with `name` + `description` frontmatter, Markdown guides, Python scripts. No host-specific frontmatter, tool names or UI syntax in the core.
 - Every action is an **abstract operation** (table below). Only `hosts/<host>.md` names concrete tools.
-- The engine is plain Python 3.10+, standard library only, run as `python -m dear_engine …` with JSON in/out files, so any host that can run Python (or a script tool) can use it. Hosts that can't run Python can still use the recipe; the guides describe each step in prose as a fallback.
+- The engine is plain Python 3.10+, standard library only, run as `python -m dear_engine …` with JSON in/out files, so any host that can run Python (or a script tool) can use it. Hosts that can't run Python use **lite mode** (`lite/run.md`): mail only, with the bucket and safety rules applied by the model from the guides and memory in one small JSON file.
 - Questions to the user go through `ask(question, options)`, which maps to the host's own prompt tool or plain chat.
 
 **Abstract operations**
