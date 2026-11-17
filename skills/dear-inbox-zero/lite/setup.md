@@ -12,7 +12,8 @@ Resumable: memory's `stage` records progress (`l0_done` … `live`); `setup resu
    - where: `OneDrive/dear-inbox-zero/<account_key>/lite.json`, or the agent's own memory if this host has no OneDrive access;
    - the automation level: **Medium** (recommended) or Low (`policy/buckets.md`);
    - a daily run on weekdays and a weekly learn, if the host can schedule;
-   - that nothing is ever sent: replies are drafts.
+   - that nothing is ever sent: replies are drafts;
+   - the permissions: `User.Read` and `Mail.ReadWrite` (plus `Files.ReadWrite` for OneDrive memory), none needing an admin. If sign-in still asks for one, the tenant restricts user consent: show `setup/permissions.md`.
 3. Write memory with `stage: "l0_done"`, `version: 1` and the answers.
 
 ## L1 — Quick study (metadata only)

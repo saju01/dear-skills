@@ -8,15 +8,16 @@ choose and configure one that meets these requirements.
 
 ## Permissions and safety
 
-Grant only these delegated Microsoft Graph scopes, and only if the matching
-channels are enabled:
+Grant only the delegated Microsoft Graph scopes your mode needs.
+`skills/dear-inbox-zero/setup/permissions.md` lists each one, what it is for and
+whether your tenant admin usually has to approve it.
 
-- `User.Read`
-- `Mail.ReadWrite`
-- `Calendars.ReadWrite`
-- `Chat.Read`
-- `ChannelMessage.Read.All`
-- `Files.ReadWrite`
+- Lite (mail only): `User.Read`, `Mail.ReadWrite`, and `Files.ReadWrite` to keep
+  memory in OneDrive. None needs admin consent.
+- Pro: add `MailboxSettings.ReadWrite`, `Calendars.Read` and `Chat.Read`.
+- Pro with invite accepts on: `Calendars.ReadWrite` instead of `Calendars.Read`.
+- Pro with Teams channels: add `ChannelMessage.Read.All`, which needs tenant
+  admin consent.
 
 The server should request consent interactively and act as the signed-in user.
 Do not put access tokens, tenant IDs, or application IDs in a checked-in MCP
