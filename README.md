@@ -10,7 +10,7 @@ Mail, meeting invites and Teams messages, all in one place. It sorts what needs 
 
 - **Learns from you, not from a template.** At first install it studies your Sent box (whom you answer and how fast, your language per contact, your working hours and how you write) and how you handle invites and chats, then asks about the cases it isn't sure of, one at a time.
 - **Gets better with use.** Every tag you change, reply you send or draft you bin is a signal. Repeated signals become proposed rules; you confirm them once.
-- **Never acts behind your back.** It never sends, forwards, deletes or declines. Replies are drafts.
+- **Never acts behind your back.** It never sends mail, forwards, deletes or declines. Replies are drafts. The one thing that can reach someone else is accepting a meeting invite, and that's off unless you switch it on.
 - **Token-efficient.** Rules decide first; the model only sees what rules can't decide.
 - **Your memory stays yours.** The store lives in your OneDrive or a local folder. Nothing about you is in this repo.
 
@@ -42,7 +42,7 @@ Setup starts as soon as the install finishes. You answer a few questions; the sk
 
 | Step | What you see | What it does |
 |---|---|---|
-| 1. Consent | One prompt | Shows what it will read, that your memory lives in your own OneDrive, and that it never sends anything. You pick channels and the automation level (**Auto · Medium** is preselected). |
+| 1. Consent | One prompt | Shows what it will read, that your memory lives in your own OneDrive, and that it never sends mail or messages. You pick channels and the automation level (**Auto · Medium** is preselected). Accepting invites for you is a separate box, unticked. |
 | 2. Learns from your Sent box | Nothing to do | Whom you answer and how fast, your language per contact, your working hours, your own domain and how you write. |
 | 3. Learns your habits | Nothing to do | What you read, ignore or flag, which invites you accept, which Teams chats you answer. |
 | 4. Customises itself | A few questions, one at a time | Confirms VIPs, your writing style and the senders it isn't sure about. |
@@ -63,11 +63,11 @@ On **Auto · Medium** each daily run:
 | Noise | tags it and marks it read (only under rules you confirmed) |
 | FYI | tags it, gives you one digest line, marks it read |
 | Reply | tags it, flags it for To Do, writes a draft in your voice |
-| Invites | recommends and asks; once you've confirmed a rule and it has proven accurate, it accepts those for you |
+| Invites | recommends and asks. Only if you switch invite accepts on: once you've confirmed a rule and it has proven accurate, it accepts those for you, and the organiser gets your acceptance |
 | Teams | lists messages that need your answer, with a suggested reply |
 | Personal | counts it, never opens it |
 
-Prefer less or more? **Low** only tags and drafts. **High** also accepts invites under confirmed rules from day one. Change it any time: `dear-inbox-zero automation --preset low|medium|high`.
+Prefer less or more? **Low** only tags and drafts. **High** starts calendar at the top level, so if you switch invite accepts on, confirmed rules apply from day one. Change it any time: `dear-inbox-zero automation --preset low|medium|high`; invite accepts: `--invite-accept on|off` (off by default at every level).
 
 It keeps learning every day: each reply you send, tag you change and draft you rewrite is a signal. A wrong action drops that bucket a level and pauses the rule.
 
@@ -92,7 +92,7 @@ Copy `skills/dear-inbox-zero` into your agent's skills folder (`.github/skills/`
 |---|---|
 | send, forward, post | drafts in Outlook; suggested replies for Teams messages that need you |
 | delete or move | tags and read state; your own rules stay in charge |
-| decline invites | learns with you and asks; accepts only under rules you confirmed |
+| decline invites | learns with you and asks; accepts only if you switched that on and under rules you confirmed (the organiser then gets your acceptance) |
 | open personal mail | counts it |
 
 ---

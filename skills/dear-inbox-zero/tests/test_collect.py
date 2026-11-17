@@ -92,6 +92,8 @@ class MailTests(unittest.TestCase):
         decision = classify.classify(state, [item], [blocker])["decisions"][0]
         self.assertEqual(decision["reason"], "clash")
         self.assertEqual([a["op"] for a in decision["actions"]], ["flag"])
+        self.assertEqual(classify.classify(state, [item])["decisions"][0]["recommendation"], "ask")
+        state["head"]["profile"] = {**PROFILE, "invite_accept": True}
         self.assertEqual(classify.classify(state, [item])["decisions"][0]["recommendation"], "accept")
 
     def test_pages_arrays_empty_and_errors(self):

@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- **Invite accepts are opt-in, off by default at every preset.** Accepting sends the organiser a response, so it now needs its own switch (`automation --invite-accept on`, or the unticked box in setup) on top of a confirmed rule and calendar level 3. Without it the report asks about every invite and says when a rule would have accepted. Existing installs, High included, stop accepting until the user switches it on.
+- The description, `SKILL.md` hard rules and `policy/safety.md` now say exactly what can reach other people: an invite accept, only when switched on. Tags, flags, read state, drafts and memory stay with the user.
+
 ## 0.1.0 — first public build
 
 - Mail, calendar and Teams in one skill; recipe-only package, memory in the user's OneDrive.

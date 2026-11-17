@@ -17,17 +17,17 @@
         {
           "path": "skills/dear-inbox-zero/CHANGELOG.md",
           "target": "CHANGELOG.md",
-          "sha256": "d05f35bd6dbc3995bd9b7dfe933f3a9948eca30f53fb079bec7392cb62230c34"
+          "sha256": "241b56e8700b849ecf40d3f80d8a0747346ab8403e9ea7ba5f6a1449dd0f62a3"
         },
         {
           "path": "skills/dear-inbox-zero/SKILL.md",
           "target": "SKILL.md",
-          "sha256": "29468dfd6df4b2c100860cc0c3fad7b89082b84273561444afd468c15c13db93"
+          "sha256": "78120ad6862d1bf44c2fe0a567e59f589398f2857627f01457d14c75da83aa70"
         },
         {
           "path": "skills/dear-inbox-zero/channels/calendar.md",
           "target": "channels/calendar.md",
-          "sha256": "59640c9f6fb6bc10dbe5d1e9d6b3205ea8c47640f144a849dd4059f76bc2ffee"
+          "sha256": "a9061b349c7c8f2f218c18353a83a102db5b517aaa36e26214e4942a2e648efe"
         },
         {
           "path": "skills/dear-inbox-zero/channels/mail.md",
@@ -47,17 +47,17 @@
         {
           "path": "skills/dear-inbox-zero/engine/dear_engine.py",
           "target": "engine/dear_engine.py",
-          "sha256": "4b06b3c2a7635fdbafd452e13fee2af9c51c88a023c51cdea257ef47a754f1d6"
+          "sha256": "d2e06aa675b147ec1910a1106598cef8e74301ffa40f95caa070a93b4867c7cf"
         },
         {
           "path": "skills/dear-inbox-zero/engine/diz/__init__.py",
           "target": "engine/diz/__init__.py",
-          "sha256": "d041d75a187e8a369496dafbcfaa41ec00cfb355956a2ad78e92999cf7c9ec66"
+          "sha256": "69bac1b044585daef3545ac7ce8a1daef85abe3ec26c1e93c05bb45a5bcc3d58"
         },
         {
           "path": "skills/dear-inbox-zero/engine/diz/classify.py",
           "target": "engine/diz/classify.py",
-          "sha256": "889b841e0a0b5148b5d73f398aca5e42a0dd810bc6b32a6f182ce1f76e08aac0"
+          "sha256": "d7504497f55abea9a84babfe39be9104bdfeee2a012e6bf51fc3a07d1b29bca3"
         },
         {
           "path": "skills/dear-inbox-zero/engine/diz/collect.py",
@@ -72,7 +72,7 @@
         {
           "path": "skills/dear-inbox-zero/engine/diz/learn.py",
           "target": "engine/diz/learn.py",
-          "sha256": "3d5073a5efe5e9eed438024dbd800d663d1183d0845f625e352c2392fdf90518"
+          "sha256": "87350bd4d2e205f5078562510d27ec8b57dc40e6d3eea9fb0396ebc1af18d3ef"
         },
         {
           "path": "skills/dear-inbox-zero/engine/diz/ledger.py",
@@ -82,7 +82,7 @@
         {
           "path": "skills/dear-inbox-zero/engine/diz/report.py",
           "target": "engine/diz/report.py",
-          "sha256": "28339127babbf44289127b93e81c0883dcb599d735f60845ec2551d9784397fc"
+          "sha256": "c22ae8daf36f1e7526b519abc0e04b67afae4562dc4d2dc903f350cf7f626995"
         },
         {
           "path": "skills/dear-inbox-zero/engine/diz/sent.py",
@@ -92,7 +92,7 @@
         {
           "path": "skills/dear-inbox-zero/engine/diz/store.py",
           "target": "engine/diz/store.py",
-          "sha256": "2cf95c57aac89a046c637eb344460e94682d8c0fa0a7c61e119fd611990a3656"
+          "sha256": "ca8aaae95616a72456e995c211ad9b5f2efb9a6511d17227bf8a675c2ae993fb"
         },
         {
           "path": "skills/dear-inbox-zero/engine/diz/teams.py",
@@ -112,12 +112,12 @@
         {
           "path": "skills/dear-inbox-zero/hosts/cowork.md",
           "target": "hosts/cowork.md",
-          "sha256": "743c7de540896cea2d971e1a8dd2874bca4e9a7aa0bbafea3c4dcd7989d65910"
+          "sha256": "d75f6280ce2b08db0a4293ba09b53c546181695f545757d78385e2e13019430b"
         },
         {
           "path": "skills/dear-inbox-zero/hosts/graph-mcp.md",
           "target": "hosts/graph-mcp.md",
-          "sha256": "1b99bc95948d275208b36811a049a12b47ba3c9d4ffa90bca29b1b9258c7d42c"
+          "sha256": "3d623638a924ac378bb71ade4ecf993d0ea8e6330a29906df36ab09702b56318"
         },
         {
           "path": "skills/dear-inbox-zero/learn/learning-loop.md",
@@ -132,12 +132,12 @@
         {
           "path": "skills/dear-inbox-zero/policy/buckets.md",
           "target": "policy/buckets.md",
-          "sha256": "66ceb05421484d5ea34e0bb8a71fed0aff592bd2bf3ea8ea297b84fc84af94ce"
+          "sha256": "a71f6dc0616d9ca438d02f49e6817eba64042154113222adc80a4e557d16ffb0"
         },
         {
           "path": "skills/dear-inbox-zero/policy/safety.md",
           "target": "policy/safety.md",
-          "sha256": "325c9cec3947c84e19c7eebae0958efc7582214232ca0412e69aa66ed9e0442e"
+          "sha256": "a0b7c4d3675efcc12d1d0aea3a8807e00b8789ade4e8c4337abe115272fb7030"
         },
         {
           "path": "skills/dear-inbox-zero/policy/voice.md",
@@ -162,7 +162,7 @@
         {
           "path": "skills/dear-inbox-zero/setup/first-install.md",
           "target": "setup/first-install.md",
-          "sha256": "13243588d44773b2c776d7c06b3fa1fb0594a800613f5904f5c46c2592e70a6d"
+          "sha256": "2d8950a0131a96ebb919040a80c3e1f5a4c3082df8178847802f465134cba020"
         },
         {
           "path": "skills/dear-inbox-zero/setup/install.md",
@@ -177,12 +177,17 @@
         {
           "path": "skills/dear-inbox-zero/tests/test_collect.py",
           "target": "tests/test_collect.py",
-          "sha256": "45ba182bbb37c93a219e5364821b01879bff5e0bf308ab8aaff44345f1228ef6"
+          "sha256": "9bc5f85e0ccbf3f3ef580a5f1e78ebfaa0f16a47b7bd22afe2ee05215be4d521"
         },
         {
           "path": "skills/dear-inbox-zero/tests/test_engine.py",
           "target": "tests/test_engine.py",
-          "sha256": "ada9e17d644fc8b4eae1fd88142038cae675e4c3b95983d84a22b0fb2c90d9e9"
+          "sha256": "1cbb917f1ed543e7f76a2b0eefe96db51c8e7113bd8993e0394f6a4eb77ef1a7"
+        },
+        {
+          "path": "skills/dear-inbox-zero/tests/test_sending.py",
+          "target": "tests/test_sending.py",
+          "sha256": "81479b0a187014b8794e9b51efc9c8344353bb9b57bda27dd5636288bc426c2d"
         },
         {
           "path": "skills/dear-inbox-zero/tests/test_sent.py",
@@ -236,7 +241,7 @@
           "mail.update (categories, read state, flag)",
           "mail.draft",
           "calendar.read",
-          "calendar.respond (accept only)",
+          "calendar.respond (accept only; opt-in, off by default; sends the organiser a response)",
           "teams.read (chats, mentions)",
           "onedrive.files.readwrite",
           "ask_user"
@@ -318,11 +323,11 @@
   "docs": [
     {
       "path": "README.md",
-      "sha256": "b1fb64a96ec8ce9720e35e523fe167060deed4881017bde4f0268d9b8f823716"
+      "sha256": "5e5f9e3b7bfda8422ee00a4100ab19a4e22c78e31a544b94bdeb913aa2b7b8c9"
     },
     {
       "path": "DESIGN.md",
-      "sha256": "e76a282f09ada1db2693ca0d5a45b95de9f111b6dd72488d31af8c91a2cffd40"
+      "sha256": "c0baa75b94a819600e1265d9d3c34c3c61ea5880855858bece25b11011c98024"
     },
     {
       "path": "LICENSE",
@@ -354,7 +359,7 @@
     },
     {
       "path": "docs/hosts/github-copilot.md",
-      "sha256": "1d87f7dfb8d68c4166dabc57fdb3313d7f3db765d1bb6561e640b50fa5fcf3f9"
+      "sha256": "9efde8e3fccc0e06faa6c896759827ff987b1fc073e0feba4d8aeb9b20365fd8"
     }
   ]
 }

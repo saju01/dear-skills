@@ -13,7 +13,7 @@ Status: v0.1.0 built (decisions of 10 Nov 2026 applied) · Repo: `dear-skills` �
 | P1 | **The package is a recipe** | No names, addresses, customers, senders or sample mail from a real person ship in the repo. CI fails the build if any are found. |
 | P2 | **Memory belongs to the user** | Everything learned lives in a store the user owns (OneDrive or a local folder), created at first install. The skill never writes memory into its own folder. |
 | P3 | **Learn only from the user's own actions** | Tags changed, replies sent, flags set or cleared, invites answered, drafts binned or edited. Never from other people's behaviour or another assistant. |
-| P4 | **Nothing leaves without the user** | Never send, never forward, never delete. Replies are drafts. Teams replies are suggested text. Calendar responses happen only under a rule the user confirmed. |
+| P4 | **Nothing leaves without the user** | Never send, never forward, never delete. Replies are drafts. Teams replies are suggested text. Calendar accepts, the only action that reaches another person (the organiser gets the response), happen only when the user switched them on (off by default at every preset) and under a rule they confirmed. |
 | P5 | **Trust is earned per bucket** | Each bucket has an autonomy level that rises after a run of accurate days and drops after a mistake. |
 | P6 | **Token-efficient by design** | Deterministic rules decide first. The model only sees what the rules can't decide, and reads metadata before bodies. |
 | P7 | **Agent-agnostic** | Agent Skills format (a folder with `SKILL.md`), plain Markdown + Python, no host-specific syntax in the core. A thin host adapter translates abstract operations into each agent's tools (see §11). |
@@ -152,9 +152,9 @@ Calendar rules learned from real use:
 | 0 | report only |
 | 1 | tag |
 | 2 | + mark read, flag |
-| 3 | + calendar accept under rules the user confirmed (never before a learned pattern was proposed and confirmed) |
+| 3 | + calendar accept under rules the user confirmed, only with invite accepts switched on (never before a learned pattern was proposed and confirmed) |
 
-**Presets** set the starting level and the ceiling: Low (1 everywhere), **Auto · Medium, the default** (Noise/FYI/Reply 2, calendar 1 → may earn 3), High (calendar 3 from the start). Inside the ceiling, levels still move with accuracy.
+**Presets** set the starting level and the ceiling: Low (1 everywhere), **Auto · Medium, the default** (Noise/FYI/Reply 2, calendar 1 → may earn 3), High (calendar 3 from the start). Invite accepts are a separate opt-in, off at every preset. Inside the ceiling, levels still move with accuracy.
 
 Promotion: at least 5 counted runs with an override rate under 5%, and at least 30 decisions in the streak. Demotion: any wrong action (e.g. a binned draft for a sender, or a Noise item marked unread again) pauses that rule and drops the bucket one level. Sending is not on the ladder.
 

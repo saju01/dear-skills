@@ -23,7 +23,8 @@ def new_payload(account, tz="UTC", channels=("mail", "calendar"), now=None):
     return {
         "account": account, "engine": __version__, "created_at": iso(now), "parent": None,
         "profile": {"tz": tz, "channels": list(channels), "broadcast_threshold": 50,
-                    "teams_reply_hours": 4, "vip": [], "personal": [], "internal_domains": []},
+                    "teams_reply_hours": 4, "vip": [], "personal": [], "internal_domains": [],
+                    "invite_accept": False},
         "setup": {"stage": "s0_done"},
         "autonomy": {b: {"level": 0, "runs": [], "history": []} for b in AUTONOMY_BUCKETS},
         "ledger": [], "checkpoints": {}, "drafts": [], "last_run": None,

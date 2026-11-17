@@ -24,8 +24,9 @@ configuration. Do not grant `Mail.Send` or `ChatMessage.Send`.
 
 Expose only the adapter's operation-specific tools. Do not expose a generic
 arbitrary-Graph-request tool, or tools for sending, forwarding, deleting,
-moving, declining, or posting. In particular, accepting an event is allowed
-only as described by the adapter and the skill's confirmed-rule safeguards.
+moving, declining, or posting. In particular, accepting an event sends the
+organiser a response, so it is allowed only when the user has switched invite
+accepts on, and only under the skill's confirmed-rule safeguards.
 Use tool allowlists where the host supports them.
 
 ## VS Code agent mode
