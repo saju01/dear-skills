@@ -31,6 +31,7 @@ def render(state, decisions, now=None, notes=None):
     head = state["head"]
     _set_tz(head["profile"].get("tz"))
     decs = decisions.get("decisions", [])
+    dry = bool(decisions.get("dry_run"))
     lines = [f"# dear-inbox-zero — {now.strftime('%a %d %b %Y')}" + (" (dry run: nothing changed)" if decisions.get("dry_run") else ""), ""]
     counts = {}
     for d in decs:
@@ -51,7 +52,7 @@ def render(state, decisions, now=None, notes=None):
                              "accept? (your rule says yes; accepting for you is off)")
             elif d.get("clashes"):
                 c = "; ".join(f"{x['subject']} ({_when(x['start'])})" for x in d["clashes"])
-                lines.append(f"- **{d['subject']}** — {_when(d.get('start'))} · clashes with {c} · flagged, not answered")
+                lines.append(f"- **{d['subject']}** — {_when(d.get('start'))} · clashes with {c} · {'would flag' if dry else 'flagged'}, not answered")
             else:
                 lines.append(f"- **{d['subject']}** from {d.get('sender_name') or d['sender']} — {_when(d.get('start'))} · accept?")
         lines.append("")
@@ -59,7 +60,14 @@ def render(state, decisions, now=None, notes=None):
     if rep:
         lines += ["## Needs you", ""]
         for d in rep:
-            how = "suggested reply below" if d["channel"] == "teams" else ("draft in Drafts" if any(a["op"] == "draft" for a in d.get("actions", [])) else "no draft (report-only level)")
+            if d["channel"] == "teams":
+                how = "suggested reply below"
+            elif any(a["op"] == "draft" for a in d.get("actions", [])):
+                how = "draft in Drafts"
+            elif dry and head["autonomy"]["reply"]["level"] >= 2:
+                how = "would draft a reply"
+            else:
+                how = "no draft (report-only level)"
             where = "Teams" if d["channel"] == "teams" else "Mail"
             lines.append(f"- {where} · **{d.get('sender_name') or d['sender']}** — {d['subject']} · {how}")
         lines.append("")

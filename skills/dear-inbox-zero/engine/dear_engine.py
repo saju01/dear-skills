@@ -5,7 +5,7 @@ import argparse, json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from diz import __version__, store, classify as C, learn as L, ledger, report as R, doctor as D, sent as S, teams as T  # noqa: E402
 from diz.util import load, dump, parse_ts, iso, now_utc  # noqa: E402
-from diz import collect as G  # noqa: E402
+from diz import collect as G, quickstart as Q  # noqa: E402
 
 
 def _now(a):
@@ -202,6 +202,20 @@ def cmd_doctor(a):
     sys.exit(0 if res["ok"] else 1)
 
 
+def cmd_quickstart(a):
+    skill_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    try:
+        res = Q.run(skill_dir, a.dir, a.preset)
+    except store.StoreError as e:
+        sys.exit(f"quickstart: {e}")
+    print(res["report"])
+    p = res["paths"]
+    print(f"Sample store: {p['store']}\nReport: {p['report']}\n"
+          f"Store check: {'ok' if res['doctor_ok'] else 'failed: ' + '; '.join(res['doctor_errors'])}\n"
+          "This was fictional data. To start on your own mailbox, say `dear-inbox-zero setup`.")
+    sys.exit(0 if res["doctor_ok"] else 1)
+
+
 def cmd_collect(a):
     raw = [load(path) for path in a.input]
     if a.cmd == "collect-mail":
@@ -271,6 +285,8 @@ def main(argv=None):
                                   "help": "accept invites under confirmed rules (sends the organiser a response); default off"})
     add("go-live", cmd_go_live, ("--state", req), ("--preset", {"choices": ["low", "medium", "high"]}), accept)
     add("automation", cmd_automation, ("--state", req), ("--preset", {"choices": ["low", "medium", "high"]}), accept)
+    add("quickstart", cmd_quickstart, ("--dir", {"help": "folder for the sample store and report (default: a new temp folder)"}),
+        ("--preset", {"choices": ["low", "medium", "high"], "default": "medium"}))
     add("doctor", cmd_doctor, ("--skill-dir", {"default": os.path.dirname(os.path.dirname(os.path.abspath(__file__)))}), ("--store", {}))
     a = p.parse_args(argv)
     a.fn(a)

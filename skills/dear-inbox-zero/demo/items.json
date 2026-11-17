@@ -1,0 +1,112 @@
+[
+ {
+  "id": "m01",
+  "sender": "news@newsletter.example.org",
+  "sender_name": "Example Newsletter",
+  "subject": "This week in gadgets",
+  "received_at": "2026-03-02T07:13Z"
+ },
+ {
+  "id": "m02",
+  "sender": "digest@tools.example.org",
+  "sender_name": "Tools digest",
+  "subject": "Weekly digest 13",
+  "received_at": "2026-03-02T07:16Z"
+ },
+ {
+  "id": "m03",
+  "sender": "boss@example.com",
+  "sender_name": "Robin (manager)",
+  "subject": "Quick sync",
+  "to_me": true,
+  "received_at": "2026-03-02T07:19Z"
+ },
+ {
+  "id": "m04",
+  "sender": "pat@example.com",
+  "sender_name": "Pat",
+  "subject": "Can you send the deck by Friday?",
+  "to_me": true,
+  "has_question": true,
+  "received_at": "2026-03-02T07:22Z"
+ },
+ {
+  "id": "m05",
+  "sender": "mum@example.net",
+  "sender_name": "Mum",
+  "subject": "Sunday lunch",
+  "received_at": "2026-03-02T07:25Z"
+ },
+ {
+  "id": "m06",
+  "sender": "noreply@bank.example.org",
+  "sender_name": "Bank",
+  "subject": "Your password was changed",
+  "received_at": "2026-03-02T07:28Z"
+ },
+ {
+  "id": "m07",
+  "sender": "stranger@example.org",
+  "sender_name": "New vendor",
+  "subject": "Introduction",
+  "received_at": "2026-03-02T07:31Z"
+ },
+ {
+  "id": "m08",
+  "sender": "lee@example.com",
+  "sender_name": "Lee",
+  "subject": "Contract renewal due 15 March",
+  "to_me": true,
+  "deadline_hint": "15 March",
+  "received_at": "2026-03-02T07:34Z"
+ },
+ {
+  "id": "m09",
+  "sender": "promo@example.org",
+  "sender_name": "Example Store",
+  "subject": "Spring offer",
+  "received_at": "2026-03-02T07:45:00Z"
+ },
+ {
+  "id": "i1",
+  "channel": "invite",
+  "event_id": "e2",
+  "sender": "planner@example.com",
+  "sender_name": "Sam",
+  "subject": "Quarterly planning",
+  "start": "2026-03-03T09:30:00Z",
+  "end": "2026-03-03T10:30:00Z",
+  "invitees": 8
+ },
+ {
+  "id": "i2",
+  "channel": "invite",
+  "event_id": "e3",
+  "sender": "org@example.com",
+  "sender_name": "Office team",
+  "subject": "Team lunch",
+  "start": "2026-03-05T11:00:00Z",
+  "end": "2026-03-05T12:00:00Z",
+  "invitees": 12
+ },
+ {
+  "id": "i3",
+  "channel": "invite",
+  "event_id": "e4",
+  "sender": "comms@example.com",
+  "sender_name": "Comms",
+  "subject": "All-hands",
+  "start": "2026-03-06T15:00:00Z",
+  "end": "2026-03-06T16:00:00Z",
+  "invitees": 400
+ },
+ {
+  "id": "chat-1/msg-7",
+  "channel": "teams",
+  "sender": "pat@example.com",
+  "sender_name": "Pat",
+  "subject": "Launch chat",
+  "has_question": true,
+  "received_at": "2026-03-02T07:50:00Z"
+ }
+]

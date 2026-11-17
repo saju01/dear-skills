@@ -1,0 +1,14 @@
+[
+ {
+  "kind": "ignored",
+  "scope": "sender",
+  "key": "promo@example.org",
+  "count": 12
+ },
+ {
+  "kind": "accepted",
+  "scope": "sender",
+  "key": "standup@example.com",
+  "count": 4
+ }
+]
